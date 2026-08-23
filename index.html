@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FunnyRoutes – een speelse reisvergelijker voor vluchten, hotels en huurauto's.">
+  <title>FunnyRoutes – Vind een reis waar je blij van wordt</title>
+  <link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-labelledby%3D%22title%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3EFunnyRoutes%20logo%3C/title%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffd447%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8a5b%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Cpath%20d%3D%22M13%2034c12%203%2025%207%2038%200%203-2%205-4%206-7-6%201-12%201-18%200L29%2015h-8l6%2013-10-1z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Cpath%20d%3D%22m31%2029-9-14h7l15%2013zm1%206L20%2049h9l17-11z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2231%22%20r%3D%221.8%22%20fill%3D%22%2317395c%22/%3E%0A%20%20%3Cpath%20d%3D%22M47%2036c3%202%205%202%207%200%22%20fill%3D%22none%22%20stroke%3D%22%2317395c%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%221.8%22/%3E%0A%3C/svg%3E%0A" type="image/svg+xml">
+  <style>
+:root {
+  --navy: #133457;
+  --navy-deep: #0b2744;
+  --sky: #55c8f5;
+  --sky-soft: #dff6ff;
+  --yellow: #ffd447;
+  --orange: #ff8a5b;
+  --coral: #ff6e61;
+  --mint: #58d5b2;
+  --cream: #fffaf0;
+  --white: #ffffff;
+  --ink: #1a3551;
+  --muted: #62778c;
+  --line: #dce7ef;
+  --shadow: 0 22px 60px rgba(14, 56, 86, 0.14);
+  --shadow-soft: 0 12px 30px rgba(14, 56, 86, 0.10);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 17px;
+  --shell: min(1180px, calc(100% - 40px));
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--white);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select { font: inherit; }
+button { color: inherit; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; z-index: 1000; left: 16px; top: -60px;
+  padding: 10px 14px; color: var(--white); background: var(--navy);
+  border-radius: 10px; transition: top .2s;
+}
+.skip-link:focus { top: 12px; }
+
+.site-header {
+  position: sticky; z-index: 50; top: 0;
+  background: rgba(255, 255, 255, .9);
+  border-bottom: 1px solid rgba(220, 231, 239, .8);
+  backdrop-filter: blur(16px);
+}
+.nav-shell {
+  width: var(--shell); height: 80px; margin: 0 auto;
+  display: flex; align-items: center; gap: 28px;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  flex: 0 0 auto; font-size: 22px; font-weight: 900; letter-spacing: -1px;
+}
+.brand > span > span { color: var(--coral); }
+.brand img { filter: drop-shadow(0 7px 12px rgba(255, 110, 97, .18)); }
+.primary-nav { display: flex; align-items: center; gap: 25px; margin-left: 18px; }
+.primary-nav a {
+  position: relative; padding: 28px 0 26px; color: #476077;
+  font-size: 14px; font-weight: 750;
+}
+.primary-nav a::after {
+  content: ""; position: absolute; left: 50%; right: 50%; bottom: 16px;
+  height: 3px; border-radius: 9px; background: var(--coral); transition: .22s ease;
+}
+.primary-nav a:hover::after, .primary-nav a.active::after { left: 0; right: 0; }
+.primary-nav a.active { color: var(--navy); }
+.nav-actions { margin-left: auto; display: flex; gap: 8px; }
+.ghost-button, .login-button {
+  min-height: 42px; border: 0; border-radius: 14px; padding: 0 15px;
+  font-size: 13px; font-weight: 800; cursor: pointer;
+}
+.ghost-button { background: transparent; }
+.ghost-button:hover { background: #f3f8fb; }
+.login-button { background: var(--navy); color: var(--white); box-shadow: 0 8px 18px rgba(19, 52, 87, .18); }
+.menu-toggle { display: none; margin-left: auto; border: 0; background: transparent; padding: 8px; cursor: pointer; }
+.menu-toggle span:not(.sr-only) { display: block; width: 24px; height: 2px; margin: 5px 0; background: var(--navy); border-radius: 3px; }
+
+.hero {
+  position: relative; min-height: 680px; overflow: hidden;
+  background: linear-gradient(180deg, #e7f8ff 0%, #f8fdff 77%, #fff 100%);
+}
+.hero::before {
+  content: ""; position: absolute; right: -160px; top: -220px; width: 620px; height: 620px;
+  border-radius: 50%; background: rgba(85, 200, 245, .12);
+}
+.hero-shell {
+  position: relative; z-index: 2; width: var(--shell); margin: 0 auto;
+  min-height: 430px; display: grid; grid-template-columns: 1.02fr .98fr; align-items: center;
+  padding: 56px 0 104px;
+}
+.hero-copy { max-width: 620px; }
+.eyebrow {
+  margin: 0 0 12px; color: var(--coral); font-size: 13px; line-height: 1.2;
+  font-weight: 900; letter-spacing: .075em; text-transform: uppercase;
+}
+.hero-copy .eyebrow { text-transform: none; letter-spacing: 0; color: var(--navy); font-size: 14px; }
+.hero-copy .eyebrow span {
+  display: inline-block; margin-right: 8px; padding: 5px 9px;
+  border-radius: 99px; background: var(--yellow); font-size: 11px; text-transform: uppercase; letter-spacing: .07em;
+}
+h1, h2, h3, p { overflow-wrap: break-word; }
+h1 {
+  max-width: 620px; margin: 0; color: var(--navy-deep);
+  font-size: clamp(46px, 5.2vw, 74px); line-height: .99; letter-spacing: -.06em;
+}
+h1 em { position: relative; color: var(--coral); font-style: normal; white-space: nowrap; }
+h1 em::after {
+  content: ""; position: absolute; z-index: -1; left: -2%; right: -3%; bottom: 3px; height: 15px;
+  background: var(--yellow); border-radius: 70% 35% 65% 45%; transform: rotate(-2deg); opacity: .78;
+}
+.hero-intro { max-width: 610px; margin: 22px 0 20px; color: #4b657c; font-size: 18px; }
+.hero-points { display: flex; flex-wrap: wrap; gap: 9px 16px; color: #405f76; font-size: 13px; font-weight: 750; }
+.hero-points span { display: inline-flex; gap: 6px; align-items: center; }
+.hero-points b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: var(--navy); background: var(--mint); font-size: 11px; }
+
+.hero-art { position: relative; min-height: 330px; }
+.sun {
+  position: absolute; right: 32px; top: 12px; width: 130px; height: 130px;
+  border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 22px rgba(255, 212, 71, .16), 0 0 0 44px rgba(255, 212, 71, .08);
+  animation: sunPulse 5s ease-in-out infinite;
+}
+.flight-path {
+  position: absolute; left: 4%; right: 0; top: 58%; height: 150px;
+  border-top: 3px dashed rgba(19, 52, 87, .18); border-radius: 50%; transform: rotate(-5deg);
+}
+.happy-plane {
+  position: absolute; z-index: 4; left: 7%; top: 24%; width: 310px;
+  animation: flyFloat 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 18px 14px rgba(25, 70, 101, .19));
+}
+.plane-shadow { fill: rgba(35, 77, 108, .13); transform: translateY(8px); }
+.plane-body { fill: #fff; stroke: var(--navy); stroke-width: 2.2; stroke-linejoin: round; }
+.plane-wing { fill: var(--orange); stroke: var(--navy); stroke-width: 2; stroke-linejoin: round; }
+.plane-tail { fill: var(--yellow); stroke: var(--navy); stroke-width: 2; }
+.plane-window { fill: var(--sky); stroke: var(--navy); stroke-width: 1.5; }
+.plane-eye { fill: var(--navy); }
+.plane-smile { fill: none; stroke: var(--navy); stroke-width: 2.2; stroke-linecap: round; }
+.traveler-card {
+  position: absolute; z-index: 5; display: flex; align-items: center; gap: 9px;
+  min-width: 175px; padding: 10px 12px; border: 1px solid rgba(255, 255, 255, .75);
+  border-radius: 18px; background: rgba(255, 255, 255, .88); box-shadow: var(--shadow-soft); backdrop-filter: blur(8px);
+  animation: cardFloat 5s ease-in-out infinite;
+}
+.traveler-one { right: 3%; bottom: 38px; transform: rotate(3deg); }
+.traveler-two { left: 0; top: 18px; transform: rotate(-3deg); animation-delay: -2.3s; }
+.traveler-card .avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: var(--sky-soft); font-size: 22px; }
+.traveler-card div { display: grid; }
+.traveler-card b { font-size: 13px; }
+.traveler-card small { color: var(--muted); font-size: 11px; }
+.cloud { position: absolute; z-index: 1; width: 112px; height: 34px; border-radius: 99px; background: rgba(255,255,255,.76); filter: blur(.2px); animation: cloudDrift 18s linear infinite; }
+.cloud::before, .cloud::after { content: ""; position: absolute; bottom: 0; border-radius: 50%; background: inherit; }
+.cloud::before { left: 18px; width: 52px; height: 52px; }
+.cloud::after { right: 18px; width: 42px; height: 42px; }
+.cloud-one { left: -130px; top: 110px; }
+.cloud-two { left: 25%; top: 335px; transform: scale(.65); animation-delay: -8s; opacity: .7; }
+.cloud-three { left: 62%; top: 120px; transform: scale(.45); animation-delay: -13s; opacity: .62; }
+
+.search-wrap {
+  position: relative; z-index: 10; width: var(--shell); margin: -96px auto 0;
+}
+.search-card {
+  overflow: visible; border: 1px solid rgba(255,255,255,.9); border-radius: var(--radius-xl);
+  background: rgba(255,255,255,.96); box-shadow: var(--shadow); backdrop-filter: blur(18px);
+}
+
+.affiliate-search-card {
+  min-height: 130px; padding: 18px; border: 1px solid rgba(255,255,255,.9);
+  border-radius: var(--radius-xl); background: rgba(255,255,255,.97);
+  box-shadow: var(--shadow); backdrop-filter: blur(18px);
+}
+.affiliate-search-note {
+  margin: 10px 4px 0; color: var(--muted); font-size: 11px; text-align: right;
+}
+.search-tabs { display: flex; gap: 4px; padding: 10px 12px 0; border-bottom: 1px solid var(--line); }
+.search-tab {
+  position: relative; display: flex; align-items: center; gap: 8px; min-height: 52px;
+  padding: 0 20px; border: 0; background: transparent; color: #60758a; font-weight: 850; cursor: pointer;
+}
+.search-tab span { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 9px; background: #edf7fb; color: var(--navy); }
+.search-tab::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: -1px; height: 4px; border-radius: 8px 8px 0 0; background: var(--coral); transition: .2s; }
+.search-tab.active { color: var(--navy); }
+.search-tab.active span { background: var(--yellow); }
+.search-tab.active::after { left: 16px; right: 16px; }
+.search-panel { padding: 16px 18px 17px; }
+.search-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.segmented { display: inline-flex; gap: 3px; padding: 3px; border-radius: 12px; background: #edf4f8; }
+.segment { padding: 7px 12px; border: 0; border-radius: 9px; color: #647a8f; background: transparent; font-size: 12px; font-weight: 800; cursor: pointer; }
+.segment.active { color: var(--navy); background: #fff; box-shadow: 0 3px 10px rgba(25, 61, 88, .08); }
+.check-option, .toggle-option { display: inline-flex; align-items: center; gap: 8px; color: #506b81; font-size: 12px; font-weight: 700; }
+.check-option input { accent-color: var(--coral); }
+.search-grid {
+  position: relative; display: grid;
+  grid-template-columns: 1.15fr 1.15fr .82fr .82fr .95fr auto;
+  gap: 8px; align-items: stretch;
+}
+.field {
+  position: relative; min-width: 0; min-height: 85px; padding: 11px 12px 9px;
+  border: 1px solid var(--line); border-radius: 16px; background: #fff; transition: .18s ease;
+}
+.field:focus-within { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(85, 200, 245, .15); }
+.field-label { display: block; margin-bottom: 5px; color: #698095; font-size: 10px; font-weight: 850; letter-spacing: .04em; text-transform: uppercase; }
+.field-control { display: flex; align-items: center; gap: 6px; min-height: 28px; }
+.field-control input {
+  width: 100%; min-width: 0; padding: 0; border: 0; outline: none; color: var(--navy); background: transparent;
+  font-size: 14px; font-weight: 850;
+}
+.field-control input[type="date"] { font-size: 12px; }
+.field-icon { flex: 0 0 auto; color: var(--coral); font-weight: 900; }
+.field-hint { display: block; margin: 3px 0 0 22px; overflow: hidden; color: #8a9aaa; font-size: 10px; white-space: nowrap; text-overflow: ellipsis; }
+.swap-button {
+  position: absolute; z-index: 5; left: calc(19.17% - 12px); top: 29px;
+  display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--coral); box-shadow: 0 4px 12px rgba(27, 64, 91, .12); cursor: pointer;
+  transition: transform .2s;
+}
+.swap-button:hover { transform: rotate(180deg); }
+.passenger-field { cursor: pointer; }
+.passenger-toggle { width: 100%; padding: 0; border: 0; background: transparent; text-align: left; cursor: pointer; font-weight: 850; }
+.passenger-popover {
+  position: absolute; z-index: 30; right: 0; top: calc(100% + 9px); width: 290px;
+  padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: var(--shadow);
+}
+.passenger-popover > div { display: flex; justify-content: space-between; align-items: center; }
+.passenger-popover > div > span:first-child { display: grid; }
+.passenger-popover small { color: var(--muted); }
+.stepper { display: inline-flex; align-items: center; gap: 12px; }
+.stepper button { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-weight: 900; cursor: pointer; }
+.passenger-popover label { display: grid; gap: 5px; margin-top: 14px; font-size: 12px; font-weight: 800; }
+.passenger-popover select { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+.search-button {
+  display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 164px;
+  border: 0; border-radius: 16px; background: linear-gradient(135deg, var(--coral), var(--orange));
+  color: #fff; box-shadow: 0 12px 22px rgba(255,110,97,.27); font-size: 13px; font-weight: 900; cursor: pointer; transition: .18s;
+}
+.search-button:hover { transform: translateY(-2px); box-shadow: 0 15px 28px rgba(255,110,97,.31); }
+.search-button span:last-child { font-size: 21px; }
+.search-foot { display: flex; justify-content: space-between; align-items: center; padding: 12px 2px 0; }
+.search-foot p { margin: 0; color: #9aa8b4; font-size: 10px; }
+.toggle-option input { position: absolute; opacity: 0; }
+.toggle-option > span { position: relative; width: 35px; height: 20px; border-radius: 99px; background: #cad7df; transition: .2s; }
+.toggle-option > span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: .2s; }
+.toggle-option input:checked + span { background: var(--mint); }
+.toggle-option input:checked + span::after { transform: translateX(15px); }
+
+.result-demo { border-top: 1px solid #d7edf6; border-bottom: 1px solid #d7edf6; background: #f1fbff; }
+.result-demo .section-shell { position: relative; padding-top: 28px; padding-bottom: 28px; display: grid; grid-template-columns: .9fr 1.3fr; gap: 26px; align-items: center; }
+.result-copy h2 { margin: 2px 0 6px; font-size: 30px; letter-spacing: -.04em; }
+.result-copy p:last-child { margin: 0; color: var(--muted); }
+.close-result { position: absolute; right: 0; top: 12px; border: 0; background: transparent; color: var(--muted); font-size: 28px; cursor: pointer; }
+.mini-result-card { display: grid; grid-template-columns: auto 1fr auto auto; gap: 14px; align-items: center; padding: 15px; border: 1px solid var(--line); border-radius: 19px; background: #fff; box-shadow: var(--shadow-soft); }
+.airline-logo { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 14px; background: var(--yellow); color: var(--navy); font-weight: 950; }
+.mini-result-card > div:nth-child(2) { display: grid; }
+.mini-result-card > div:nth-child(2) span { color: var(--muted); font-size: 11px; }
+.result-price { display: grid; text-align: right; }
+.result-price small { color: var(--muted); }
+.result-price strong { font-size: 21px; }
+.mini-result-card button { border: 0; border-radius: 12px; padding: 11px 14px; color: #fff; background: var(--navy); font-weight: 850; cursor: pointer; }
+
+.trust-strip { border-bottom: 1px solid #edf2f5; background: #fff; }
+.trust-shell { width: var(--shell); margin: 0 auto; padding: 34px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.trust-shell > div { display: grid; grid-template-columns: 42px 1fr; column-gap: 11px; align-items: center; }
+.trust-shell > div > span { grid-row: 1 / 3; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; background: var(--sky-soft); color: var(--navy); font-size: 20px; font-weight: 900; }
+.trust-shell b { font-size: 13px; }
+.trust-shell small { color: var(--muted); font-size: 10px; }
+
+.section { padding: 92px 0; }
+.section-shell { width: var(--shell); margin: 0 auto; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 32px; }
+.section-heading h2, .explore-copy h2, .newsletter-copy h2 {
+  margin: 0; color: var(--navy-deep); font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -.045em;
+}
+.section-heading.centered { max-width: 760px; margin: 0 auto 44px; text-align: center; justify-content: center; }
+.section-heading.centered p:last-child { margin: 12px auto 0; color: var(--muted); }
+.text-button { border: 0; background: transparent; color: var(--navy); font-size: 13px; font-weight: 900; cursor: pointer; }
+.text-button span { color: var(--coral); font-size: 18px; }
+
+.deals-section { background: var(--cream); }
+.deal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.deal-card { position: relative; overflow: hidden; border: 1px solid rgba(19, 52, 87, .08); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 12px 30px rgba(29, 65, 91, .08); transition: .22s ease; }
+.deal-card:hover { transform: translateY(-7px) rotate(-.25deg); box-shadow: 0 22px 45px rgba(29, 65, 91, .14); }
+.deal-visual { position: relative; height: 215px; overflow: hidden; }
+.deal-barcelona .deal-visual { background: linear-gradient(150deg, #70d7f6, #bdefff); }
+.deal-bangkok .deal-visual { background: linear-gradient(150deg, #ffc367, #ff8f6d); }
+.deal-bali .deal-visual { background: linear-gradient(150deg, #63ddb4, #b9f1cf); }
+.deal-badge { position: absolute; z-index: 4; left: 16px; top: 15px; padding: 6px 10px; border-radius: 99px; background: rgba(255,255,255,.88); font-size: 10px; font-weight: 900; }
+.postcard-icon { position: absolute; right: 20px; top: 18px; color: rgba(255,255,255,.8); font-size: 40px; }
+.city-shape { position: absolute; left: 0; right: 0; bottom: 0; height: 80%; }
+.city-barcelona::before {
+  content: ""; position: absolute; left: 8%; bottom: -6px; width: 48px; height: 115px;
+  border-radius: 55% 55% 7px 7px; background: #f6b44a; box-shadow: 55px 28px 0 -5px #f65f59, 112px -15px 0 -10px #fff4d4, 180px 35px 0 5px #ef875d, 250px 14px 0 0 #f9d276;
+}
+.city-barcelona::after { content: ""; position: absolute; left: 18%; right: 10%; bottom: 0; height: 30px; border-radius: 50% 50% 0 0; background: rgba(255,255,255,.28); }
+.city-bangkok::before {
+  content: ""; position: absolute; left: 12%; bottom: 0; width: 45px; height: 130px;
+  clip-path: polygon(50% 0,60% 28%,75% 31%,68% 39%,83% 44%,73% 52%,100% 58%,85% 65%,89% 100%,11% 100%,15% 65%,0 58%,27% 52%,17% 44%,32% 39%,25% 31%,40% 28%);
+  background: #7d3555; box-shadow: 110px 37px 0 10px #4b2d51, 212px 13px 0 -2px #bd4e55;
+}
+.city-bali::before { content: ""; position: absolute; left: 12%; bottom: -12px; width: 150px; height: 130px; border-radius: 50%; border-top: 16px solid #217f66; transform: rotate(-14deg); box-shadow: 140px 20px 0 -18px #238b6c; }
+.city-bali::after { content: ""; position: absolute; right: 19%; bottom: 0; width: 50px; height: 120px; clip-path: polygon(45% 0,55% 0,58% 20%,100% 28%,62% 34%,90% 49%,61% 52%,62% 100%,38% 100%,39% 52%,10% 49%,38% 34%,0 28%,42% 20%); background: #3a6d58; }
+.deal-body { display: flex; justify-content: space-between; align-items: end; padding: 18px; gap: 12px; }
+.deal-body p { margin: 0 0 2px; color: var(--muted); font-size: 10px; }
+.deal-body h3 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
+.deal-price { display: grid; text-align: right; }
+.deal-price small { color: var(--muted); font-size: 9px; }
+.deal-price strong { color: var(--coral); font-size: 20px; }
+.card-link { position: absolute; inset: 0; border: 0; background: transparent; cursor: pointer; }
+.demo-disclaimer { margin: 16px 0 0; color: #8b9aa5; font-size: 10px; text-align: right; }
+
+.explore-section { overflow: hidden; background: #f1fbff; }
+.explore-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 65px; align-items: center; }
+.explore-copy > p:not(.eyebrow) { max-width: 500px; color: var(--muted); font-size: 16px; }
+.budget-card { margin: 28px 0 20px; padding: 18px; border-radius: 18px; background: #fff; box-shadow: var(--shadow-soft); }
+.budget-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 12px; font-weight: 800; }
+.budget-top strong { color: var(--coral); font-size: 21px; }
+#budget-range { width: 100%; accent-color: var(--coral); }
+.range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 9px; }
+.primary-button { border: 0; border-radius: 14px; padding: 14px 18px; color: #fff; background: var(--navy); font-weight: 900; box-shadow: 0 12px 25px rgba(19, 52, 87, .18); cursor: pointer; }
+.primary-button span { margin-left: 8px; color: var(--yellow); }
+.explore-map { position: relative; min-height: 430px; overflow: hidden; border: 8px solid #fff; border-radius: 32px; background: #bcecff; box-shadow: var(--shadow); }
+.map-grid { position: absolute; inset: 0; opacity: .22; background-image: linear-gradient(rgba(19,52,87,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(19,52,87,.35) 1px, transparent 1px); background-size: 46px 46px; }
+.continent { position: absolute; background: #f7e6b3; box-shadow: inset -12px -12px 0 rgba(222,185,114,.18); }
+.continent-one { left: -4%; top: 9%; width: 43%; height: 57%; border-radius: 58% 42% 47% 33% / 42% 51% 49% 58%; transform: rotate(12deg); }
+.continent-two { left: 37%; top: 20%; width: 25%; height: 46%; border-radius: 49% 51% 42% 58%; transform: rotate(-17deg); }
+.continent-three { right: -6%; top: 7%; width: 42%; height: 62%; border-radius: 42% 58% 62% 38%; transform: rotate(-7deg); }
+.map-pin { position: absolute; z-index: 3; display: grid; min-width: 82px; padding: 7px 9px; border: 0; border-radius: 12px; color: var(--navy); background: #fff; box-shadow: 0 7px 16px rgba(19,52,87,.18); cursor: pointer; transition: transform .2s; }
+.map-pin::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 14px; height: 14px; background: #fff; transform: translateX(-50%) rotate(45deg); }
+.map-pin:hover { z-index: 8; transform: translateY(-4px) scale(1.06); }
+.map-pin span { position: relative; z-index: 1; color: var(--coral); font-size: 13px; font-weight: 950; }
+.map-pin small { position: relative; z-index: 1; font-size: 9px; }
+.pin-london { left: 13%; top: 24%; }
+.pin-lisbon { left: 7%; top: 51%; }
+.pin-cairo { left: 40%; top: 55%; }
+.pin-bangkok { right: 10%; top: 47%; }
+.map-character { position: absolute; right: 7%; bottom: 3%; font-size: 70px; filter: drop-shadow(0 10px 10px rgba(19,52,87,.2)); animation: cardFloat 4s ease-in-out infinite; }
+
+.how-section { background: #fff; }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.steps-grid article { position: relative; min-height: 250px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius-lg); text-align: center; transition: .2s; }
+.steps-grid article:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+.step-number { position: absolute; left: 16px; top: 16px; display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: var(--yellow); font-size: 12px; font-weight: 950; }
+.step-icon { display: grid; place-items: center; width: 70px; height: 70px; margin: 7px auto 19px; border-radius: 22px; background: var(--sky-soft); color: var(--navy); font-size: 35px; font-weight: 900; transform: rotate(-3deg); }
+.steps-grid article:nth-child(2) .step-icon { background: #fff2cf; transform: rotate(3deg); }
+.steps-grid article:nth-child(3) .step-icon { background: #daf8eb; }
+.steps-grid h3 { margin: 0 0 8px; font-size: 19px; }
+.steps-grid p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.inspiration-section { padding-top: 25px; }
+.inspiration-box { position: relative; overflow: hidden; min-height: 350px; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; border-radius: 34px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
+.inspiration-box::after { content: ""; position: absolute; right: -100px; top: -140px; width: 420px; height: 420px; border-radius: 50%; background: rgba(85,200,245,.12); }
+.newsletter-art { position: relative; height: 100%; min-height: 350px; background: linear-gradient(145deg, rgba(85,200,245,.2), rgba(255,212,71,.09)); }
+.suitcase { position: absolute; z-index: 3; left: 25%; bottom: 20%; display: grid; place-items: center; width: 145px; height: 170px; border: 7px solid #fff; border-radius: 24px; background: var(--orange); color: var(--yellow); font-size: 60px; box-shadow: 20px 22px 0 rgba(0,0,0,.12); transform: rotate(-5deg); }
+.suitcase::before { content: ""; position: absolute; left: 50%; top: -39px; width: 70px; height: 38px; border: 7px solid #fff; border-bottom: 0; border-radius: 20px 20px 0 0; transform: translateX(-50%); }
+.mini-plane { position: absolute; z-index: 4; left: 57%; top: 15%; color: var(--yellow); font-size: 70px; transform: rotate(12deg); animation: flyFloat 4s ease-in-out infinite; }
+.dotted-route { position: absolute; left: 42%; top: 31%; width: 190px; height: 80px; border-top: 4px dashed rgba(255,255,255,.45); border-radius: 50%; transform: rotate(-14deg); }
+.newsletter-copy { position: relative; z-index: 4; max-width: 570px; padding: 54px 55px 54px 20px; }
+.newsletter-copy .eyebrow { color: var(--yellow); }
+.newsletter-copy h2 { color: #fff; }
+.newsletter-copy > p:not(.eyebrow) { color: #bdd0df; }
+.newsletter-form { display: flex; gap: 8px; margin: 23px 0 7px; }
+.newsletter-form input { min-width: 0; flex: 1; border: 1px solid rgba(255,255,255,.18); border-radius: 13px; padding: 13px 14px; color: #fff; background: rgba(255,255,255,.1); outline: none; }
+.newsletter-form input::placeholder { color: #bed0df; }
+.newsletter-form input:focus { border-color: var(--sky); }
+.newsletter-form button { border: 0; border-radius: 13px; padding: 0 18px; color: var(--navy); background: var(--yellow); font-weight: 900; cursor: pointer; }
+.newsletter-copy small { color: #87a2b7; }
+
+.site-footer { margin-top: 90px; color: #c6d3de; background: var(--navy-deep); }
+.footer-shell { width: var(--shell); margin: 0 auto; padding: 56px 0 42px; display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 45px; }
+.brand.inverse { color: #fff; }
+.footer-brand p { max-width: 260px; color: #8fa5b7; font-size: 13px; }
+.footer-shell h3 { margin: 0 0 13px; color: #fff; font-size: 13px; }
+.footer-shell > div:not(.footer-brand) { display: flex; flex-direction: column; gap: 8px; }
+.footer-shell > div:not(.footer-brand) a { color: #9fb2c2; font-size: 12px; }
+.footer-shell a:hover { color: var(--yellow); }
+.footer-bottom { width: var(--shell); margin: 0 auto; padding: 18px 0 24px; display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.08); color: #718ba0; font-size: 10px; }
+.toast { position: fixed; z-index: 100; left: 50%; bottom: 24px; transform: translateX(-50%); max-width: calc(100% - 30px); padding: 12px 18px; border-radius: 14px; color: #fff; background: var(--navy); box-shadow: var(--shadow); font-size: 13px; font-weight: 800; }
+
+@keyframes flyFloat { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-13px) rotate(2deg); } }
+@keyframes cardFloat { 0%,100% { margin-top: 0; } 50% { margin-top: -9px; } }
+@keyframes sunPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes cloudDrift { from { translate: 0; } to { translate: calc(100vw + 260px); } }
+
+@media (max-width: 1080px) {
+  .primary-nav { gap: 17px; margin-left: 5px; }
+  .primary-nav a { font-size: 13px; }
+  .nav-actions .ghost-button { display: none; }
+  .hero-shell { grid-template-columns: 1fr .8fr; }
+  .happy-plane { left: 0; width: 270px; }
+  .traveler-one { right: -3%; }
+  .search-grid { grid-template-columns: repeat(4, 1fr); }
+  .field-location { grid-column: span 2; }
+  .swap-button { left: calc(25% - 10px); }
+  .search-button { min-height: 76px; }
+  .trust-shell { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 820px) {
+  :root { --shell: min(100% - 28px, 700px); }
+  .nav-shell { height: 70px; }
+  .menu-toggle { display: block; }
+  .primary-nav {
+    position: fixed; left: 14px; right: 14px; top: 78px; display: none; flex-direction: column; align-items: stretch; gap: 0;
+    margin: 0; padding: 10px; border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: var(--shadow);
+  }
+  .primary-nav.open { display: flex; }
+  .primary-nav a { padding: 12px 14px; border-radius: 11px; }
+  .primary-nav a:hover { background: #f3f9fc; }
+  .primary-nav a::after { display: none; }
+  .nav-actions { margin-left: 0; }
+  .nav-actions .login-button { min-height: 38px; }
+  .hero { min-height: auto; }
+  .hero-shell { grid-template-columns: 1fr; min-height: 0; padding: 45px 0 135px; }
+  .hero-copy { max-width: 660px; text-align: center; margin: 0 auto; }
+  .hero-intro { margin-left: auto; margin-right: auto; }
+  .hero-points { justify-content: center; }
+  .hero-art { min-height: 250px; margin-top: 20px; }
+  .happy-plane { left: 50%; top: 12%; width: 290px; transform: translateX(-50%); animation: mobileFlyFloat 4.5s ease-in-out infinite; }
+  .sun { right: 10%; width: 100px; height: 100px; }
+  .traveler-two { left: 2%; }
+  .traveler-one { right: 2%; bottom: 10px; }
+  .search-wrap { margin-top: -112px; }
+  .search-grid { grid-template-columns: repeat(2, 1fr); }
+  .field-location { grid-column: span 1; }
+  .swap-button { left: calc(50% - 14px); top: 29px; }
+  .search-button { min-height: 72px; }
+  .result-demo .section-shell { grid-template-columns: 1fr; }
+  .trust-shell { padding: 28px 0; }
+  .deal-grid { grid-template-columns: 1fr 1fr; }
+  .deal-card:last-child { grid-column: span 2; }
+  .explore-grid { grid-template-columns: 1fr; gap: 36px; }
+  .explore-copy { text-align: center; }
+  .explore-copy > p:not(.eyebrow) { margin-left: auto; margin-right: auto; }
+  .budget-card { max-width: 520px; margin-left: auto; margin-right: auto; text-align: left; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .steps-grid article { min-height: 0; }
+  .inspiration-box { grid-template-columns: .7fr 1.3fr; }
+  .footer-shell { grid-template-columns: 1.3fr 1fr 1fr; }
+  .footer-shell > div:last-child { grid-column: 2 / 4; }
+  @keyframes mobileFlyFloat { 0%,100% { transform: translateX(-50%) translateY(0) rotate(-2deg); } 50% { transform: translateX(-50%) translateY(-13px) rotate(2deg); } }
+}
+
+@media (max-width: 560px) {
+  :root { --shell: calc(100% - 22px); }
+  .site-header .brand { font-size: 18px; }
+  .site-header .brand img { width: 40px; height: 40px; }
+  .nav-actions { display: none; }
+  h1 { font-size: 45px; }
+  .hero-shell { padding-top: 35px; padding-bottom: 135px; }
+  .hero-intro { font-size: 15px; }
+  .hero-points { gap: 8px; }
+  .hero-art { min-height: 225px; }
+  .happy-plane { width: 245px; top: 18%; }
+  .traveler-card { min-width: auto; padding: 7px 9px; }
+  .traveler-card .avatar { width: 34px; height: 34px; font-size: 18px; }
+  .traveler-card small { display: none; }
+  .traveler-two { top: 0; }
+  .sun { right: 3%; top: 6%; width: 82px; height: 82px; }
+  .search-card { border-radius: 23px; }
+  .search-tabs { padding: 8px 7px 0; }
+  .search-tab { flex: 1; justify-content: center; min-height: 49px; padding: 0 4px; font-size: 11px; }
+  .search-tab span { width: 23px; height: 23px; }
+  .search-panel { padding: 13px; }
+  .search-options { align-items: flex-start; gap: 8px; flex-direction: column; }
+  .segmented { width: 100%; }
+  .segment { flex: 1; padding: 7px 4px; font-size: 10px; }
+  .search-grid { grid-template-columns: 1fr; }
+  .field-location { grid-column: auto; }
+  .swap-button { left: auto; right: 18px; top: 78px; transform: rotate(90deg); }
+  .swap-button:hover { transform: rotate(270deg); }
+  .search-button { min-height: 58px; }
+  .search-foot { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .passenger-popover { right: -1px; width: min(290px, calc(100vw - 52px)); }
+  .trust-shell { grid-template-columns: 1fr; gap: 18px; }
+  .section { padding: 68px 0; }
+  .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 24px; }
+  .section-heading h2, .explore-copy h2, .newsletter-copy h2 { font-size: 35px; }
+  .deal-grid { grid-template-columns: 1fr; }
+  .deal-card:last-child { grid-column: auto; }
+  .deal-visual { height: 190px; }
+  .demo-disclaimer { text-align: left; }
+  .explore-map { min-height: 360px; }
+  .pin-cairo { left: 35%; }
+  .pin-bangkok { right: 3%; }
+  .map-character { font-size: 52px; }
+  .mini-result-card { grid-template-columns: auto 1fr auto; }
+  .mini-result-card button { grid-column: 1 / -1; }
+  .inspiration-box { grid-template-columns: 1fr; }
+  .newsletter-art { min-height: 240px; }
+  .suitcase { left: 19%; bottom: 12%; width: 110px; height: 128px; font-size: 45px; }
+  .newsletter-copy { padding: 34px 24px 40px; text-align: center; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-form input, .newsletter-form button { min-height: 47px; }
+  .footer-shell { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-shell > div:last-child { grid-column: auto; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; gap: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ga naar de inhoud</a>
+
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="FunnyRoutes home">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-labelledby%3D%22title%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3EFunnyRoutes%20logo%3C/title%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffd447%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8a5b%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Cpath%20d%3D%22M13%2034c12%203%2025%207%2038%200%203-2%205-4%206-7-6%201-12%201-18%200L29%2015h-8l6%2013-10-1z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Cpath%20d%3D%22m31%2029-9-14h7l15%2013zm1%206L20%2049h9l17-11z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2231%22%20r%3D%221.8%22%20fill%3D%22%2317395c%22/%3E%0A%20%20%3Cpath%20d%3D%22M47%2036c3%202%205%202%207%200%22%20fill%3D%22none%22%20stroke%3D%22%2317395c%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%221.8%22/%3E%0A%3C/svg%3E%0A" alt="" width="48" height="48">
+        <span>Funny<span>Routes</span></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Menu openen</span>
+      </button>
+
+      <nav id="primary-navigation" class="primary-nav" aria-label="Hoofdnavigatie">
+        <a class="active" href="#zoeken">Zoeken</a>
+        <a href="#deals">Deals</a>
+        <a href="#explore">Explore</a>
+        <a href="#inspiratie">Inspiratie</a>
+        <a href="#over">Hoe het werkt</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="ghost-button" type="button" aria-label="Taal en valuta">NL · EUR</button>
+        <button class="login-button" type="button">Inloggen</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="zoeken">
+      <div class="cloud cloud-one" aria-hidden="true"></div>
+      <div class="cloud cloud-two" aria-hidden="true"></div>
+      <div class="cloud cloud-three" aria-hidden="true"></div>
+
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>Nieuw</span> Slim vergelijken zonder saaie reisstress</p>
+          <h1>Vind een reis waar je <em>blij</em> van wordt.</h1>
+          <p class="hero-intro">Vergelijk vluchten, hotels en huurauto’s in één vrolijke zoekervaring. Jij kiest; de reisaanbieder regelt de boeking.</p>
+          <div class="hero-points" aria-label="Belangrijkste voordelen">
+            <span><b>✓</b> Heldere totaalprijzen</span>
+            <span><b>✓</b> Flexibele reisdata</span>
+            <span><b>✓</b> Slimme prijsalerts</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="flight-path"></div>
+          <div class="happy-plane">
+            <svg viewBox="0 0 290 150" role="img">
+              <path class="plane-shadow" d="M43 100c38 13 131 19 198 0 15-4 26-13 32-25-38 8-82 7-121-2L113 22H83l16 47-55-9-17 18 65 24-37 33h31l56-27c50 9 100 11 131-8-3 13-14 24-30 29-76 24-167 15-210-6z"/>
+              <path class="plane-body" d="M27 78c70 19 153 38 230 3 13-6 21-14 26-24-18 2-37 4-55 4l-58-4-57-35H82l28 39-55-1z"/>
+              <path class="plane-wing" d="M137 64 91 20h31l80 43zM148 79l-70 49h38l91-40z"/>
+              <path class="plane-tail" d="m55 61-25-24h25l37 28z"/>
+              <circle class="plane-window" cx="217" cy="67" r="6"/>
+              <circle class="plane-eye" cx="245" cy="69" r="3.5"/>
+              <path class="plane-smile" d="M246 80c8 6 15 5 21-1"/>
+            </svg>
+          </div>
+          <div class="traveler-card traveler-one">
+            <span class="avatar">😎</span>
+            <div><b>Sam</b><small>“Bali onder budget!”</small></div>
+          </div>
+          <div class="traveler-card traveler-two">
+            <span class="avatar">🤩</span>
+            <div><b>Lina</b><small>“Prijsalert gelukt”</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-wrap" id="zoeken">
+        <div class="affiliate-search-card" aria-label="Live vluchtzoeker">
+          <script async src="https://tpscr.com/content?currency=eur&trs=565587&shmarker=298371.homepage_flights&show_hotels=true&powered_by=true&locale=nl&searchUrl=www.aviasales.com%2Fsearch&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&plain=false&promo_id=7879&campaign_id=100" charset="utf-8"></script>
+          <p class="affiliate-search-note">Live vluchtzoeker · affiliate-tracking actief</p>
+        </div>
+        <section class="search-card" aria-label="Demo reiszoeker" hidden>
+          <div class="search-tabs" role="tablist" aria-label="Kies een zoektype">
+            <button class="search-tab active" id="tab-flights" role="tab" aria-selected="true" aria-controls="search-panel" data-mode="flights" type="button">
+              <span aria-hidden="true">✈</span> Vluchten
+            </button>
+            <button class="search-tab" id="tab-hotels" role="tab" aria-selected="false" aria-controls="search-panel" data-mode="hotels" type="button">
+              <span aria-hidden="true">▦</span> Hotels
+            </button>
+            <button class="search-tab" id="tab-cars" role="tab" aria-selected="false" aria-controls="search-panel" data-mode="cars" type="button">
+              <span aria-hidden="true">◆</span> Huurauto’s
+            </button>
+          </div>
+
+          <div id="search-panel" class="search-panel" role="tabpanel" aria-labelledby="tab-flights">
+            <div class="search-options" id="flight-options">
+              <div class="segmented" aria-label="Type reis">
+                <button class="segment active" type="button" data-trip="return">Retour</button>
+                <button class="segment" type="button" data-trip="oneway">Enkele reis</button>
+                <button class="segment" type="button" data-trip="multi">Meerdere steden</button>
+              </div>
+              <label class="check-option"><input type="checkbox" id="direct-only"> Alleen rechtstreeks</label>
+            </div>
+
+            <form id="travel-search-form" novalidate>
+              <div class="search-grid">
+                <label class="field field-location" id="from-field">
+                  <span class="field-label" id="from-label">Van</span>
+                  <span class="field-control"><span class="field-icon" aria-hidden="true">↗</span><input id="from" name="from" value="Amsterdam (AMS)" autocomplete="off" required></span>
+                  <span class="field-hint">Nederland</span>
+                </label>
+
+                <button class="swap-button" id="swap-locations" type="button" aria-label="Vertrek en bestemming omwisselen">⇄</button>
+
+                <label class="field field-location" id="to-field">
+                  <span class="field-label" id="to-label">Naar</span>
+                  <span class="field-control"><span class="field-icon" aria-hidden="true">⌖</span><input id="to" name="to" value="Bangkok (BKK)" autocomplete="off" required></span>
+                  <span class="field-hint">Thailand</span>
+                </label>
+
+                <label class="field">
+                  <span class="field-label" id="depart-label">Vertrek</span>
+                  <span class="field-control"><span class="field-icon" aria-hidden="true">▣</span><input id="depart" name="depart" type="date" required></span>
+                  <span class="field-hint" id="depart-hint">Kies vertrekdatum</span>
+                </label>
+
+                <label class="field" id="return-field">
+                  <span class="field-label" id="return-label">Terug</span>
+                  <span class="field-control"><span class="field-icon" aria-hidden="true">▣</span><input id="return" name="return" type="date" required></span>
+                  <span class="field-hint" id="return-hint">Kies retourdatum</span>
+                </label>
+
+                <div class="field passenger-field" id="passenger-field">
+                  <span class="field-label" id="people-label">Reizigers & klasse</span>
+                  <button class="field-control passenger-toggle" type="button" aria-expanded="false" aria-controls="passenger-popover">
+                    <span class="field-icon" aria-hidden="true">☺</span><span id="people-summary">2 reizigers</span>
+                  </button>
+                  <span class="field-hint" id="people-hint">Economy</span>
+                  <div class="passenger-popover" id="passenger-popover" hidden>
+                    <div>
+                      <span><b>Reizigers</b><small>Vanaf 12 jaar</small></span>
+                      <span class="stepper"><button type="button" data-step="minus" aria-label="Eén reiziger minder">−</button><strong id="passenger-count">2</strong><button type="button" data-step="plus" aria-label="Eén reiziger meer">+</button></span>
+                    </div>
+                    <label>Reisklasse
+                      <select id="cabin-class">
+                        <option>Economy</option>
+                        <option>Premium Economy</option>
+                        <option>Business</option>
+                        <option>First</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+                <button class="search-button" type="submit"><span id="search-button-text">Vind mijn vlucht</span><span aria-hidden="true">→</span></button>
+              </div>
+
+              <div class="search-foot">
+                <label class="toggle-option"><input type="checkbox" checked><span></span> Mijn data zijn flexibel</label>
+                <p>Verborgen demoformulier</p>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="result-demo" id="demo-result" hidden aria-live="polite">
+      <div class="section-shell">
+        <button class="close-result" type="button" aria-label="Resultaat sluiten">×</button>
+        <div class="result-copy">
+          <p class="eyebrow">Zoekopdracht ontvangen</p>
+          <h2 id="result-title">Amsterdam naar Bangkok</h2>
+          <p id="result-summary">Hier verschijnen straks live resultaten, filters en aanbieders.</p>
+        </div>
+        <div class="mini-result-card">
+          <div class="airline-logo">FF</div>
+          <div><b id="result-route">AMS → BKK</b><span>Voorbeeld · 1 overstap · 15u 20m</span></div>
+          <div class="result-price"><small>vanaf</small><strong>€ 589</strong></div>
+          <button type="button">Bekijk demo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Waarom FunnyRoutes">
+      <div class="trust-shell">
+        <div><span>◉</span><b>Alles op één plek</b><small>Vluchten, hotels en auto’s</small></div>
+        <div><span>↻</span><b>Flexibel zoeken</b><small>Vind goedkopere reisdagen</small></div>
+        <div><span>♢</span><b>Geen verrassingen</b><small>Duidelijke totaalprijzen</small></div>
+        <div><span>♡</span><b>Bewaar je favorieten</b><small>Vergelijk later verder</small></div>
+      </div>
+    </section>
+
+    <section class="section deals-section" id="deals">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Er even tussenuit?</p>
+            <h2>Deals die een glimlach verdienen</h2>
+          </div>
+          <button class="text-button" type="button">Bekijk alle deals <span>→</span></button>
+        </div>
+
+        <div class="deal-grid">
+          <article class="deal-card deal-barcelona">
+            <div class="deal-visual">
+              <span class="deal-badge">Zon & stad</span>
+              <div class="postcard-icon">☀</div>
+              <div class="city-shape city-barcelona"></div>
+            </div>
+            <div class="deal-body">
+              <div><p>Vanaf Amsterdam</p><h3>Barcelona</h3></div>
+              <div class="deal-price"><small>Retour vanaf</small><strong>€ 129</strong></div>
+            </div>
+            <button type="button" class="card-link" aria-label="Bekijk deal naar Barcelona"></button>
+          </article>
+
+          <article class="deal-card deal-bangkok">
+            <div class="deal-visual">
+              <span class="deal-badge">Favoriet</span>
+              <div class="postcard-icon">✦</div>
+              <div class="city-shape city-bangkok"></div>
+            </div>
+            <div class="deal-body">
+              <div><p>Vanaf Amsterdam</p><h3>Bangkok</h3></div>
+              <div class="deal-price"><small>Retour vanaf</small><strong>€ 589</strong></div>
+            </div>
+            <button type="button" class="card-link" aria-label="Bekijk deal naar Bangkok"></button>
+          </article>
+
+          <article class="deal-card deal-bali">
+            <div class="deal-visual">
+              <span class="deal-badge">Tropisch</span>
+              <div class="postcard-icon">❋</div>
+              <div class="city-shape city-bali"></div>
+            </div>
+            <div class="deal-body">
+              <div><p>Vanaf Amsterdam</p><h3>Bali</h3></div>
+              <div class="deal-price"><small>Retour vanaf</small><strong>€ 724</strong></div>
+            </div>
+            <button type="button" class="card-link" aria-label="Bekijk deal naar Bali"></button>
+          </article>
+        </div>
+        <p class="demo-disclaimer">Getoonde prijzen zijn uitsluitend voorbeeldprijzen voor deze ontwerp-opzet.</p>
+      </div>
+    </section>
+
+    <section class="section explore-section" id="explore">
+      <div class="section-shell explore-grid">
+        <div class="explore-copy">
+          <p class="eyebrow">Nog geen bestemming?</p>
+          <h2>Laat je budget de route kiezen.</h2>
+          <p>Vertel ons hoeveel je wilt besteden en wij laten straks zien welke bestemmingen binnen bereik liggen.</p>
+
+          <div class="budget-card">
+            <div class="budget-top"><span>Mijn retourbudget</span><strong id="budget-value">€ 500</strong></div>
+            <input id="budget-range" type="range" min="100" max="1500" value="500" step="25" aria-label="Maximaal retourbudget">
+            <div class="range-labels"><span>€ 100</span><span>€ 1.500+</span></div>
+          </div>
+
+          <button class="primary-button" type="button">Verras mij met bestemmingen <span>→</span></button>
+        </div>
+
+        <div class="explore-map" aria-label="Voorbeeldkaart met bestemmingen">
+          <div class="map-grid"></div>
+          <div class="continent continent-one"></div>
+          <div class="continent continent-two"></div>
+          <div class="continent continent-three"></div>
+          <button class="map-pin pin-london" type="button"><span>€ 118</span><small>Londen</small></button>
+          <button class="map-pin pin-lisbon" type="button"><span>€ 176</span><small>Lissabon</small></button>
+          <button class="map-pin pin-cairo" type="button"><span>€ 309</span><small>Caïro</small></button>
+          <button class="map-pin pin-bangkok" type="button"><span>€ 589</span><small>Bangkok</small></button>
+          <div class="map-character" aria-hidden="true">🧭</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how-section" id="over">
+      <div class="section-shell">
+        <div class="section-heading centered">
+          <div>
+            <p class="eyebrow">Zo simpel werkt het</p>
+            <h2>Van reisdroom naar goede deal</h2>
+            <p>FunnyRoutes wordt een vergelijker. Boeken en betalen gebeurt veilig bij de gekozen reisaanbieder.</p>
+          </div>
+        </div>
+
+        <div class="steps-grid">
+          <article>
+            <span class="step-number">1</span>
+            <div class="step-icon">⌕</div>
+            <h3>Zoek zoals jij wilt</h3>
+            <p>Kies vaste of flexibele data, luchthavens en jouw reisvoorkeuren.</p>
+          </article>
+          <article>
+            <span class="step-number">2</span>
+            <div class="step-icon">≋</div>
+            <h3>Vergelijk slim</h3>
+            <p>Sorteer straks op prijs, reistijd, bagage, overstappen en aanbieder.</p>
+          </article>
+          <article>
+            <span class="step-number">3</span>
+            <div class="step-icon">✓</div>
+            <h3>Boek bij de aanbieder</h3>
+            <p>Klik door naar de luchtvaartmaatschappij of reispartner om af te rekenen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section inspiration-section" id="inspiratie">
+      <div class="section-shell inspiration-box">
+        <div class="newsletter-art" aria-hidden="true">
+          <div class="suitcase">✦</div>
+          <div class="mini-plane">✈</div>
+          <div class="dotted-route"></div>
+        </div>
+        <div class="newsletter-copy">
+          <p class="eyebrow">Niet missen</p>
+          <h2>Een seintje als de prijs zakt?</h2>
+          <p>Maak een prijsalert en ontvang later automatisch een melding wanneer jouw route voordeliger wordt.</p>
+          <form class="newsletter-form">
+            <label class="sr-only" for="alert-email">E-mailadres</label>
+            <input id="alert-email" type="email" placeholder="jouw@email.nl" required>
+            <button type="submit">Maak prijsalert</button>
+          </form>
+          <small>Prototype: er wordt nog geen e-mail opgeslagen.</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-brand">
+        <a class="brand inverse" href="#top"><img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-labelledby%3D%22title%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3EFunnyRoutes%20logo%3C/title%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffd447%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8a5b%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2229%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Cpath%20d%3D%22M13%2034c12%203%2025%207%2038%200%203-2%205-4%206-7-6%201-12%201-18%200L29%2015h-8l6%2013-10-1z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Cpath%20d%3D%22m31%2029-9-14h7l15%2013zm1%206L20%2049h9l17-11z%22%20fill%3D%22%23fff%22/%3E%0A%20%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2231%22%20r%3D%221.8%22%20fill%3D%22%2317395c%22/%3E%0A%20%20%3Cpath%20d%3D%22M47%2036c3%202%205%202%207%200%22%20fill%3D%22none%22%20stroke%3D%22%2317395c%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%221.8%22/%3E%0A%3C/svg%3E%0A" alt="" width="44" height="44"><span>Funny<span>Routes</span></span></a>
+        <p>De vrolijke route naar een betere reisdeal.</p>
+      </div>
+      <div>
+        <h3>Zoeken</h3>
+        <a href="#zoeken">Vluchten</a><a href="#zoeken">Hotels</a><a href="#zoeken">Huurauto’s</a><a href="#explore">Explore</a>
+      </div>
+      <div>
+        <h3>Inspiratie</h3>
+        <a href="#deals">Deals</a><a href="#inspiratie">Prijsalerts</a><a href="#inspiratie">Reisgidsen</a><a href="#inspiratie">Populaire routes</a>
+      </div>
+      <div>
+        <h3>Over FunnyRoutes</h3>
+        <a href="#over">Hoe het werkt</a><a href="#">Over ons</a><a href="#">Contact</a><a href="#">Privacy & cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 FunnyRoutes – conceptopzet</span><span>Eigen ontwerp · Affiliatezoeker via Travelpayouts</span></div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+(() => {
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const state = {
+    mode: 'flights',
+    trip: 'return',
+    passengers: 2
+  };
+
+  const modeCopy = {
+    flights: {
+      from: 'Van', to: 'Naar', fromValue: 'Amsterdam (AMS)', toValue: 'Bangkok (BKK)',
+      fromHint: 'Nederland', toHint: 'Thailand', depart: 'Vertrek', return: 'Terug',
+      people: 'Reizigers & klasse', peopleHint: 'Economy', button: 'Vind mijn vlucht'
+    },
+    hotels: {
+      from: 'Bestemming', to: 'Hotel of wijk', fromValue: 'Bangkok', toValue: 'Alle accommodaties',
+      fromHint: 'Stad, regio of accommodatie', toHint: 'Optioneel', depart: 'Inchecken', return: 'Uitchecken',
+      people: 'Gasten & kamers', peopleHint: '1 kamer', button: 'Vind mijn hotel'
+    },
+    cars: {
+      from: 'Ophaallocatie', to: 'Inleverlocatie', fromValue: 'Bangkok Airport (BKK)', toValue: 'Zelfde locatie',
+      fromHint: 'Luchthaven of plaats', toHint: 'Wijzig indien nodig', depart: 'Ophalen', return: 'Inleveren',
+      people: 'Bestuurder', peopleHint: '30–69 jaar', button: 'Vind mijn huurauto'
+    }
+  };
+
+  function setDates() {
+    const today = new Date();
+    const depart = new Date(today);
+    depart.setDate(today.getDate() + 42);
+    const back = new Date(depart);
+    back.setDate(depart.getDate() + 14);
+    const iso = (date) => date.toISOString().split('T')[0];
+    $('#depart').value = iso(depart);
+    $('#return').value = iso(back);
+    $('#depart').min = iso(today);
+    $('#return').min = iso(depart);
+  }
+
+  function setMode(mode) {
+    state.mode = mode;
+    const copy = modeCopy[mode];
+
+    $$('.search-tab').forEach((tab) => {
+      const active = tab.dataset.mode === mode;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+    });
+
+    $('#search-panel').setAttribute('aria-labelledby', `tab-${mode}`);
+    $('#from-label').textContent = copy.from;
+    $('#to-label').textContent = copy.to;
+    $('#from').value = copy.fromValue;
+    $('#to').value = copy.toValue;
+    $('#from-field .field-hint').textContent = copy.fromHint;
+    $('#to-field .field-hint').textContent = copy.toHint;
+    $('#depart-label').textContent = copy.depart;
+    $('#return-label').textContent = copy.return;
+    $('#people-label').textContent = copy.people;
+    $('#people-hint').textContent = copy.peopleHint;
+    $('#search-button-text').textContent = copy.button;
+    $('#flight-options').hidden = mode !== 'flights';
+
+    const icons = {
+      flights: ['↗', '⌖'], hotels: ['⌂', '⌕'], cars: ['◆', '⌖']
+    };
+    $('#from-field .field-icon').textContent = icons[mode][0];
+    $('#to-field .field-icon').textContent = icons[mode][1];
+  }
+
+  function setTrip(type) {
+    state.trip = type;
+    $$('.segment').forEach((button) => button.classList.toggle('active', button.dataset.trip === type));
+    const returnField = $('#return-field');
+    if (type === 'oneway') {
+      returnField.hidden = true;
+      $('#return').required = false;
+    } else {
+      returnField.hidden = false;
+      $('#return').required = true;
+    }
+    if (type === 'multi') showToast('Meerdere-stedenvelden worden in de volgende bouwfase toegevoegd.');
+  }
+
+  function showToast(message) {
+    const toast = $('#toast');
+    toast.textContent = message;
+    toast.hidden = false;
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => { toast.hidden = true; }, 3200);
+  }
+
+  function showResult() {
+    const from = $('#from').value.trim() || 'Vertrekplaats';
+    const to = $('#to').value.trim() || 'Bestemming';
+    const depart = $('#depart').value;
+    const back = $('#return').value;
+    const label = state.mode === 'flights' ? 'vluchtresultaten' : state.mode === 'hotels' ? 'hotelresultaten' : 'huurauto’s';
+
+    $('#result-title').textContent = `${from} → ${to}`;
+    $('#result-route').textContent = `${shortCode(from)} → ${shortCode(to)}`;
+    $('#result-summary').textContent = `Hier verschijnen straks live ${label}${depart ? ` voor ${formatDate(depart)}` : ''}${back && state.trip !== 'oneway' ? ` t/m ${formatDate(back)}` : ''}.`;
+    const result = $('#demo-result');
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function shortCode(value) {
+    const code = value.match(/\(([A-Z]{3})\)/);
+    if (code) return code[1];
+    return value.split(/[ ,]/)[0].slice(0, 3).toUpperCase();
+  }
+
+  function formatDate(value) {
+    return new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${value}T12:00:00`));
+  }
+
+  $$('.search-tab').forEach((button) => button.addEventListener('click', () => setMode(button.dataset.mode)));
+  $$('.segment').forEach((button) => button.addEventListener('click', () => setTrip(button.dataset.trip)));
+
+  $('#swap-locations').addEventListener('click', () => {
+    const from = $('#from');
+    const to = $('#to');
+    [from.value, to.value] = [to.value, from.value];
+    const fromHint = $('#from-field .field-hint');
+    const toHint = $('#to-field .field-hint');
+    [fromHint.textContent, toHint.textContent] = [toHint.textContent, fromHint.textContent];
+  });
+
+  $('#depart').addEventListener('change', (event) => {
+    $('#return').min = event.target.value;
+    if ($('#return').value && $('#return').value < event.target.value) $('#return').value = event.target.value;
+  });
+
+  const passengerToggle = $('.passenger-toggle');
+  const passengerPopover = $('#passenger-popover');
+  passengerToggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    passengerPopover.hidden = !passengerPopover.hidden;
+    passengerToggle.setAttribute('aria-expanded', String(!passengerPopover.hidden));
+  });
+  passengerPopover.addEventListener('click', (event) => event.stopPropagation());
+  document.addEventListener('click', () => {
+    passengerPopover.hidden = true;
+    passengerToggle.setAttribute('aria-expanded', 'false');
+  });
+
+  $$('.stepper button').forEach((button) => button.addEventListener('click', () => {
+    const delta = button.dataset.step === 'plus' ? 1 : -1;
+    state.passengers = Math.min(9, Math.max(1, state.passengers + delta));
+    $('#passenger-count').textContent = String(state.passengers);
+    $('#people-summary').textContent = `${state.passengers} ${state.passengers === 1 ? 'reiziger' : 'reizigers'}`;
+  }));
+
+  $('#cabin-class').addEventListener('change', (event) => { $('#people-hint').textContent = event.target.value; });
+
+  $('#travel-search-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.checkValidity()) {
+      event.currentTarget.reportValidity();
+      return;
+    }
+    showResult();
+  });
+
+  $('.close-result').addEventListener('click', () => { $('#demo-result').hidden = true; });
+
+  const budget = $('#budget-range');
+  budget.addEventListener('input', () => {
+    $('#budget-value').textContent = Number(budget.value).toLocaleString('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+  });
+
+  $$('.deal-card .card-link').forEach((button) => button.addEventListener('click', () => showToast('Deze deal wordt later gekoppeld aan de live zoekmachine.')));
+  $$('.map-pin').forEach((button) => button.addEventListener('click', () => showToast(`${button.querySelector('small').textContent} is aan je voorbeeldselectie toegevoegd.`)));
+  $('.primary-button').addEventListener('click', () => showToast('De interactieve Explore-resultaten komen in fase 2.'));
+  $('.text-button').addEventListener('click', () => showToast('De volledige dealpagina wordt in de volgende fase gebouwd.'));
+  $('.login-button').addEventListener('click', () => showToast('Account en favorieten volgen na de basiswebsite.'));
+
+  $('.newsletter-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.checkValidity()) return event.currentTarget.reportValidity();
+    showToast('Prijsalert-demo gelukt. Er is nog niets opgeslagen.');
+    event.currentTarget.reset();
+  });
+
+  const menuToggle = $('.menu-toggle');
+  const nav = $('.primary-nav');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(nav.classList.contains('open')));
+  });
+  $$('.primary-nav a').forEach((link) => link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  setDates();
+})();
+
+</script>
+</body>
+</html>
