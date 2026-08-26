@@ -38,14 +38,35 @@
     .cookie-settings-link{background:none;border:0;color:inherit;padding:0;font:inherit;cursor:pointer;text-decoration:underline;opacity:.9}
     @media(max-width:700px){.cookie-banner{left:10px;right:10px;bottom:10px}.cookie-box{grid-template-columns:1fr;padding:18px}.cookie-actions{justify-content:stretch}.cookie-btn{flex:1}}
 
+  
+    .mobile-menu{display:none;background:#fff;border-top:1px solid #eef3f8;box-shadow:0 10px 22px rgba(17,66,118,.10)}
+    .mobile-menu.show{display:block}
+    .mobile-menu .container{display:grid;gap:2px;padding-top:10px;padding-bottom:12px}
+    .mobile-menu a{display:block;padding:11px 4px;font-weight:800;color:var(--navy);border-bottom:1px solid #edf3f8}
+    .mobile-menu a:last-child{border-bottom:0}
+    .nav-placeholder{opacity:.58;cursor:default;user-select:none;white-space:nowrap}
+    .coming-soon-badge{display:inline-block;background:#fff;color:#5f7084;border:1px solid #d4e0eb;padding:8px 12px;border-radius:8px;margin:6px 5px 0 0;font-size:12px;font-weight:800}
+
   </style>
 </head>
 <body>
 <header class="topbar"><div class="container nav">
   <a class="brand" href="#"><span class="route">✈︎</span><span class="brand-wrap">Funny<b>Routes</b><small>Vergelijk slim. Reis met een glimlach.</small></span></a>
   <nav class="menu"><a href="#search" data-open-tab="flights" data-i18n="navFlights">Vluchten</a><a href="#search" data-open-tab="hotels" data-i18n="navHotels">Hotels</a><a href="#search" data-open-tab="cars" data-i18n="navCars">Auto's</a><a href="#explore" data-i18n="navExplore">Explore</a><a href="#deals" data-i18n="navDeals">Deals</a><a href="#alerts"><span data-i18n="navAlerts">Prijsalerts</span> <span class="pill-new" data-i18n="new">Nieuw</span></a></nav>
-  <div class="nav-actions"><select id="languageSelect" class="nav-select" aria-label="Taal"><option value="nl">🇳🇱 NL</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option></select><select id="currencySelect" class="nav-select" aria-label="Valuta"><option value="eur">€ EUR</option><option value="usd">$ USD</option><option value="gbp">£ GBP</option><option value="chf">CHF</option><option value="thb">฿ THB</option><option value="idr">Rp IDR</option></select><span>♡</span><span data-i18n="login">♙ Inloggen</span></div><button class="mobile-toggle">☰</button>
+  <div class="nav-actions"><select id="languageSelect" class="nav-select" aria-label="Taal"><option value="nl">🇳🇱 NL</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option></select><select id="currencySelect" class="nav-select" aria-label="Valuta"><option value="eur">€ EUR</option><option value="usd">$ USD</option><option value="gbp">£ GBP</option><option value="chf">CHF</option><option value="thb">฿ THB</option><option value="idr">Rp IDR</option></select><span class="nav-placeholder">♡ Favorieten binnenkort</span><span class="nav-placeholder">♙ Inloggen binnenkort</span></div><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Menu openen" aria-expanded="false">☰</button>
 </div></header>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="container">
+    <a href="#search" data-open-tab="flights">Vluchten</a>
+    <a href="#search" data-open-tab="hotels">Hotels</a>
+    <a href="#search" data-open-tab="cars">Auto's</a>
+    <a href="#explore">Explore</a>
+    <a href="#deals">Deals</a>
+    <a href="#alerts">Prijsalerts</a>
+    <a href="/over-ons.html">Over ons</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</div>
 
 <main>
 <section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-route" data-i18n="heroBadge">Wereldkaart in cartoonstijl · vlieg slim, boek vrolijk</div><h1><span data-i18n="heroLine1">Vind je volgende reis</span><br><span data-i18n="heroLine2">met een</span> <em data-i18n="heroSmile">glimlach</em></h1><p data-i18n="heroText">Vergelijk honderden aanbieders en vind de perfecte deal voor jouw volgende avontuur.</p></div><div class="hero-art" aria-hidden="true"></div></div></section>
@@ -120,7 +141,7 @@
 </div><div class="explore-results" id="exploreResults"><div class="explore-results-head"><div><h3 id="exploreResultsTitle">Bestemmingen</h3><p id="exploreResultsText">Kies een bestemming en ga direct naar de vluchtzoeker.</p></div><button class="explore-close" id="exploreClose" type="button">✕</button></div><div class="destination-grid" id="destinationGrid"></div><div class="explore-hint" data-i18n="exploreHint">Na je keuze opent FunnyRoutes automatisch de vluchtzoeker met deze bestemming.</div></div></div></section>
 
 <section><div class="container mid-grid"><div class="why"><div class="section-title"><div><h2 data-i18n="whyTitle">Waarom FunnyRoutes?</h2><p data-i18n="whyText">Reizen vergelijken mag ook leuk zijn.</p></div></div><div class="why-grid"><div class="benefit"><div class="icon">🏷️</div><h4 data-i18n="compareAll">Vergelijk alles</h4><p>We vergelijken reisaanbieders zodat jij makkelijk prijzen kunt bekijken.</p></div><div class="benefit"><div class="icon">🛡️</div><h4 data-i18n="safeReliable">Veilig & betrouwbaar</h4><p>Je boekt uiteindelijk bij de aanbieder of reispartner.</p></div><div class="benefit"><div class="icon">🙂</div><h4 data-i18n="travelSmile">Reis met een glimlach</h4><p>Een vrolijke, eenvoudige reiszoeker zonder ingewikkelde stappen.</p></div><div class="benefit"><div class="icon">🎧</div><h4 data-i18n="helpRoad">Hulp onderweg</h4><p>We bouwen FunnyRoutes stap voor stap uit met handige reisfuncties.</p></div></div></div>
-<div class="app-card"><div><h3 data-i18n="takeFunny">Neem FunnyRoutes mee</h3><p data-i18n="takeText">Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.</p><span class="store"> App Store</span><span class="store">▶ Google Play</span></div><div class="phone"><div class="phone-screen"><div class="mini-brand">Funny<b>Routes</b></div><div class="mini-search">Waar wil je heen?</div><div class="mini-deal"><div class="mini-thumb"></div><div>Barcelona<br><b style="color:#ff6a00">€39*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bangkok<br><b style="color:#ff6a00">€459*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bali<br><b style="color:#ff6a00">€599*</b></div></div></div></div></div></div>
+<div class="app-card"><div><h3 data-i18n="takeFunny">Neem FunnyRoutes mee</h3><p data-i18n="takeText">Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.</p><span class="coming-soon-badge">Mobiele functies · binnenkort</span></div><div class="phone"><div class="phone-screen"><div class="mini-brand">Funny<b>Routes</b></div><div class="mini-search">Waar wil je heen?</div><div class="mini-deal"><div class="mini-thumb"></div><div>Barcelona<br><b style="color:#ff6a00">€39*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bangkok<br><b style="color:#ff6a00">€459*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bali<br><b style="color:#ff6a00">€599*</b></div></div></div></div></div></div>
 <div class="container reassure"><div><div class="icon">🎧</div><strong>Klantenservice</strong><span>We bouwen hulp en support verder uit.</span></div><div><div class="icon">🔒</div><strong>Geen verborgen kosten</strong><span>Je ziet de prijsinformatie van partners.</span></div><div><div class="icon">📅</div><strong>Flexibel zoeken</strong><span>Vergelijk verschillende data en routes.</span></div><div><div class="icon">🌍</div><strong>Ontdek meer</strong><span>Inspiratie voor jouw volgende reis.</span></div></div></section>
 </main>
 <footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">✈︎ Funny<b>Routes</b></div><p style="font-size:13px;opacity:.9">Vergelijk slim. Reis met een glimlach.</p></div><div class="footer-col"><h4>Explore</h4><a href="#search" data-open-tab="flights">Vluchten</a><a href="#search" data-open-tab="hotels">Hotels</a><a href="#search" data-open-tab="cars">Auto's</a><a href="#explore">Bestemmingen</a></div><div class="footer-col"><h4 data-i18n="company">Bedrijf</h4><a href="/over-ons.html">Over ons</a><a href="/contact.html">Contact</a></div><div class="footer-col"><h4>Juridisch & support</h4><a href="/help.html">Help</a><a href="/boekingsinformatie.html">Boekingsinformatie</a><a href="/voorwaarden.html">Algemene voorwaarden</a><a href="/privacy.html">Privacybeleid</a><a href="/cookies.html">Cookiebeleid</a><a href="/affiliate.html">Affiliate disclosure</a><button type="button" class="cookie-settings-link" id="cookieSettingsLink">Cookievoorkeuren</button></div><div class="footer-col"><h4 data-i18n="stayUpdated">Blijf op de hoogte</h4><p style="font-size:13px;opacity:.9">Ontvang later deals en tips rechtstreeks in je inbox.</p></div></div><div class="footer-note">* Getoonde prijzen op FunnyRoutes-kaarten zijn illustratieve voorbeeldprijzen en kunnen afwijken van actuele partnerprijzen. FunnyRoutes kan een commissie ontvangen wanneer je via een partnerlink boekt. De Travelpayouts-zoekmodule gebruikt jouw affiliate-tracking.</div></div></footer>
@@ -144,6 +165,18 @@
   const COOKIE_CONSENT_KEY='funnyroutes_cookie_consent';
   let cookieConsent=localStorage.getItem(COOKIE_CONSENT_KEY)||'';
   function hasAffiliateConsent(){return cookieConsent==='all';}
+
+  const mobileToggle=document.getElementById('mobileToggle');
+  const mobileMenu=document.getElementById('mobileMenu');
+  function closeMobileMenu(){
+    mobileMenu?.classList.remove('show');
+    mobileToggle?.setAttribute('aria-expanded','false');
+  }
+  mobileToggle?.addEventListener('click',()=>{
+    const open=mobileMenu?.classList.toggle('show');
+    mobileToggle.setAttribute('aria-expanded',open?'true':'false');
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileMenu));
 
   const tabs=[...document.querySelectorAll('.search-tab[data-tab]')];
   const panels=[...document.querySelectorAll('.search-panel[data-panel]')];
