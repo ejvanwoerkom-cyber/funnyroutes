@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FunnyRoutes - Vergelijk slim. Reis met een glimlach.</title>
+  <meta name="description" content="FunnyRoutes vergelijkt vluchtdeals en reisaanbieders. Zoek slim, vergelijk prijzen en reis met een glimlach." />
+  <style>
+    :root{--blue:#1267e9;--navy:#092b57;--orange:#ff6a00;--yellow:#ffd857;--sky:#dff4ff;--ice:#f5fbff;--line:#d8e8f7;--text:#10243d;--muted:#5c6e82;--green:#34a853;--shadow:0 12px 30px rgba(17,66,118,.12)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:#fff} a{text-decoration:none;color:inherit} button,input{font:inherit}
+    .container{width:min(1180px,92vw);margin:auto}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #eef3f8}.nav{height:78px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px;color:var(--blue);white-space:nowrap}.brand .route{font-size:31px}.brand b{color:var(--orange)}.brand small{display:block;font-size:10px;color:var(--navy);font-weight:700;margin-top:-3px}.brand-wrap{display:flex;flex-direction:column;line-height:1}.menu{display:flex;gap:24px;font-size:14px;font-weight:700;margin-left:auto}.menu a:hover{color:var(--blue)}.nav-actions{display:flex;align-items:center;gap:10px;font-size:14px}.nav-select{border:1px solid #d8e8f7;background:#fff;color:var(--navy);font-weight:800;border-radius:10px;padding:8px 10px;cursor:pointer}.nav-select:focus{outline:2px solid #9cc7ff;outline-offset:1px}.pill-new{font-size:10px;background:var(--blue);color:#fff;padding:3px 7px;border-radius:99px;margin-left:4px}.mobile-toggle{display:none;border:0;background:#eef5ff;border-radius:10px;padding:9px 11px}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#d9f3ff 0%,#eefaff 72%,#fff 100%);padding:26px 0 22px}.hero:before{content:"";position:absolute;left:-80px;right:-80px;bottom:-12px;height:120px;background:radial-gradient(ellipse at center,#6bd0ef 0,#29aeea 31%,#1187ca 32%,#1187ca 33%,transparent 34%);opacity:.18}.hero-grid{position:relative;display:grid;grid-template-columns:minmax(340px,44%) 1fr;align-items:center;min-height:388px;gap:18px;border-radius:34px;padding:42px 38px 28px;box-shadow:var(--shadow);overflow:hidden;background-image:linear-gradient(90deg,rgba(228,248,255,.98) 0%,rgba(228,248,255,.92) 28%,rgba(228,248,255,.66) 40%,rgba(228,248,255,.20) 58%,rgba(228,248,255,0) 76%),url('assets/hero-map-only-clean2.png');background-size:auto 100%,cover;background-position:left center,center center;background-repeat:no-repeat,no-repeat}.hero-copy{position:relative;z-index:2;max-width:520px;background:linear-gradient(135deg,rgba(236,250,255,.90),rgba(236,250,255,.76));border:1px solid rgba(255,255,255,.72);border-radius:28px;padding:22px 24px 22px 22px;box-shadow:0 10px 24px rgba(18,88,145,.08)}.hero h1{font-size:54px;line-height:1.02;margin:0 0 16px;color:var(--navy);letter-spacing:-1.7px}.hero h1 em{font-style:normal;color:var(--orange);font-family:"Comic Sans MS",cursive}.hero p{font-size:18px;line-height:1.5;max-width:500px;margin:0}.hero-art{display:none}.hero-route{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800;color:#125798;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 16px rgba(15,74,123,.08);padding:8px 14px;border-radius:999px;width:max-content;margin-bottom:18px}.hero-route:before{content:'🌍';font-size:18px}
+    .search-shell{position:relative;margin-top:-24px;background:#fff;border:1px solid rgba(15,70,120,.09);border-radius:24px;box-shadow:var(--shadow);padding:16px 18px 10px}.search-tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.search-tab{border:1px solid #dbe6f1;background:#fff;padding:12px 23px;border-radius:12px;font-weight:800;color:var(--navy)}.search-tab.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 6px 16px rgba(18,103,233,.22)}.widget-frame{border-radius:14px;min-height:120px}.deal-selection-notice{display:none;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;padding:10px 12px;border:1px solid #cfe5ff;background:#eef7ff;border-radius:12px;color:var(--navy);font-size:13px}.deal-selection-notice.show{display:flex}.deal-selection-notice strong{color:var(--blue)}.deal-selection-notice button{border:0;background:transparent;color:var(--blue);font-weight:800;cursor:pointer;padding:4px 6px}.search-panel{display:none}.search-panel.active{display:block}.hotel-panel{padding:6px 0 2px}.hotel-wrap{display:grid;grid-template-columns:minmax(0,1.08fr) 340px;gap:18px;align-items:center;background:linear-gradient(135deg,#f7fbff,#eef7ff);border:1px solid #dceaf8;border-radius:18px;padding:18px 18px 16px}.hotel-copy{text-align:left;padding:4px 0 4px 4px;display:flex;align-items:center;justify-content:space-between;gap:18px}.hotel-copy-main{flex:1;min-width:0}.hotel-kicker{display:inline-flex;align-items:center;gap:7px;background:#e9f4ff;color:var(--blue);border:1px solid #cfe5ff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;margin-bottom:10px}.hotel-copy h3{margin:0 0 8px;color:var(--navy);font-size:25px;line-height:1.12}.hotel-copy p{margin:0;color:var(--muted);line-height:1.55;max-width:460px}.hotel-points{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:#334b64}.hotel-points span:before{content:"✓";color:var(--green);font-weight:900;margin-right:6px}.hotel-mini-scene{flex:0 0 128px;height:128px;border-radius:24px;padding:14px;background:linear-gradient(180deg,#ffffff,#eef7ff);border:1px solid #dce8f4;box-shadow:0 8px 20px rgba(20,62,99,.08);display:flex;flex-direction:column;justify-content:space-between;align-items:center}.hotel-mini-sky{width:100%;height:54px;border-radius:16px;background:linear-gradient(180deg,#bfeaff,#eaf8ff);position:relative;overflow:hidden}.hotel-mini-sky:before{content:"☁️";position:absolute;left:10px;top:4px;font-size:18px}.hotel-mini-sky:after{content:"☀️";position:absolute;right:10px;top:4px;font-size:17px}.hotel-mini-building{position:relative;width:64px;height:44px;background:linear-gradient(180deg,#ffd857,#ffb64a);border-radius:10px 10px 8px 8px;border:2px solid rgba(9,43,87,.10);box-shadow:0 5px 12px rgba(255,174,70,.25);margin-top:-24px}.hotel-mini-building:before{content:"";position:absolute;left:9px;right:9px;top:9px;height:6px;background:repeating-linear-gradient(90deg,#fff 0 6px,transparent 6px 14px);box-shadow:0 10px 0 0 rgba(255,255,255,.92)}.hotel-mini-building:after{content:"";position:absolute;left:26px;bottom:0;width:12px;height:16px;background:#fff;border-radius:4px 4px 0 0}.hotel-mini-caption{font-size:12px;font-weight:900;color:var(--navy);text-align:center;line-height:1.2}.hotel-widget-card{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid #dce8f4;border-radius:16px;padding:12px;box-shadow:0 8px 22px rgba(20,62,99,.08)}.hotel-panel iframe{width:320px;max-width:100%;height:320px;border:0;display:block}.hotel-widget-card .partner-badge{margin-top:10px}.car-panel{background:linear-gradient(135deg,#f7fbff,#eef7ff);border:1px solid #dceaf8;border-radius:18px;padding:18px}.car-wrap{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:18px;align-items:stretch}.car-main{display:flex;flex-direction:column;justify-content:center}.car-kicker{display:inline-flex;align-items:center;gap:7px;width:max-content;background:#e9f4ff;color:var(--blue);border:1px solid #cfe5ff;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;margin-bottom:10px}.car-title{margin:0 0 12px;color:var(--navy);font-size:25px;line-height:1.12}.car-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr auto;gap:10px;align-items:end}.car-field label{display:block;font-size:12px;font-weight:800;color:var(--navy);margin:0 0 6px}.car-field input{width:100%;border:1px solid #ccdeef;border-radius:12px;padding:12px 13px;background:#fff}.car-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:0;border-radius:12px;background:var(--orange);color:#fff;font-weight:900;padding:0 18px;white-space:nowrap;box-shadow:0 8px 18px rgba(255,106,0,.18)}.car-note{font-size:13px;color:#41566d;line-height:1.5;margin-top:11px;font-weight:500}.car-side{background:#fff;border:1px solid #dce8f4;border-radius:16px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(20,62,99,.08);text-align:center}.car-visual{width:120px;height:82px;border-radius:18px;background:linear-gradient(180deg,#c8edff 0%,#eaf8ff 58%,#d6f0c2 59%,#b6dd91 100%);position:relative;overflow:hidden;margin-bottom:12px}.car-visual:before{content:'🚗';position:absolute;font-size:58px;left:31px;bottom:2px;filter:drop-shadow(0 6px 6px rgba(0,0,0,.12))}.car-visual:after{content:'☁️  ☁️';position:absolute;left:8px;right:8px;top:6px;font-size:15px;letter-spacing:14px;opacity:.9}.car-side strong{color:var(--navy);font-size:15px;line-height:1.25}.car-side span{font-size:11px;color:var(--muted);margin-top:4px}.partner-badge{display:inline-block;margin-top:8px;background:#fff7ec;color:#a84a00;border:1px solid #ffd7b5;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800}.trust-row{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-size:13px;color:#334b64;padding:4px 8px 10px}.trust-row span:before{content:"✓";color:var(--green);font-weight:900;margin-right:7px}
+    section{padding:36px 0}.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.section-title h2{font-size:27px;margin:0;color:var(--navy)}.section-title p{margin:3px 0 0;color:var(--muted)}.linkbtn{border:1px solid #8bbcf7;background:#fff;color:var(--blue);padding:10px 17px;border-radius:999px;font-weight:800}.deals-layout{display:grid;grid-template-columns:2fr 1fr;gap:24px}.deal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}.deal{display:flex;flex-direction:column;background:#fff;border:1px solid #e0ebf4;border-radius:18px;padding:10px;box-shadow:0 7px 20px rgba(20,62,99,.08);min-height:160px;overflow:hidden}.deal-image{width:100%;aspect-ratio:4/3;border-radius:13px;overflow:hidden;background:#eef6fb}.deal img{width:100%;height:100%;object-fit:cover;display:block;image-rendering:auto}.deal>div{padding:12px 8px 4px;display:flex;flex-direction:column;flex:1}.deal h3{margin:0 0 4px;font-size:20px;line-height:1.15;white-space:normal;overflow:visible;text-overflow:clip}.country{font-size:12px;color:var(--muted)}.price{color:var(--orange);font-size:29px;font-weight:900;margin:12px 0 2px}.small{font-size:11px;color:#405267}.deal a{display:inline-block;margin-top:auto;padding-top:11px;color:var(--blue);font-size:12px;font-weight:800}.alert-card{background:linear-gradient(135deg,#fff3be,#ffe48b);border-radius:22px;padding:25px;box-shadow:0 8px 24px rgba(200,160,40,.15)}.alert-card h3{font-size:23px;margin:0 0 6px;color:var(--navy)}.alert-card p{color:#5d542d}.alert-form{display:grid;gap:8px;margin-top:16px}.alert-form input{width:100%;min-width:0;border:1px solid rgba(139,112,13,.12);border-radius:12px;padding:12px 13px;background:#fff}.alert-price-wrap{position:relative}.alert-price-wrap .alert-currency-symbol{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-weight:900;color:#8c5a00;min-width:34px;white-space:nowrap;font-size:12.5px;pointer-events:none}.alert-price-wrap input{padding-left:64px;padding-right:14px}.alert-form button{border:0;background:var(--orange);color:#fff;font-weight:900;border-radius:12px;padding:12px 16px;cursor:pointer}.alert-form button:hover{filter:brightness(.97)}.alert-status{display:none;margin-top:11px;padding:11px 12px;border-radius:11px;font-size:12.5px;font-weight:850;line-height:1.4}.alert-status.show{display:block}.alert-status.success{background:#f0fff4;color:#1f6f38;border:1px solid #bfe8c9}.alert-status.success:before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:7px;border-radius:50%;background:#34a853;color:#fff;font-size:11px}.alert-status.error{background:#fff0e8;color:#a13c00;border:1px solid #ffd2bd}.alert-saved{margin-top:14px;background:rgba(255,255,255,.72);border:1px solid rgba(123,92,0,.10);border-radius:14px;padding:12px}.alert-saved[hidden]{display:none}.alert-saved-title{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:9px;display:flex;align-items:center;gap:6px}.alert-saved-title:before{content:'🔔';font-size:14px}.alert-list{display:grid;gap:8px}.alert-item{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #e8ddb7;border-radius:11px;padding:9px 10px;font-size:11.5px;color:#42566b;box-shadow:0 3px 8px rgba(124,92,0,.06)}.alert-item-main{min-width:0;flex:1}.alert-item strong{display:block;color:var(--navy);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}.alert-item .alert-price-line{font-weight:900;color:#d45500}.alert-remove{border:0;background:#eef5ff;color:var(--blue);border-radius:8px;padding:6px 8px;font-weight:900;cursor:pointer}.alert-beta-note{font-size:12px!important;line-height:1.45;margin:11px 0 0!important;color:#67581f!important;background:rgba(255,255,255,.42);padding:8px 9px;border-radius:9px}.alert-points{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;margin-top:14px}.alert-points span:before{content:"✓";color:var(--green);font-weight:900;margin-right:5px}
+    .explore{background:linear-gradient(180deg,#f2f9ff,#eaf6ff);border-radius:24px;padding:24px}.explore-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.explore-card{background:#fff;border:2px solid transparent;border-radius:16px;padding:7px;box-shadow:0 5px 14px rgba(21,66,105,.08);font-weight:800;text-align:center;color:var(--navy);cursor:pointer;transition:.18s ease}.explore-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(21,66,105,.13)}.explore-card.active{border-color:var(--blue);box-shadow:0 8px 22px rgba(18,103,233,.18)}.explore-art{width:100%;height:115px;border-radius:12px;margin-bottom:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(9,43,87,.06)}.explore-art:before,.explore-art:after{position:absolute;filter:drop-shadow(0 5px 7px rgba(9,43,87,.12))}.explore-art span{position:absolute;right:10px;bottom:8px;background:rgba(255,255,255,.92);color:var(--navy);font-size:10px;font-weight:900;border-radius:999px;padding:4px 7px;box-shadow:0 4px 10px rgba(20,62,99,.10)}.beach-art{background:linear-gradient(180deg,#9fe2ff 0 55%,#34b7e8 55% 69%,#ffe49a 69% 100%)}.beach-art:before{content:"☀️";font-size:35px;right:12px;top:8px}.beach-art:after{content:"🏖️";font-size:62px;left:20px;bottom:8px}.city-art{background:linear-gradient(180deg,#c7ecff 0 58%,#dce8f2 58% 100%)}.city-art:before{content:"🏙️";font-size:72px;left:16px;bottom:5px}.city-art:after{content:"✈️";font-size:30px;right:14px;top:14px;transform:rotate(-8deg)}.nature-art{background:linear-gradient(180deg,#bdeaff 0 48%,#8bd18c 48% 72%,#4fa768 72% 100%)}.nature-art:before{content:"🏔️";font-size:64px;left:14px;bottom:4px}.nature-art:after{content:"🌲";font-size:42px;right:14px;bottom:9px}.family-art{background:linear-gradient(180deg,#dff4ff 0 58%,#ffe5a8 58% 100%)}.family-art:before{content:"🎡";font-size:60px;left:14px;bottom:7px}.family-art:after{content:"👨‍👩‍👧‍👦";font-size:34px;right:10px;bottom:12px}.business-art{background:linear-gradient(180deg,#dff4ff 0%,#eef8ff 58%,#d7e8f7 59%,#c8dcec 100%)}.business-art:before{content:"🏙️";left:10px;bottom:9px;font-size:42px;opacity:.78}.business-art:after{content:"💼";right:18px;top:24px;font-size:48px}.weekend-art{background:linear-gradient(180deg,#c8efff 0 55%,#9ed27f 55% 72%,#f4d28a 72% 100%)}.weekend-art:before{content:"🚗";font-size:48px;left:18px;bottom:12px}.weekend-art:after{content:"🏡";font-size:50px;right:14px;bottom:8px}.explore-results{display:none;margin-top:18px;background:#fff;border:1px solid #dbe8f4;border-radius:18px;padding:18px;box-shadow:0 7px 18px rgba(21,66,105,.06)}.explore-results.show{display:block}.explore-results-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}.explore-results-head h3{margin:0;color:var(--navy);font-size:20px}.explore-results-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.explore-close{border:0;background:#eef6ff;color:var(--blue);font-weight:900;border-radius:999px;padding:8px 12px;cursor:pointer}.destination-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.destination-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #dbe8f4;background:#fff;border-radius:14px;padding:13px 14px;text-align:left;cursor:pointer;transition:.15s ease}.destination-btn:hover{border-color:#9bc8ff;background:#f7fbff}.destination-btn strong{display:block;color:var(--navy);font-size:14px}.destination-btn small{display:block;color:var(--muted);margin-top:2px}.destination-btn .iata{font-size:11px;font-weight:900;color:var(--blue);background:#eaf4ff;border-radius:999px;padding:5px 7px}.explore-hint{font-size:11px;color:var(--muted);margin-top:11px}
+    .mid-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:22px}.why,.app-card{border-radius:24px;padding:24px;background:#f5fbff}.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.benefit{background:#fff;border:1px solid #e3eef7;border-radius:18px;padding:18px 12px;text-align:center;min-height:180px}.icon{font-size:42px;margin-bottom:10px}.benefit h4{margin:0 0 8px;color:var(--navy)}.benefit p{font-size:12px;line-height:1.45;color:#53667a;margin:0}.app-card{background:linear-gradient(135deg,#dbf2ff,#bce9ff);display:grid;grid-template-columns:1fr 170px;align-items:center;overflow:hidden}.app-card h3{font-size:29px;margin:0 0 10px;color:var(--navy)}.app-card p{line-height:1.5}.phone{background:#0d1724;border:8px solid #0d1724;border-radius:28px;height:280px;box-shadow:0 14px 24px rgba(0,0,0,.18);transform:rotate(5deg);padding:7px}.phone-screen{height:100%;border-radius:18px;background:#fff;padding:13px;font-size:10px}.mini-brand{font-weight:900;color:var(--blue);font-size:15px}.mini-brand b{color:var(--orange)}.mini-search{margin:16px 0;background:#eef6ff;border-radius:9px;padding:10px}.mini-deal{display:flex;gap:7px;margin:9px 0}.mini-thumb{width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#ffcc6a,#47b8ee)}.store{display:inline-block;background:#101820;color:#fff;padding:8px 12px;border-radius:8px;margin:6px 5px 0 0;font-size:12px}
+    .reassure{display:grid;grid-template-columns:repeat(4,1fr);border-radius:22px;background:#f7fbff;margin-top:24px}.reassure>div{padding:22px;text-align:center;border-right:1px solid #dbe8f4}.reassure>div:last-child{border-right:0}.reassure strong{display:block;color:var(--navy);margin:6px 0}.reassure span{font-size:12px;color:#647487}
+    footer{background:linear-gradient(180deg,#0d67d9,#0556bd);color:#fff;margin-top:34px;padding:42px 0 28px}.footer-grid{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:28px}.footer-brand{font-size:27px;font-weight:900}.footer-brand b{color:#ffb23e}.footer-col h4{margin:0 0 12px}.footer-col a{display:block;font-size:13px;opacity:.9;margin:8px 0}.footer-note{border-top:1px solid rgba(255,255,255,.25);margin-top:28px;padding-top:18px;font-size:12px;opacity:.85}
+    @media(max-width:1000px){.hotel-wrap{grid-template-columns:1fr}.hotel-copy{flex-direction:column;text-align:center;padding:4px 0}.hotel-copy p{margin-left:auto;margin-right:auto}.hotel-points{justify-content:center}.hotel-mini-scene{width:min(160px,100%);height:120px;flex:0 0 auto}.hotel-copy-main{display:flex;flex-direction:column;align-items:center}.menu{display:none}.mobile-toggle{display:block;margin-left:auto}.nav-actions{display:none}.hero-grid{grid-template-columns:1fr;min-height:430px;background-position:left center,62% center;background-size:auto 100%,cover}.hero-copy{max-width:520px;background:rgba(229,249,255,.80);border-radius:24px;padding:18px 20px}.hero-art{display:none}.deals-layout,.mid-grid{grid-template-columns:1fr}.explore-grid{grid-template-columns:repeat(3,1fr)}.destination-grid{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}.deal-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:44px}}
+    @media(max-width:900px){.car-wrap{grid-template-columns:1fr}.car-side{display:none}}
+    @media(max-width:800px){.car-grid{grid-template-columns:1fr 1fr}.car-cta{grid-column:1/-1}}
+    @media(max-width:700px){.hotel-wrap{padding:14px;gap:14px}.hotel-copy{padding:2px;gap:12px}.hotel-copy h3{font-size:22px}.hotel-widget-card{padding:8px}.hotel-mini-scene{display:none}.nav{height:66px}.brand{font-size:22px}.hero{padding-top:22px}.hero h1{font-size:38px}.hero-grid{min-height:430px;padding:22px 18px 18px;background-position:left center,68% center;background-size:auto 100%,cover}.hero-copy{padding:16px 16px 18px;max-width:100%}.hero-art{display:none}.search-shell{margin-top:-10px;padding:12px}.search-tabs{display:grid;grid-template-columns:repeat(3,1fr)}.search-tab{padding:10px 6px}.trust-row{gap:10px;justify-content:flex-start}.deal-grid{grid-template-columns:1fr}.deal{min-height:auto}.explore-grid{grid-template-columns:repeat(2,1fr)}.destination-grid{grid-template-columns:1fr}.explore-results-head{align-items:flex-start}.explore-results-head h3{font-size:18px}.why-grid{grid-template-columns:1fr 1fr}.app-card{grid-template-columns:1fr}.phone{margin:18px auto 0;width:165px}.reassure{grid-template-columns:1fr 1fr}.reassure>div:nth-child(2){border-right:0}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.section-title{align-items:flex-start;flex-direction:column}}
+  
+    @media(max-width:700px){.hero-route{font-size:11px;max-width:100%;white-space:normal}.hero h1{font-size:39px}.nav{gap:10px}.nav-select{padding:7px 6px;font-size:12px}}
+  </style>
+</head>
+<body>
+<header class="topbar"><div class="container nav">
+  <a class="brand" href="#"><span class="route">✈︎</span><span class="brand-wrap">Funny<b>Routes</b><small>Vergelijk slim. Reis met een glimlach.</small></span></a>
+  <nav class="menu"><a href="#search" data-open-tab="flights" data-i18n="navFlights">Vluchten</a><a href="#search" data-open-tab="hotels" data-i18n="navHotels">Hotels</a><a href="#search" data-open-tab="cars" data-i18n="navCars">Auto's</a><a href="#explore" data-i18n="navExplore">Explore</a><a href="#deals" data-i18n="navDeals">Deals</a><a href="#alerts"><span data-i18n="navAlerts">Prijsalerts</span> <span class="pill-new" data-i18n="new">Nieuw</span></a></nav>
+  <div class="nav-actions"><select id="languageSelect" class="nav-select" aria-label="Taal"><option value="nl">🇳🇱 NL</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option></select><select id="currencySelect" class="nav-select" aria-label="Valuta"><option value="eur">€ EUR</option><option value="usd">$ USD</option><option value="gbp">£ GBP</option><option value="chf">CHF</option><option value="thb">฿ THB</option><option value="idr">Rp IDR</option></select><span>♡</span><span data-i18n="login">♙ Inloggen</span></div><button class="mobile-toggle">☰</button>
+</div></header>
+
+<main>
+<section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-route" data-i18n="heroBadge">Wereldkaart in cartoonstijl · vlieg slim, boek vrolijk</div><h1><span data-i18n="heroLine1">Vind je volgende reis</span><br><span data-i18n="heroLine2">met een</span> <em data-i18n="heroSmile">glimlach</em></h1><p data-i18n="heroText">Vergelijk honderden aanbieders en vind de perfecte deal voor jouw volgende avontuur.</p></div><div class="hero-art" aria-hidden="true"></div></div></section>
+
+<div id="search" class="container search-shell">
+  <div class="search-tabs" role="tablist" aria-label="Reis zoeken">
+    <button class="search-tab active" data-tab="flights" role="tab" aria-selected="true"><span>✈ </span><span data-i18n="tabFlights">Vluchten</span></button>
+    <button class="search-tab" data-tab="hotels" role="tab" aria-selected="false"><span>▣ </span><span data-i18n="tabHotels">Hotels</span></button>
+    <button class="search-tab" data-tab="cars" role="tab" aria-selected="false"><span>🚗 </span><span data-i18n="tabCars">Auto's</span></button>
+  </div>
+  <div class="widget-frame">
+    <div class="search-panel active" data-panel="flights"><div id="dealSelectionNotice" class="deal-selection-notice"><span><span data-i18n="selectedDestination">Geselecteerde bestemming:</span> <strong id="dealSelectionName"></strong></span><button type="button" id="clearDealSelection" data-i18n="clearSelection">Wissen</button></div><div id="flightWidget"></div></div>
+    <div class="search-panel hotel-panel" data-panel="hotels">
+      <div class="hotel-wrap">
+        <div class="hotel-copy">
+          <div class="hotel-copy-main">
+            <div class="hotel-kicker">🏨 <span data-i18n="hotelKicker">Hoteldeals via onze reispartner</span></div>
+            <h3 data-i18n="hotelTitle">Vind een hotel dat bij je reis past</h3>
+            <p data-i18n="hotelText">Zoek hotels en accommodaties via Trip.com. Je ziet actuele beschikbaarheid en prijzen rechtstreeks van de partner.</p>
+            <div class="hotel-points"><span data-i18n="hotelPoint1">Actuele partnerprijzen</span><span data-i18n="hotelPoint2">Wereldwijd aanbod</span><span data-i18n="hotelPoint3">Affiliate-tracking actief</span></div>
+          </div>
+          <div class="hotel-mini-scene" aria-hidden="true">
+            <div class="hotel-mini-sky"></div>
+            <div class="hotel-mini-building"></div>
+            <div class="hotel-mini-caption">Stay happy<br>book smart</div>
+          </div>
+        </div>
+        <div class="hotel-widget-card">
+          <iframe src="https://www.trip.com/partners/ad/S19436216?Allianceid=8231287&SID=329249894&trip_sub1=" frameborder="0" scrolling="no" id="S19436216" title="Trip.com hotelzoeker"></iframe>
+          <span class="partner-badge">Hotels via Trip.com · Alliance ID 8231287</span>
+        </div>
+      </div>
+    </div>
+    <div class="search-panel car-panel" data-panel="cars">
+      <div class="car-wrap">
+        <div class="car-main">
+          <div class="car-kicker">🚘 <span data-i18n="carKicker">Huurauto's via onze reispartner</span></div>
+          <h3 class="car-title" data-i18n="carTitle">Vind snel een huurauto voor je reis</h3>
+          <div class="car-grid">
+            <div class="car-field"><label for="car-location" data-i18n="carLocation">Ophaallocatie</label><input id="car-location" type="text" placeholder="Bijv. Schiphol of Barcelona"></div>
+            <div class="car-field"><label for="car-pickup" data-i18n="carPickup">Ophalen</label><input id="car-pickup" type="date"></div>
+            <div class="car-field"><label for="car-return" data-i18n="carReturn">Inleveren</label><input id="car-return" type="date"></div>
+            <button class="car-cta" id="carSearchBtn" type="button"><span data-i18n="carSearch">Zoek huurauto's →</span></button>
+          </div>
+          <div class="car-note" data-i18n="carNote">Je gaat via jouw affiliate-link naar Trip.com om de actuele beschikbaarheid en prijs te bekijken. De ingevulde velden hierboven zijn nog niet gekoppeld aan Trip.com-prefill.</div><div class="car-error" id="carError" role="alert" aria-live="polite"></div>
+          <span class="partner-badge">Huurauto's via Trip.com · SID 329249894</span>
+        </div>
+        <div class="car-side" aria-hidden="true">
+          <div class="car-visual"></div>
+          <strong data-i18n="carSideTitle">Roadtrip klaar?</strong>
+          <span data-i18n="carSideText">Vergelijk je huurauto via Trip.com.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="trust-row"><span data-i18n="noHidden">Geen verborgen kosten</span><span data-i18n="trustedPartners">Betrouwbare partners</span><span data-i18n="trackingActive">Affiliate-tracking actief</span></div>
+</div>
+
+<section id="deals"><div class="container deals-layout"><div><div class="section-title"><div><h2>⭐ <span data-i18n="popularDeals">Populaire deals</span></h2><p data-i18n="dealIntro">Interessante bestemmingen voor je volgende avontuur.</p></div><a class="linkbtn" href="#explore"><span data-i18n="viewAllDeals">Bekijk alle deals →</span></a></div><div class="deal-grid">
+  <article class="deal"><div class="deal-image"><img src="assets/barcelona-deal-v2.png" alt="Barcelona"></div><div><h3>Barcelona</h3><div class="country" data-i18n="spain">Spanje</div><div class="price" data-eur="39">vanaf €39*</div><div class="small" data-i18n="sampleDeal">Retour · voorbeelddeal</div><a href="#search" class="deal-route-link" data-destination-code="BCN" data-destination-name="Barcelona" data-i18n="searchRoute">Zoek deze route →</a></div></article>
+  <article class="deal"><div class="deal-image"><img src="assets/bangkok-deal-v2.png" alt="Bangkok"></div><div><h3>Bangkok</h3><div class="country" data-i18n="thailand">Thailand</div><div class="price" data-eur="459">vanaf €459*</div><div class="small" data-i18n="sampleDeal">Retour · voorbeelddeal</div><a href="#search" class="deal-route-link" data-destination-code="BKK" data-destination-name="Bangkok" data-i18n="searchRoute">Zoek deze route →</a></div></article>
+  <article class="deal"><div class="deal-image"><img src="assets/bali-deal-v2.png" alt="Bali"></div><div><h3>Bali (DPS)</h3><div class="country" data-i18n="indonesia">Indonesië</div><div class="price" data-eur="599">vanaf €599*</div><div class="small" data-i18n="sampleDeal">Retour · voorbeelddeal</div><a href="#search" class="deal-route-link" data-destination-code="DPS" data-destination-name="Bali" data-i18n="searchRoute">Zoek deze route →</a></div></article>
+</div></div><aside id="alerts" class="alert-card"><div style="font-size:40px">🔔</div><h3 data-i18n="alertTitle">Nooit meer een goede deal missen?</h3><p data-i18n="alertText">Ontvang prijsalerts voor jouw favoriete bestemmingen.</p><form class="alert-form" id="priceAlertForm" novalidate><input id="alertDestination" type="text" autocomplete="off" placeholder="Bestemming, bijv. Barcelona" data-i18n-placeholder="alertDestinationPlaceholder"><input id="alertEmail" type="email" autocomplete="email" placeholder="Jouw e-mailadres" data-i18n-placeholder="emailPlaceholder"><div class="alert-price-wrap"><span class="alert-currency-symbol" id="alertCurrencySymbol">€</span><input id="alertMaxPrice" type="number" min="1" step="1" inputmode="numeric" placeholder="Gewenste maximumprijs" data-i18n-placeholder="alertMaxPricePlaceholder"></div><button type="submit"><span data-i18n="makeAlert">Maak alert</span></button></form><div class="alert-status" id="alertStatus" role="status" aria-live="polite"></div><div class="alert-saved" id="savedAlerts" hidden><div class="alert-saved-title" data-i18n="savedAlertsTitle">Mijn opgeslagen prijsalerts</div><div class="alert-list" id="alertList"></div></div><p class="alert-beta-note" data-i18n="alertBetaNote">Prijsalerts worden na activatie dagelijks gecontroleerd. Bij een prijs onder jouw grens ontvang je automatisch een e-mail.</p><div class="alert-points"><span data-i18n="priceDrops">Prijsdalingen</span><span data-i18n="exclusiveDeals">Exclusieve deals</span><span data-i18n="free">Gratis</span></div></aside></div></section>
+
+<section id="explore"><div class="container explore"><div class="section-title"><div><h2>📍 <span data-i18n="exploreTitle">Explore: waar wil je heen?</span></h2><p data-i18n="exploreText">Ontdek bestemmingen die passen bij jouw reisstijl.</p></div><button class="linkbtn" id="showExploreDestinations" type="button"><span data-i18n="showDestinations">Toon bestemmingen →</span></button></div><div class="explore-grid">
+  <button class="explore-card" type="button" data-explore-category="beach"><div class="explore-art beach-art" aria-hidden="true"><span>BEACH</span></div><span data-i18n="beachSun">Strand & zon</span></button>
+  <button class="explore-card" type="button" data-explore-category="city"><div class="explore-art city-art" aria-hidden="true"><span>CITY</span></div><span data-i18n="cityTrips">Stedentrips</span></button>
+  <button class="explore-card" type="button" data-explore-category="nature"><div class="explore-art nature-art" aria-hidden="true"><span>OUTDOOR</span></div><span data-i18n="natureOutdoor">Natuur & outdoor</span></button>
+  <button class="explore-card" type="button" data-explore-category="family"><div class="explore-art family-art" aria-hidden="true"><span>FAMILY</span></div><span data-i18n="familyFun">Familieplezier</span></button>
+  <button class="explore-card" type="button" data-explore-category="business"><div class="explore-art business-art" aria-hidden="true"><span>B2B</span></div><span data-i18n="businessTravel">Zakelijk reizen</span></button>
+  <button class="explore-card" type="button" data-explore-category="weekend"><div class="explore-art weekend-art" aria-hidden="true"><span>WEEKEND</span></div><span data-i18n="weekendAway">Weekendje weg</span></button>
+</div><div class="explore-results" id="exploreResults"><div class="explore-results-head"><div><h3 id="exploreResultsTitle">Bestemmingen</h3><p id="exploreResultsText">Kies een bestemming en ga direct naar de vluchtzoeker.</p></div><button class="explore-close" id="exploreClose" type="button">✕</button></div><div class="destination-grid" id="destinationGrid"></div><div class="explore-hint" data-i18n="exploreHint">Na je keuze opent FunnyRoutes automatisch de vluchtzoeker met deze bestemming.</div></div></div></section>
+
+<section><div class="container mid-grid"><div class="why"><div class="section-title"><div><h2 data-i18n="whyTitle">Waarom FunnyRoutes?</h2><p data-i18n="whyText">Reizen vergelijken mag ook leuk zijn.</p></div></div><div class="why-grid"><div class="benefit"><div class="icon">🏷️</div><h4 data-i18n="compareAll">Vergelijk alles</h4><p>We vergelijken reisaanbieders zodat jij makkelijk prijzen kunt bekijken.</p></div><div class="benefit"><div class="icon">🛡️</div><h4 data-i18n="safeReliable">Veilig & betrouwbaar</h4><p>Je boekt uiteindelijk bij de aanbieder of reispartner.</p></div><div class="benefit"><div class="icon">🙂</div><h4 data-i18n="travelSmile">Reis met een glimlach</h4><p>Een vrolijke, eenvoudige reiszoeker zonder ingewikkelde stappen.</p></div><div class="benefit"><div class="icon">🎧</div><h4 data-i18n="helpRoad">Hulp onderweg</h4><p>We bouwen FunnyRoutes stap voor stap uit met handige reisfuncties.</p></div></div></div>
+<div class="app-card"><div><h3 data-i18n="takeFunny">Neem FunnyRoutes mee</h3><p data-i18n="takeText">Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.</p><span class="store"> App Store</span><span class="store">▶ Google Play</span></div><div class="phone"><div class="phone-screen"><div class="mini-brand">Funny<b>Routes</b></div><div class="mini-search">Waar wil je heen?</div><div class="mini-deal"><div class="mini-thumb"></div><div>Barcelona<br><b style="color:#ff6a00">€39*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bangkok<br><b style="color:#ff6a00">€459*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bali<br><b style="color:#ff6a00">€599*</b></div></div></div></div></div></div>
+<div class="container reassure"><div><div class="icon">🎧</div><strong>Klantenservice</strong><span>We bouwen hulp en support verder uit.</span></div><div><div class="icon">🔒</div><strong>Geen verborgen kosten</strong><span>Je ziet de prijsinformatie van partners.</span></div><div><div class="icon">📅</div><strong>Flexibel zoeken</strong><span>Vergelijk verschillende data en routes.</span></div><div><div class="icon">🌍</div><strong>Ontdek meer</strong><span>Inspiratie voor jouw volgende reis.</span></div></div></section>
+</main>
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-brand">✈︎ Funny<b>Routes</b></div><p style="font-size:13px;opacity:.9">Vergelijk slim. Reis met een glimlach.</p></div><div class="footer-col"><h4>Explore</h4><a href="#search" data-open-tab="flights">Vluchten</a><a href="#search" data-open-tab="hotels">Hotels</a><a href="#search" data-open-tab="cars">Auto's</a><a href="#explore">Bestemmingen</a></div><div class="footer-col"><h4 data-i18n="company">Bedrijf</h4><a href="#">Over ons</a><a href="#">Contact</a></div><div class="footer-col"><h4>Juridisch & support</h4><a href="#">Help</a><a href="#">Boekingsinformatie</a><a href="/voorwaarden.html">Algemene voorwaarden</a><a href="/privacy.html">Privacybeleid</a><a href="/cookies.html">Cookiebeleid</a><a href="/affiliate.html">Affiliate disclosure</a></div><div class="footer-col"><h4 data-i18n="stayUpdated">Blijf op de hoogte</h4><p style="font-size:13px;opacity:.9">Ontvang later deals en tips rechtstreeks in je inbox.</p></div></div><div class="footer-note">* Getoonde prijzen op FunnyRoutes-kaarten zijn illustratieve voorbeeldprijzen en kunnen afwijken van actuele partnerprijzen. FunnyRoutes kan een commissie ontvangen wanneer je via een partnerlink boekt. De Travelpayouts-zoekmodule gebruikt jouw affiliate-tracking.</div></div></footer>
+
+<script>
+(function(){
+  const tabs=[...document.querySelectorAll('.search-tab[data-tab]')];
+  const panels=[...document.querySelectorAll('.search-panel[data-panel]')];
+  function openTab(name){
+    tabs.forEach(btn=>{const on=btn.dataset.tab===name;btn.classList.toggle('active',on);btn.setAttribute('aria-selected',on?'true':'false')});
+    panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===name));
+  }
+  tabs.forEach(btn=>btn.addEventListener('click',()=>openTab(btn.dataset.tab)));
+  document.querySelectorAll('[data-open-tab]').forEach(link=>link.addEventListener('click',()=>openTab(link.dataset.openTab)));
+
+  const translations={
+    nl:{carKicker:"Huurauto's via onze reispartner",carTitle:'Vind snel een huurauto voor je reis',carSideTitle:'Roadtrip klaar?',carSideText:'Vergelijk je huurauto via Trip.com.',hotelKicker:'Hoteldeals via onze reispartner',hotelTitle:'Vind een hotel dat bij je reis past',hotelText:'Zoek hotels en accommodaties via Trip.com. Je ziet actuele beschikbaarheid en prijzen rechtstreeks van de partner.',hotelPoint1:'Actuele partnerprijzen',hotelPoint2:'Wereldwijd aanbod',hotelPoint3:'Affiliate-tracking actief',navFlights:'Vluchten',navHotels:'Hotels',navCars:"Auto\'s",navExplore:'Explore',navDeals:'Deals',navAlerts:'Prijsalerts',new:'Nieuw',login:'♙ Inloggen',heroBadge:'Wereldkaart in cartoonstijl · vlieg slim, boek vrolijk',heroLine1:'Vind je volgende reis',heroLine2:'met een',heroSmile:'glimlach',heroText:'Vergelijk honderden aanbieders en vind de perfecte deal voor jouw volgende avontuur.',tabFlights:'Vluchten',tabHotels:'Hotels',tabCars:"Auto\'s",carLocation:'Ophaallocatie',carPickup:'Ophalen',carReturn:'Inleveren',carSearch:"Zoek huurauto\'s →",carErrorMissing:'Vul eerst de ophaallocatie, ophaaldatum en inleverdatum in.',carErrorOrder:'De inleverdatum moet na de ophaaldatum liggen.',carNote:'Je gaat via jouw affiliate-link naar Trip.com om de actuele beschikbaarheid en prijs te bekijken. De ingevulde velden hierboven zijn nog niet gekoppeld aan Trip.com-prefill.',noHidden:'Geen verborgen kosten',trustedPartners:'Betrouwbare partners',trackingActive:'Affiliate-tracking actief',popularDeals:'Populaire deals',dealIntro:'Interessante bestemmingen voor je volgende avontuur.',viewAllDeals:'Bekijk alle deals →',sampleDeal:'Retour · voorbeelddeal',selectedDestination:'Geselecteerde bestemming:',clearSelection:'Wissen',searchRoute:'Zoek deze route →',spain:'Spanje',thailand:'Thailand',indonesia:'Indonesië',from:'vanaf',alertTitle:'Nooit meer een goede deal missen?',alertText:'Ontvang prijsalerts voor jouw favoriete bestemmingen.',emailPlaceholder:'Jouw e-mailadres',alertDestinationPlaceholder:'Bestemming, bijv. Barcelona',alertMaxPricePlaceholder:'Gewenste maximumprijs',savedAlertsTitle:'Mijn opgeslagen prijsalerts',alertBetaNote:'Prijsalerts worden na activatie dagelijks gecontroleerd. Bij een prijs onder jouw grens ontvang je automatisch een e-mail.',alertSaved:'Prijsalert opgeslagen voor {destination} onder {price}.',alertMissing:'Vul bestemming, e-mailadres en maximumprijs in.',alertInvalidEmail:'Vul een geldig e-mailadres in.',alertDuplicate:'Deze prijsalert is al opgeslagen.',alertSaving:'Prijsalert activeren…',alertServerError:'De prijsalert kon niet worden geactiveerd. Probeer het opnieuw.',alertRemove:'Verwijderen',makeAlert:'Maak alert',priceDrops:'Prijsdalingen',exclusiveDeals:'Exclusieve deals',free:'Gratis',exploreTitle:'Explore: waar wil je heen?',exploreText:'Ontdek bestemmingen die passen bij jouw reisstijl.',showDestinations:'Toon bestemmingen →',explorePick:'Kies een bestemming',explorePickText:'Selecteer een bestemming die bij deze reisstijl past.',exploreHint:'Na je keuze opent FunnyRoutes automatisch de vluchtzoeker met deze bestemming.',beachSun:'Strand & zon',cityTrips:'Stedentrips',natureOutdoor:'Natuur & outdoor',familyFun:'Familieplezier',businessTravel:'Zakelijk reizen',weekendAway:'Weekendje weg',whyTitle:'Waarom FunnyRoutes?',whyText:'Reizen vergelijken mag ook leuk zijn.',compareAll:'Vergelijk alles',safeReliable:'Veilig & betrouwbaar',travelSmile:'Reis met een glimlach',helpRoad:'Hulp onderweg',takeFunny:'Neem FunnyRoutes mee',takeText:'Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.',company:'Bedrijf',support:'Support',stayUpdated:'Blijf op de hoogte'},
+    en:{carKicker:'Car rental via our travel partner',carTitle:'Find a rental car for your trip',carSideTitle:'Ready for a road trip?',carSideText:'Compare your rental car via Trip.com.',hotelKicker:'Hotel deals via our travel partner',hotelTitle:'Find a hotel that fits your trip',hotelText:'Search hotels and accommodation via Trip.com. Live availability and prices are shown directly by the partner.',hotelPoint1:'Live partner prices',hotelPoint2:'Worldwide selection',hotelPoint3:'Affiliate tracking active',navFlights:'Flights',navHotels:'Hotels',navCars:'Cars',navExplore:'Explore',navDeals:'Deals',navAlerts:'Price alerts',new:'New',login:'♙ Sign in',heroBadge:'Cartoon world map · fly smart, book happy',heroLine1:'Find your next trip',heroLine2:'with a',heroSmile:'smile',heroText:'Compare hundreds of providers and find the perfect deal for your next adventure.',tabFlights:'Flights',tabHotels:'Hotels',tabCars:'Cars',carLocation:'Pick-up location',carPickup:'Pick-up',carReturn:'Return',carSearch:'Search cars →',carErrorMissing:'Please enter a pick-up location, pick-up date and return date.',carErrorOrder:'The return date must be after the pick-up date.',carNote:'You will continue to Trip.com through your affiliate link to view live availability and prices. The fields above are not yet connected to Trip.com prefill.',noHidden:'No hidden fees',trustedPartners:'Trusted partners',trackingActive:'Affiliate tracking active',popularDeals:'Popular deals',dealIntro:'Interesting destinations for your next adventure.',viewAllDeals:'View all deals →',sampleDeal:'Return · sample deal',selectedDestination:'Selected destination:',clearSelection:'Clear',searchRoute:'Search this route →',spain:'Spain',thailand:'Thailand',indonesia:'Indonesia',from:'from',alertTitle:'Never miss a great deal',alertText:'Get price alerts for your favourite destinations.',emailPlaceholder:'Your email address',alertDestinationPlaceholder:'Destination, e.g. Barcelona',alertMaxPricePlaceholder:'Desired maximum price',savedAlertsTitle:'My saved price alerts',alertBetaNote:'After activation, price alerts are checked daily. When a fare drops below your limit, you automatically receive an email.',alertSaved:'Price alert saved for {destination} below {price}.',alertMissing:'Enter a destination, email address and maximum price.',alertInvalidEmail:'Enter a valid email address.',alertDuplicate:'This price alert is already saved.',alertSaving:'Activating price alert…',alertServerError:'The price alert could not be activated. Please try again.',alertRemove:'Remove',makeAlert:'Create alert',priceDrops:'Price drops',exclusiveDeals:'Exclusive deals',free:'Free',exploreTitle:'Explore: where will you go?',exploreText:'Discover destinations that fit your travel style.',showDestinations:'Show destinations →',explorePick:'Choose a destination',explorePickText:'Select a destination that matches this travel style.',exploreHint:'After your choice, FunnyRoutes automatically opens the flight search with this destination.',beachSun:'Beach & sun',cityTrips:'City breaks',natureOutdoor:'Nature & outdoors',familyFun:'Family fun',businessTravel:'Business travel',weekendAway:'Weekend getaway',whyTitle:'Why FunnyRoutes?',whyText:'Comparing travel can be fun too.',compareAll:'Compare everything',safeReliable:'Safe & reliable',travelSmile:'Travel with a smile',helpRoad:'Help on the way',takeFunny:'Take FunnyRoutes with you',takeText:'Soon you can save favourite routes, manage price alerts and view deals on the go.',company:'Company',support:'Support',stayUpdated:'Stay updated'},
+    de:{carKicker:'Mietwagen über unseren Reisepartner',carTitle:'Finde schnell einen Mietwagen für deine Reise',carSideTitle:'Bereit für den Roadtrip?',carSideText:'Vergleiche deinen Mietwagen über Trip.com.',hotelKicker:'Hotelangebote über unseren Reisepartner',hotelTitle:'Finde ein Hotel, das zu deiner Reise passt',hotelText:'Suche Hotels und Unterkünfte über Trip.com. Aktuelle Verfügbarkeit und Preise kommen direkt vom Partner.',hotelPoint1:'Aktuelle Partnerpreise',hotelPoint2:'Weltweites Angebot',hotelPoint3:'Affiliate-Tracking aktiv',navFlights:'Flüge',navHotels:'Hotels',navCars:'Mietwagen',navExplore:'Entdecken',navDeals:'Deals',navAlerts:'Preisalarm',new:'Neu',login:'♙ Anmelden',heroBadge:'Cartoon-Weltkarte · clever fliegen, fröhlich buchen',heroLine1:'Finde deine nächste Reise',heroLine2:'mit einem',heroSmile:'Lächeln',heroText:'Vergleiche Hunderte Anbieter und finde das passende Angebot für dein nächstes Abenteuer.',tabFlights:'Flüge',tabHotels:'Hotels',tabCars:'Mietwagen',carLocation:'Abholort',carPickup:'Abholung',carReturn:'Rückgabe',carSearch:'Mietwagen suchen →',carErrorMissing:'Bitte Abholort, Abholdatum und Rückgabedatum eingeben.',carErrorOrder:'Das Rückgabedatum muss nach dem Abholdatum liegen.',carNote:'Du wirst über deinen Affiliate-Link zu Trip.com weitergeleitet, um aktuelle Verfügbarkeit und Preise zu sehen.',noHidden:'Keine versteckten Kosten',trustedPartners:'Vertrauenswürdige Partner',trackingActive:'Affiliate-Tracking aktiv',popularDeals:'Beliebte Deals',dealIntro:'Interessante Ziele für dein nächstes Abenteuer.',viewAllDeals:'Alle Deals ansehen →',sampleDeal:'Hin & zurück · Beispielangebot',selectedDestination:'Ausgewähltes Ziel:',clearSelection:'Löschen',searchRoute:'Route suchen →',spain:'Spanien',thailand:'Thailand',indonesia:'Indonesien',from:'ab',alertTitle:'Keinen guten Deal mehr verpassen',alertText:'Erhalte Preisalarme für deine Lieblingsziele.',emailPlaceholder:'Deine E-Mail-Adresse',alertDestinationPlaceholder:'Reiseziel, z. B. Barcelona',alertMaxPricePlaceholder:'Gewünschter Höchstpreis',savedAlertsTitle:'Meine gespeicherten Preisalarme',alertBetaNote:'Nach der Aktivierung werden Preisalarme täglich geprüft. Fällt ein Preis unter deine Grenze, erhältst du automatisch eine E-Mail.',alertSaved:'Preisalarm für {destination} unter {price} gespeichert.',alertMissing:'Bitte Reiseziel, E-Mail-Adresse und Höchstpreis eingeben.',alertInvalidEmail:'Bitte eine gültige E-Mail-Adresse eingeben.',alertDuplicate:'Dieser Preisalarm ist bereits gespeichert.',alertSaving:'Preisalarm wird aktiviert…',alertServerError:'Der Preisalarm konnte nicht aktiviert werden. Bitte erneut versuchen.',alertRemove:'Löschen',makeAlert:'Alarm erstellen',priceDrops:'Preissenkungen',exclusiveDeals:'Exklusive Deals',free:'Kostenlos',exploreTitle:'Entdecken: Wohin geht es?',exploreText:'Entdecke Ziele, die zu deinem Reisestil passen.',showDestinations:'Ziele anzeigen →',explorePick:'Reiseziel wählen',explorePickText:'Wähle ein Ziel, das zu diesem Reisestil passt.',exploreHint:'Nach deiner Auswahl öffnet FunnyRoutes automatisch die Flugsuche mit diesem Ziel.',beachSun:'Strand & Sonne',cityTrips:'Städtereisen',natureOutdoor:'Natur & Outdoor',familyFun:'Familienspaß',businessTravel:'Geschäftsreisen',weekendAway:'Wochenendtrip',whyTitle:'Warum FunnyRoutes?',whyText:'Reisevergleich darf auch Spaß machen.',compareAll:'Alles vergleichen',safeReliable:'Sicher & zuverlässig',travelSmile:'Mit einem Lächeln reisen',helpRoad:'Hilfe unterwegs',takeFunny:'FunnyRoutes für unterwegs',takeText:'Bald kannst du Lieblingsrouten speichern, Preisalarme verwalten und Deals unterwegs ansehen.',company:'Unternehmen',support:'Support',stayUpdated:'Bleib informiert'},
+    fr:{carKicker:'Location de voiture via notre partenaire',carTitle:'Trouvez rapidement une voiture pour votre voyage',carSideTitle:'Prêt pour la route ?',carSideText:'Comparez votre voiture via Trip.com.',hotelKicker:'Offres d’hôtel via notre partenaire',hotelTitle:'Trouvez un hôtel adapté à votre voyage',hotelText:'Recherchez des hôtels et hébergements via Trip.com. Les disponibilités et tarifs actuels sont affichés directement par le partenaire.',hotelPoint1:'Tarifs partenaires actuels',hotelPoint2:'Choix mondial',hotelPoint3:'Suivi affilié actif',navFlights:'Vols',navHotels:'Hôtels',navCars:'Voitures',navExplore:'Explorer',navDeals:'Offres',navAlerts:'Alertes prix',new:'Nouveau',login:'♙ Connexion',heroBadge:'Carte du monde cartoon · voyagez malin et avec le sourire',heroLine1:'Trouvez votre prochain voyage',heroLine2:'avec le',heroSmile:'sourire',heroText:'Comparez des centaines de fournisseurs et trouvez l’offre parfaite pour votre prochaine aventure.',tabFlights:'Vols',tabHotels:'Hôtels',tabCars:'Voitures',carLocation:'Lieu de prise en charge',carPickup:'Départ',carReturn:'Retour',carSearch:'Rechercher une voiture →',carErrorMissing:'Veuillez saisir le lieu de prise en charge, la date de départ et la date de retour.',carErrorOrder:'La date de retour doit être postérieure à la date de départ.',carNote:'Vous serez redirigé vers Trip.com via votre lien affilié pour consulter les disponibilités et tarifs actuels.',noHidden:'Aucun frais caché',trustedPartners:'Partenaires fiables',trackingActive:'Suivi affilié actif',popularDeals:'Offres populaires',dealIntro:'Des destinations intéressantes pour votre prochaine aventure.',viewAllDeals:'Voir toutes les offres →',sampleDeal:'Aller-retour · offre exemple',selectedDestination:'Destination sélectionnée :',clearSelection:'Effacer',searchRoute:'Rechercher cet itinéraire →',spain:'Espagne',thailand:'Thaïlande',indonesia:'Indonésie',from:'dès',alertTitle:'Ne manquez plus une bonne affaire',alertText:'Recevez des alertes de prix pour vos destinations préférées.',emailPlaceholder:'Votre adresse e-mail',alertDestinationPlaceholder:'Destination, ex. Barcelone',alertMaxPricePlaceholder:'Prix maximum souhaité',savedAlertsTitle:'Mes alertes prix enregistrées',alertBetaNote:'Après activation, les alertes sont vérifiées chaque jour. Si un tarif passe sous votre limite, vous recevez automatiquement un e-mail.',alertSaved:'Alerte prix enregistrée pour {destination} sous {price}.',alertMissing:'Saisissez une destination, une adresse e-mail et un prix maximum.',alertInvalidEmail:'Saisissez une adresse e-mail valide.',alertDuplicate:'Cette alerte prix est déjà enregistrée.',alertSaving:'Activation de l’alerte…',alertServerError:'Impossible d’activer l’alerte. Veuillez réessayer.',alertRemove:'Supprimer',makeAlert:'Créer une alerte',priceDrops:'Baisses de prix',exclusiveDeals:'Offres exclusives',free:'Gratuit',exploreTitle:'Explorer : où irez-vous ?',exploreText:'Découvrez des destinations adaptées à votre style de voyage.',showDestinations:'Voir les destinations →',explorePick:'Choisissez une destination',explorePickText:'Sélectionnez une destination adaptée à ce style de voyage.',exploreHint:'Après votre choix, FunnyRoutes ouvre automatiquement la recherche de vols avec cette destination.',beachSun:'Plage & soleil',cityTrips:'Escapades urbaines',natureOutdoor:'Nature & plein air',familyFun:'En famille',businessTravel:"Voyages d’affaires",weekendAway:'Week-end',whyTitle:'Pourquoi FunnyRoutes ?',whyText:'Comparer les voyages peut aussi être amusant.',compareAll:'Tout comparer',safeReliable:'Sûr & fiable',travelSmile:'Voyager avec le sourire',helpRoad:'Aide en route',takeFunny:'Emportez FunnyRoutes',takeText:'Bientôt, enregistrez vos itinéraires favoris, gérez vos alertes et consultez les offres en déplacement.',company:'Entreprise',support:'Assistance',stayUpdated:'Restez informé'},
+    es:{carKicker:'Alquiler de coches con nuestro socio',carTitle:'Encuentra rápido un coche para tu viaje',carSideTitle:'¿Listo para la carretera?',carSideText:'Compara tu coche de alquiler en Trip.com.',hotelKicker:'Ofertas de hotel con nuestro socio de viajes',hotelTitle:'Encuentra un hotel que encaje con tu viaje',hotelText:'Busca hoteles y alojamientos a través de Trip.com. La disponibilidad y los precios actuales los muestra directamente el socio.',hotelPoint1:'Precios actuales del socio',hotelPoint2:'Oferta mundial',hotelPoint3:'Seguimiento de afiliado activo',navFlights:'Vuelos',navHotels:'Hoteles',navCars:'Coches',navExplore:'Explorar',navDeals:'Ofertas',navAlerts:'Alertas de precio',new:'Nuevo',login:'♙ Iniciar sesión',heroBadge:'Mapa mundial cartoon · viaja inteligente y sonríe',heroLine1:'Encuentra tu próximo viaje',heroLine2:'con una',heroSmile:'sonrisa',heroText:'Compara cientos de proveedores y encuentra la oferta perfecta para tu próxima aventura.',tabFlights:'Vuelos',tabHotels:'Hoteles',tabCars:'Coches',carLocation:'Lugar de recogida',carPickup:'Recogida',carReturn:'Devolución',carSearch:'Buscar coches →',carErrorMissing:'Introduce el lugar de recogida, la fecha de recogida y la fecha de devolución.',carErrorOrder:'La fecha de devolución debe ser posterior a la fecha de recogida.',carNote:'Continuarás a Trip.com mediante tu enlace de afiliado para consultar disponibilidad y precios actuales.',noHidden:'Sin costes ocultos',trustedPartners:'Socios de confianza',trackingActive:'Seguimiento de afiliado activo',popularDeals:'Ofertas populares',dealIntro:'Destinos interesantes para tu próxima aventura.',viewAllDeals:'Ver todas las ofertas →',sampleDeal:'Ida y vuelta · oferta de ejemplo',selectedDestination:'Destino seleccionado:',clearSelection:'Borrar',searchRoute:'Buscar esta ruta →',spain:'España',thailand:'Tailandia',indonesia:'Indonesia',from:'desde',alertTitle:'No te pierdas ninguna buena oferta',alertText:'Recibe alertas de precios para tus destinos favoritos.',emailPlaceholder:'Tu correo electrónico',alertDestinationPlaceholder:'Destino, p. ej. Barcelona',alertMaxPricePlaceholder:'Precio máximo deseado',savedAlertsTitle:'Mis alertas de precio guardadas',alertBetaNote:'Tras la activación, las alertas se comprueban a diario. Si una tarifa baja de tu límite, recibirás automáticamente un correo.',alertSaved:'Alerta guardada para {destination} por debajo de {price}.',alertMissing:'Introduce un destino, correo electrónico y precio máximo.',alertInvalidEmail:'Introduce un correo electrónico válido.',alertDuplicate:'Esta alerta de precio ya está guardada.',alertSaving:'Activando alerta…',alertServerError:'No se pudo activar la alerta. Inténtalo de nuevo.',alertRemove:'Eliminar',makeAlert:'Crear alerta',priceDrops:'Bajadas de precio',exclusiveDeals:'Ofertas exclusivas',free:'Gratis',exploreTitle:'Explora: ¿adónde irás?',exploreText:'Descubre destinos que encajan con tu estilo de viaje.',showDestinations:'Ver destinos →',explorePick:'Elige un destino',explorePickText:'Selecciona un destino que encaje con este estilo de viaje.',exploreHint:'Tras elegir, FunnyRoutes abre automáticamente la búsqueda de vuelos con este destino.',beachSun:'Playa y sol',cityTrips:'Escapadas urbanas',natureOutdoor:'Naturaleza',familyFun:'Diversión en familia',businessTravel:'Viajes de negocios',weekendAway:'Fin de semana',whyTitle:'¿Por qué FunnyRoutes?',whyText:'Comparar viajes también puede ser divertido.',compareAll:'Compara todo',safeReliable:'Seguro y fiable',travelSmile:'Viaja con una sonrisa',helpRoad:'Ayuda en ruta',takeFunny:'Lleva FunnyRoutes contigo',takeText:'Pronto podrás guardar rutas favoritas, gestionar alertas y consultar ofertas mientras viajas.',company:'Empresa',support:'Soporte',stayUpdated:'Mantente al día'}
+  };
+  const langSelect=document.getElementById('languageSelect');
+  const currencySelect=document.getElementById('currencySelect');
+  const currencyMeta={eur:{symbol:'€',rate:1},usd:{symbol:'$',rate:1.10},gbp:{symbol:'£',rate:.86},chf:{symbol:'CHF ',rate:.94},thb:{symbol:'฿',rate:38.5},idr:{symbol:'Rp ',rate:18200}};
+  let selectedDealDestination=null;
+  const dealSelectionNotice=document.getElementById('dealSelectionNotice');
+  const dealSelectionName=document.getElementById('dealSelectionName');
+  const clearDealSelection=document.getElementById('clearDealSelection');
+  const exploreCards=[...document.querySelectorAll('[data-explore-category]')];
+  const exploreResults=document.getElementById('exploreResults');
+  const exploreResultsTitle=document.getElementById('exploreResultsTitle');
+  const exploreResultsText=document.getElementById('exploreResultsText');
+  const destinationGrid=document.getElementById('destinationGrid');
+  const showExploreDestinations=document.getElementById('showExploreDestinations');
+  const exploreClose=document.getElementById('exploreClose');
+  const priceAlertForm=document.getElementById('priceAlertForm');
+  const alertDestination=document.getElementById('alertDestination');
+  const alertEmail=document.getElementById('alertEmail');
+  const alertMaxPrice=document.getElementById('alertMaxPrice');
+  const alertStatus=document.getElementById('alertStatus');
+  const savedAlerts=document.getElementById('savedAlerts');
+  const alertList=document.getElementById('alertList');
+  const alertCurrencySymbol=document.getElementById('alertCurrencySymbol');
+  let priceAlerts=[];
+  let activeExploreCategory='beach';
+  const exploreDestinations={
+    beach:[['Palma de Mallorca','PMI','Mallorca'],['Faro','FAO','Algarve'],['Heraklion','HER','Kreta'],['Tenerife','TFS','Canarische Eilanden']],
+    city:[['Barcelona','BCN','Spanje'],['Rome','FCO','Italië'],['Lissabon','LIS','Portugal'],['Praag','PRG','Tsjechië']],
+    nature:[['Reykjavik','KEF','IJsland'],['Bergen','BGO','Noorwegen'],['Innsbruck','INN','Oostenrijk'],['Ljubljana','LJU','Slovenië']],
+    family:[['Orlando','MCO','Verenigde Staten'],['Billund','BLL','Denemarken'],['Antalya','AYT','Turkije'],['Tenerife','TFS','Canarische Eilanden']],
+    business:[['Londen','LHR','Verenigd Koninkrijk'],['Frankfurt','FRA','Duitsland'],['Zürich','ZRH','Zwitserland'],['Dubai','DXB','Verenigde Arabische Emiraten']],
+    weekend:[['London','LON','Verenigd Koninkrijk'],['Paris','PAR','Frankrijk'],['Copenhagen','CPH','Denemarken'],['Berlin','BER','Duitsland']]
+  };
+  const exploreCategoryKeys={beach:'beachSun',city:'cityTrips',nature:'natureOutdoor',family:'familyFun',business:'businessTravel',weekend:'weekendAway'};
+
+  function loadPriceAlerts(){
+    try{priceAlerts=JSON.parse(localStorage.getItem('funnyroutes_price_alerts')||'[]');if(!Array.isArray(priceAlerts))priceAlerts=[];}catch(e){priceAlerts=[];}
+  }
+  function savePriceAlerts(){localStorage.setItem('funnyroutes_price_alerts',JSON.stringify(priceAlerts));}
+  function showAlertStatus(message,type='success'){
+    if(!alertStatus)return;
+    alertStatus.textContent=message;
+    alertStatus.className=`alert-status show ${type}`;
+  }
+  function renderPriceAlerts(){
+    if(!savedAlerts||!alertList)return;
+    savedAlerts.hidden=priceAlerts.length===0;
+    alertList.innerHTML='';
+    const t=translations[langSelect?.value]||translations.nl;
+    priceAlerts.forEach((item,index)=>{
+      const row=document.createElement('div');row.className='alert-item';
+      const main=document.createElement('div');main.className='alert-item-main';
+      const strong=document.createElement('strong');strong.textContent=item.destination;
+      const meta=currencyMeta[item.currency]||currencyMeta.eur;
+      const priceLine=document.createElement('span');priceLine.className='alert-price-line';priceLine.textContent=`${meta.symbol}${new Intl.NumberFormat().format(item.maxPrice)}`;
+      const emailLine=document.createElement('span');emailLine.textContent=` · ${item.email}`;
+      const sub=document.createElement('div');sub.append(priceLine,emailLine);
+      main.append(strong,sub);
+      const btn=document.createElement('button');btn.type='button';btn.className='alert-remove';btn.textContent=t.alertRemove||'Remove';
+      btn.addEventListener('click',async()=>{const itemToRemove=priceAlerts[index];if(itemToRemove?.serverId&&itemToRemove?.manageToken){try{await fetch(`/api/alerts?id=${encodeURIComponent(itemToRemove.serverId)}&token=${encodeURIComponent(itemToRemove.manageToken)}`,{method:'DELETE'});}catch(e){}}priceAlerts.splice(index,1);savePriceAlerts();renderPriceAlerts();});
+      row.append(main,btn);alertList.appendChild(row);
+    });
+  }
+  function updateAlertCurrency(){
+    if(!alertCurrencySymbol)return;
+    const currency=currencySelect?.value||'eur';
+    const meta=currencyMeta[currency]||currencyMeta.eur;
+    const labels={eur:'€',usd:'$',gbp:'£',chf:'CHF',thb:'฿',idr:'Rp'};
+    alertCurrencySymbol.textContent=labels[currency]||meta.symbol.trim()||meta.symbol;
+    alertCurrencySymbol.setAttribute('aria-label',currency.toUpperCase());
+  }
+  function formatAlertPrice(currency,value){
+    const meta=currencyMeta[currency]||currencyMeta.eur;
+    const locale=langSelect.value==='nl'?'nl-NL':langSelect.value==='de'?'de-DE':langSelect.value==='fr'?'fr-FR':langSelect.value==='es'?'es-ES':'en-US';
+    return `${meta.symbol}${new Intl.NumberFormat(locale,{maximumFractionDigits:0}).format(value)}`;
+  }
+  function isValidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);}
+
+  function updatePrices(lang,currency){
+    const t=translations[lang]||translations.nl;
+    const meta=currencyMeta[currency]||currencyMeta.eur;
+    document.querySelectorAll('.price[data-eur]').forEach(el=>{
+      const eur=Number(el.dataset.eur); let amount=eur*meta.rate;
+      if(currency==='idr') amount=Math.round(amount/1000)*1000; else if(currency==='thb') amount=Math.round(amount/10)*10; else amount=Math.round(amount);
+      const formatted=new Intl.NumberFormat(lang==='nl'?'nl-NL':lang==='de'?'de-DE':lang==='fr'?'fr-FR':lang==='es'?'es-ES':'en-US',{maximumFractionDigits:0}).format(amount);
+      el.textContent=`${t.from} ${meta.symbol}${formatted}*`;
+    });
+  }
+
+  function loadFlightWidget(lang,currency,destination=selectedDealDestination){
+    const host=document.getElementById('flightWidget');
+    host.innerHTML='';
+    const s=document.createElement('script');
+    s.async=true;s.charset='utf-8';
+    const p=new URLSearchParams({currency,trs:'565587',shmarker:'298371.homepage_flights',show_hotels:'true',powered_by:'true',locale:lang,searchUrl:'www.aviasales.com/search',primary_override:'#32a8dd',color_button:'#32a8dd',color_icons:'#32a8dd',dark:'#262626',light:'#FFFFFF',secondary:'#FFFFFF',special:'#C4C4C4',color_focused:'#32a8dd',border_radius:'0',plain:'false',promo_id:'7879',campaign_id:'100'});
+    if(destination){p.set('destination',destination.code);p.set('destination_name',destination.name);}
+    s.src='https://tpscr.com/content?'+p.toString();
+    host.appendChild(s);
+  }
+
+  function updateDealSelectionNotice(){
+    if(!dealSelectionNotice||!dealSelectionName)return;
+    if(selectedDealDestination){dealSelectionName.textContent=`${selectedDealDestination.name} (${selectedDealDestination.code})`;dealSelectionNotice.classList.add('show');}
+    else{dealSelectionName.textContent='';dealSelectionNotice.classList.remove('show');}
+  }
+
+  function chooseFlightDestination(code,name){
+    selectedDealDestination={code,name};
+    if(alertDestination&&!alertDestination.value.trim()) alertDestination.value=name;
+    updateDealSelectionNotice();
+    openTab('flights');
+    loadFlightWidget(langSelect.value,currencySelect.value,selectedDealDestination);
+    document.getElementById('search')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function renderExploreCategory(category){
+    activeExploreCategory=category;
+    const t=translations[langSelect.value]||translations.nl;
+    exploreCards.forEach(card=>card.classList.toggle('active',card.dataset.exploreCategory===category));
+    const key=exploreCategoryKeys[category];
+    exploreResultsTitle.textContent=`${t.explorePick}: ${t[key]||''}`;
+    exploreResultsText.textContent=t.explorePickText;
+    destinationGrid.innerHTML='';
+    (exploreDestinations[category]||[]).forEach(([name,code,country])=>{
+      const btn=document.createElement('button');
+      btn.type='button';btn.className='destination-btn';
+      btn.innerHTML=`<span><strong>${name}</strong><small>${country}</small></span><span class="iata">${code}</span>`;
+      btn.addEventListener('click',()=>chooseFlightDestination(code,name));
+      destinationGrid.appendChild(btn);
+    });
+    exploreResults.classList.add('show');
+  }
+
+  function applyLanguage(lang){
+    const t=translations[lang]||translations.nl;
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]) el.textContent=t[k]});
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.dataset.i18nPlaceholder;if(t[k]) el.placeholder=t[k]});
+    updateDealSelectionNotice();
+    if(exploreResults?.classList.contains('show')) renderExploreCategory(activeExploreCategory);
+    renderPriceAlerts();
+    updatePrices(lang,currencySelect.value);
+    loadFlightWidget(lang,currencySelect.value);
+    localStorage.setItem('funnyroutes_lang',lang);
+  }
+  function applyCurrency(currency){
+    updateAlertCurrency();
+    updatePrices(langSelect.value,currency);
+    loadFlightWidget(langSelect.value,currency);
+    localStorage.setItem('funnyroutes_currency',currency);
+  }
+  langSelect.addEventListener('change',()=>applyLanguage(langSelect.value));
+  currencySelect.addEventListener('change',()=>applyCurrency(currencySelect.value));
+
+  document.querySelectorAll('.deal-route-link').forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      e.preventDefault();
+      chooseFlightDestination(link.dataset.destinationCode,link.dataset.destinationName);
+    });
+  });
+  if(clearDealSelection){
+    clearDealSelection.addEventListener('click',()=>{
+      selectedDealDestination=null;
+      updateDealSelectionNotice();
+      loadFlightWidget(langSelect.value,currencySelect.value,null);
+    });
+  }
+
+  exploreCards.forEach(card=>card.addEventListener('click',()=>renderExploreCategory(card.dataset.exploreCategory)));
+  showExploreDestinations?.addEventListener('click',()=>renderExploreCategory(activeExploreCategory));
+  exploreClose?.addEventListener('click',()=>{exploreResults.classList.remove('show');exploreCards.forEach(card=>card.classList.remove('active'));});
+
+  if(priceAlertForm){
+    priceAlertForm.addEventListener('submit',async(e)=>{
+      e.preventDefault();
+      const t=translations[langSelect.value]||translations.nl;
+      const destination=alertDestination.value.trim();
+      const email=alertEmail.value.trim().toLowerCase();
+      const maxPrice=Number(alertMaxPrice.value);
+      const currency=currencySelect.value;
+      if(!destination||!email||!maxPrice||maxPrice<=0){showAlertStatus(t.alertMissing||translations.nl.alertMissing,'error');return;}
+      if(!isValidEmail(email)){showAlertStatus(t.alertInvalidEmail||translations.nl.alertInvalidEmail,'error');return;}
+      const duplicate=priceAlerts.some(a=>a.destination.toLowerCase()===destination.toLowerCase()&&a.email===email&&a.currency===currency&&Number(a.maxPrice)===maxPrice);
+      if(duplicate){showAlertStatus(t.alertDuplicate||translations.nl.alertDuplicate,'error');return;}
+      showAlertStatus(t.alertSaving||'Prijsalert activeren…','success');
+      try{
+        const response=await fetch('/api/alerts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({destination,destinationCode:selectedDealDestination?.name?.toLowerCase()===destination.toLowerCase()?selectedDealDestination.code:null,email,maxPrice,currency,lang:langSelect.value,originCode:'AMS'})});
+        const result=await response.json().catch(()=>({}));
+        if(!response.ok) throw new Error(result?.error||'save_failed');
+        priceAlerts.unshift({destination:result.destinationName||destination,destinationCode:result.destinationCode||null,email,maxPrice,currency,createdAt:new Date().toISOString(),serverId:result.id,manageToken:result.manageToken});
+        savePriceAlerts();renderPriceAlerts();
+        const savedTemplate=t.alertSaved||translations.nl.alertSaved;
+        const savedMessage=savedTemplate.replace('{destination}',result.destinationName||destination).replace('{price}',formatAlertPrice(currency,maxPrice));
+        showAlertStatus(savedMessage,'success');
+        alertMaxPrice.value='';
+      }catch(err){showAlertStatus(t.alertServerError||translations.nl.alertServerError||'De prijsalert kon niet worden geactiveerd.','error');}
+    });
+  }
+
+  const carSearchBtn=document.getElementById('carSearchBtn');
+  const carLocation=document.getElementById('car-location');
+  const carPickup=document.getElementById('car-pickup');
+  const carReturn=document.getElementById('car-return');
+  const carError=document.getElementById('carError');
+  const carAffiliateUrl='https://www.trip.com/carhire/?Allianceid=8231287&SID=329249894&trip_sub1=&trip_sub3=D19436251';
+  function showCarError(message){
+    carError.textContent=message;
+    carError.classList.add('show');
+  }
+  function clearCarError(){
+    carError.textContent='';
+    carError.classList.remove('show');
+  }
+  [carLocation,carPickup,carReturn].forEach(el=>el&&el.addEventListener('input',clearCarError));
+  if(carSearchBtn){
+    carSearchBtn.addEventListener('click',()=>{
+      clearCarError();
+      const t=translations[langSelect.value]||translations.nl;
+      if(!carLocation.value.trim()||!carPickup.value||!carReturn.value){
+        showCarError(t.carErrorMissing||translations.nl.carErrorMissing);
+        return;
+      }
+      if(new Date(carReturn.value)<=new Date(carPickup.value)){
+        showCarError(t.carErrorOrder||translations.nl.carErrorOrder);
+        return;
+      }
+      window.open(carAffiliateUrl,'_blank','noopener');
+    });
+  }
+  const savedLang=localStorage.getItem('funnyroutes_lang');
+  const savedCurrency=localStorage.getItem('funnyroutes_currency');
+  if(savedLang && translations[savedLang]) langSelect.value=savedLang;
+  if(savedCurrency && currencyMeta[savedCurrency]) currencySelect.value=savedCurrency;
+  loadPriceAlerts();
+  updateAlertCurrency();
+  renderPriceAlerts();
+  applyLanguage(langSelect.value);
+})();
+</script>
+</body></html>
