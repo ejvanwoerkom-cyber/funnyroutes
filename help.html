@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help | FunnyRoutes.com</title>
+  <meta name="description" content="Hulp en veelgestelde vragen over FunnyRoutes.com, prijsalerts, boekingen en reispartners.">
+  <style>
+    :root{
+      --blue:#1597e5;
+      --dark:#0f2f4f;
+      --orange:#ff7200;
+      --yellow:#fff0a8;
+      --light:#f4fbff;
+      --border:#d9ebf7;
+      --muted:#5d7287;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--dark);
+      background:#fff;
+      line-height:1.65;
+    }
+    header{border-bottom:1px solid var(--border);background:#fff}
+    .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+    .topbar{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      font-weight:800;
+      font-size:25px;
+      color:var(--blue);
+      text-decoration:none;
+      letter-spacing:-.5px;
+    }
+    .brand span{color:var(--orange)}
+    .back{
+      color:var(--blue);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+    }
+    .hero{
+      background:linear-gradient(180deg,#eaf8ff 0%,#fff 100%);
+      padding:54px 0 34px;
+    }
+    h1{
+      font-size:42px;
+      line-height:1.1;
+      margin:0 0 12px;
+      letter-spacing:-1px;
+    }
+    .lead{
+      max-width:760px;
+      color:var(--muted);
+      font-size:18px;
+      margin:0;
+    }
+    main{padding:32px 0 60px}
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:30px;
+      box-shadow:0 8px 28px rgba(15,47,79,.06);
+      margin-bottom:22px;
+    }
+    h2{margin:0 0 14px;font-size:25px}
+    .faq{
+      border-top:1px solid var(--border);
+    }
+    details{
+      border-bottom:1px solid var(--border);
+      padding:16px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--dark);
+      list-style:none;
+      position:relative;
+      padding-right:28px;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary:after{
+      content:"+";
+      position:absolute;
+      right:0;
+      top:-2px;
+      color:var(--blue);
+      font-size:22px;
+      font-weight:900;
+    }
+    details[open] summary:after{content:"−"}
+    details p{margin:10px 0 0;color:var(--muted)}
+    .note{
+      background:var(--yellow);
+      border-radius:14px;
+      padding:16px 18px;
+      margin-top:18px;
+    }
+    .help-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .help-box{
+      background:var(--light);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+    }
+    .help-box .icon{font-size:30px;margin-bottom:8px}
+    .help-box strong{display:block;margin-bottom:5px}
+    .help-box p{margin:0;color:var(--muted);font-size:14px}
+    a.link{color:var(--blue);font-weight:700;text-decoration:none}
+    footer{
+      background:var(--dark);
+      color:#dceaf4;
+      padding:28px 0;
+      font-size:14px;
+    }
+    @media(max-width:760px){
+      .help-grid{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .card{padding:22px}
+      .topbar{min-height:66px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="/">Funny<span>Routes</span>.com</a>
+      <a class="back" href="/">← Terug naar de website</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Help</h1>
+      <p class="lead">Hier vind je antwoorden op veelgestelde vragen over FunnyRoutes.com, prijsalerts, boekingen en onze reispartners.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>Snel hulp nodig?</h2>
+      <div class="help-grid">
+        <div class="help-box">
+          <div class="icon">🔔</div>
+          <strong>Prijsalerts</strong>
+          <p>Lees hoe prijsalerts werken en hoe je ze kunt verwijderen of afmelden.</p>
+        </div>
+        <div class="help-box">
+          <div class="icon">✈️</div>
+          <strong>Boekingen</strong>
+          <p>Voor een bestaande boeking neem je in beginsel contact op met de externe reisaanbieder.</p>
+        </div>
+        <div class="help-box">
+          <div class="icon">✉️</div>
+          <strong>Contact</strong>
+          <p>Voor vragen over FunnyRoutes zelf kun je mailen naar funny@funnyroutes.com.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Veelgestelde vragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Wat is FunnyRoutes.com?</summary>
+          <p>FunnyRoutes.com is een vergelijkings-, informatie- en affiliateplatform voor reisgerelateerde producten en diensten. Je kunt er onder andere vluchten, hotels en huurauto's bekijken en prijsalerts instellen.</p>
+        </details>
+
+        <details>
+          <summary>Boek ik mijn reis bij FunnyRoutes?</summary>
+          <p>In beginsel niet. FunnyRoutes vergelijkt en verwijst je door naar een externe reisaanbieder of boekingspartner. De uiteindelijke overeenkomst en betaling vinden plaats bij die externe partij.</p>
+        </details>
+
+        <details>
+          <summary>Waarom kan een prijs veranderen nadat ik doorklik?</summary>
+          <p>Reisprijzen en beschikbaarheid kunnen snel wijzigen. De prijs die je op FunnyRoutes ziet of via een prijsalert ontvangt, kan daarom afwijken van de definitieve prijs op de website van de aanbieder.</p>
+        </details>
+
+        <details>
+          <summary>Hoe werkt een prijsalert?</summary>
+          <p>Je vult een bestemming, e-mailadres en gewenste maximumprijs in. FunnyRoutes controleert actieve alerts automatisch. Wanneer een relevante prijs onder jouw grens wordt gevonden, kan er een e-mail worden verstuurd.</p>
+        </details>
+
+        <details>
+          <summary>Hoe verwijder ik een prijsalert?</summary>
+          <p>Je kunt een opgeslagen alert op de website verwijderen. Daarnaast bevat een prijsalert-e-mail een afmeldlink waarmee de betreffende alert kan worden beëindigd.</p>
+        </details>
+
+        <details>
+          <summary>Ik heb geboekt. Wie helpt mij met wijzigen of annuleren?</summary>
+          <p>Neem rechtstreeks contact op met de reisaanbieder waarbij je hebt geboekt. Dit geldt bijvoorbeeld voor wijzigingen, annuleringen, refunds, bagage, stoelkeuze, inchecken en betalingen.</p>
+        </details>
+
+        <details>
+          <summary>Kan FunnyRoutes mijn boeking terugvinden?</summary>
+          <p>In beginsel niet. FunnyRoutes heeft normaal gesproken geen toegang tot het reserveringssysteem of de betalingsgegevens van de externe aanbieder.</p>
+        </details>
+
+        <details>
+          <summary>Ontvangt FunnyRoutes een commissie?</summary>
+          <p>Ja, dat kan. Wanneer je via FunnyRoutes doorklikt en vervolgens bij een partner boekt, kan FunnyRoutes een affiliatevergoeding ontvangen. Meer informatie staat in onze <a class="link" href="/affiliate.html">Affiliate disclosure</a>.</p>
+        </details>
+
+        <details>
+          <summary>Waarom zie ik een cookiebanner?</summary>
+          <p>FunnyRoutes gebruikt noodzakelijke opslag voor de werking van de website. Externe reiswidgets en affiliate-tracking worden pas geladen nadat je daarvoor toestemming geeft. Meer informatie staat in ons <a class="link" href="/cookies.html">Cookiebeleid</a>.</p>
+        </details>
+
+        <details>
+          <summary>Hoe kan ik contact opnemen met FunnyRoutes?</summary>
+          <p>Je kunt mailen naar <a class="link" href="mailto:funny@funnyroutes.com">funny@funnyroutes.com</a> of onze <a class="link" href="/contact.html">contactpagina</a> gebruiken.</p>
+        </details>
+      </div>
+
+      <div class="note">
+        <strong>Gaat je vraag over een bestaande boeking?</strong><br>
+        Kijk dan eerst op de bevestigingsmail van de externe reisaanbieder. Daar vind je meestal het boekingsnummer en de juiste klantenservice.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Meer informatie</h2>
+      <p>Meer uitleg over boekingen vind je op onze <a class="link" href="/boekingsinformatie.html">Boekingsinformatie</a>-pagina. Voor privacy, cookies en voorwaarden kun je terecht op de juridische pagina's onderaan de website.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © 2026 FunnyRoutes.com — handelsnaam van Litoro Investments B.V.
+    </div>
+  </footer>
+</body>
+</html>
