@@ -83,6 +83,11 @@
   }
 }
   </script>
+
+  <script>
+    window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+
 </head>
 <body>
 <header class="topbar"><div class="container nav">
@@ -195,11 +200,31 @@
   </div>
 </div>
 
+<!-- Conversiemeting: alleen na 'Alles toestaan'; geen e-mailadressen of andere persoonsgegevens in event data. -->
 <script>
 (function(){
   const COOKIE_CONSENT_KEY='funnyroutes_cookie_consent';
   let cookieConsent=localStorage.getItem(COOKIE_CONSENT_KEY)||'';
   function hasAffiliateConsent(){return cookieConsent==='all';}
+  let vercelAnalyticsLoaded=false;
+
+  function loadConversionAnalytics(){
+    if(vercelAnalyticsLoaded || !hasAffiliateConsent()) return;
+    vercelAnalyticsLoaded=true;
+    const script=document.createElement('script');
+    script.defer=true;
+    script.src='/_vercel/insights/script.js';
+    script.dataset.sdkn='vercel-analytics';
+    document.head.appendChild(script);
+  }
+
+  function trackConversion(name,data={}){
+    if(!hasAffiliateConsent()) return;
+    try{
+      window.va?.('event',{name,data});
+    }catch(e){}
+  }
+
 
   const mobileToggle=document.getElementById('mobileToggle');
   const mobileMenu=document.getElementById('mobileMenu');
@@ -219,8 +244,14 @@
     tabs.forEach(btn=>{const on=btn.dataset.tab===name;btn.classList.toggle('active',on);btn.setAttribute('aria-selected',on?'true':'false')});
     panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===name));
   }
-  tabs.forEach(btn=>btn.addEventListener('click',()=>openTab(btn.dataset.tab)));
-  document.querySelectorAll('[data-open-tab]').forEach(link=>link.addEventListener('click',()=>openTab(link.dataset.openTab)));
+  tabs.forEach(btn=>btn.addEventListener('click',()=>{
+    openTab(btn.dataset.tab);
+    trackConversion('Search Tab Opened',{tab:btn.dataset.tab});
+  }));
+  document.querySelectorAll('[data-open-tab]').forEach(link=>link.addEventListener('click',()=>{
+    openTab(link.dataset.openTab);
+    trackConversion('Search Tab Opened',{tab:link.dataset.openTab,source:'navigation'});
+  }));
 
   const translations={
     nl:{carKicker:"Huurauto's via onze reispartner",carTitle:'Vind snel een huurauto voor je reis',carSideTitle:'Roadtrip klaar?',carSideText:'Vergelijk je huurauto via Trip.com.',hotelKicker:'Hoteldeals via onze reispartner',hotelTitle:'Vind een hotel dat bij je reis past',hotelText:'Zoek hotels en accommodaties via Trip.com. Je ziet actuele beschikbaarheid en prijzen rechtstreeks van de partner.',hotelPoint1:'Actuele partnerprijzen',hotelPoint2:'Wereldwijd aanbod',hotelPoint3:'Affiliate-tracking actief',navFlights:'Vluchten',navHotels:'Hotels',navCars:"Auto\'s",navExplore:'Explore',navDeals:'Deals',navAlerts:'Prijsalerts',new:'Nieuw',login:'♙ Inloggen',heroBadge:'Wereldkaart in cartoonstijl · vlieg slim, boek vrolijk',heroLine1:'Vind je volgende reis',heroLine2:'met een',heroSmile:'glimlach',heroText:'Vergelijk honderden aanbieders en vind de perfecte deal voor jouw volgende avontuur.',tabFlights:'Vluchten',tabHotels:'Hotels',tabCars:"Auto\'s",carLocation:'Ophaallocatie',carPickup:'Ophalen',carReturn:'Inleveren',carSearch:"Zoek huurauto\'s →",carErrorMissing:'Vul eerst de ophaallocatie, ophaaldatum en inleverdatum in.',carErrorOrder:'De inleverdatum moet na de ophaaldatum liggen.',carNote:'Je gaat via jouw affiliate-link naar Trip.com om de actuele beschikbaarheid en prijs te bekijken. De ingevulde velden hierboven zijn nog niet gekoppeld aan Trip.com-prefill.',noHidden:'Geen extra boekingskosten van FunnyRoutes',trustedPartners:'Betrouwbare partners',trackingActive:'Affiliate-tracking actief',popularDeals:'Populaire deals',dealIntro:'Interessante bestemmingen voor je volgende avontuur.',viewAllDeals:'Bekijk alle deals →',sampleDeal:'Indicatieve prijs · actuele prijs via partner',selectedDestination:'Geselecteerde bestemming:',clearSelection:'Wissen',searchRoute:'Zoek deze route →',spain:'Spanje',thailand:'Thailand',indonesia:'Indonesië',from:'Voorbeeld vanaf',alertTitle:'Nooit meer een goede deal missen?',alertText:'Ontvang prijsalerts voor jouw favoriete bestemmingen.',emailPlaceholder:'Jouw e-mailadres',alertDestinationPlaceholder:'Bestemming, bijv. Barcelona',alertMaxPricePlaceholder:'Gewenste maximumprijs',savedAlertsTitle:'Mijn opgeslagen prijsalerts',alertBetaNote:'Prijsalerts worden na activatie dagelijks gecontroleerd. Bij een prijs onder jouw grens ontvang je automatisch een e-mail.',alertSaved:'Prijsalert opgeslagen voor {destination} onder {price}.',alertMissing:'Vul bestemming, e-mailadres en maximumprijs in.',alertInvalidEmail:'Vul een geldig e-mailadres in.',alertDuplicate:'Deze prijsalert is al opgeslagen.',alertSaving:'Prijsalert activeren…',alertServerError:'De prijsalert kon niet worden geactiveerd. Probeer het opnieuw.',alertRemove:'Verwijderen',makeAlert:'Maak alert',priceDrops:'Prijsdalingen',exclusiveDeals:'Exclusieve deals',free:'Gratis',exploreTitle:'Explore: waar wil je heen?',exploreText:'Ontdek bestemmingen die passen bij jouw reisstijl.',showDestinations:'Toon bestemmingen →',explorePick:'Kies een bestemming',explorePickText:'Selecteer een bestemming die bij deze reisstijl past.',exploreHint:'Na je keuze opent FunnyRoutes automatisch de vluchtzoeker met deze bestemming.',beachSun:'Strand & zon',cityTrips:'Stedentrips',natureOutdoor:'Natuur & outdoor',familyFun:'Familieplezier',businessTravel:'Zakelijk reizen',weekendAway:'Weekendje weg',whyTitle:'Waarom FunnyRoutes?',whyText:'Reizen vergelijken mag ook leuk zijn.',compareAll:'Vergelijk alles',safeReliable:'Veilig & betrouwbaar',travelSmile:'Reis met een glimlach',helpRoad:'Hulp onderweg',takeFunny:'Neem FunnyRoutes mee',takeText:'Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.',company:'Bedrijf',support:'Support',stayUpdated:'Blijf op de hoogte'},
@@ -360,7 +391,10 @@
       const btn=document.createElement('button');
       btn.type='button';btn.className='destination-btn';
       btn.innerHTML=`<span><strong>${name}</strong><small>${country}</small></span><span class="iata">${code}</span>`;
-      btn.addEventListener('click',()=>chooseFlightDestination(code,name));
+      btn.addEventListener('click',()=>{
+        trackConversion('Explore Destination Selected',{category,code});
+        chooseFlightDestination(code,name);
+      });
       destinationGrid.appendChild(btn);
     });
     exploreResults.classList.add('show');
@@ -390,6 +424,7 @@
   document.querySelectorAll('.deal-route-link').forEach(link=>{
     link.addEventListener('click',(e)=>{
       e.preventDefault();
+      trackConversion('Deal Route Selected',{code:link.dataset.destinationCode||'unknown'});
       chooseFlightDestination(link.dataset.destinationCode,link.dataset.destinationName);
     });
   });
@@ -424,6 +459,7 @@
         if(!response.ok) throw new Error(result?.error||'save_failed');
         priceAlerts.unshift({destination:result.destinationName||destination,destinationCode:result.destinationCode||null,email,maxPrice,currency,createdAt:new Date().toISOString(),serverId:result.id,manageToken:result.manageToken});
         savePriceAlerts();renderPriceAlerts();
+        trackConversion('Price Alert Requested',{currency,confirmation:result.pendingConfirmation?'required':'not_required'});
         const savedTemplate=t.alertSaved||translations.nl.alertSaved;
         const savedMessage=savedTemplate.replace('{destination}',result.destinationName||destination).replace('{price}',formatAlertPrice(currency,maxPrice));
         showAlertStatus(savedMessage,'success');
@@ -474,6 +510,7 @@
         showCarError(t.carErrorOrder||translations.nl.carErrorOrder);
         return;
       }
+      trackConversion('Car Partner Click',{partner:'Trip.com'});
       window.open(carAffiliateUrl,'_blank','noopener');
     });
   }
@@ -529,6 +566,10 @@
     cookieConsent=value;
     localStorage.setItem(COOKIE_CONSENT_KEY,value);
     cookieBanner?.classList.remove('show');
+    if(value==='all'){
+      loadConversionAnalytics();
+      trackConversion('Cookie Consent',{choice:'all'});
+    }
     applyCookieConsent();
   }
 
@@ -544,6 +585,7 @@
   updateAlertCurrency();
   renderPriceAlerts();
   applyLanguage(langSelect.value);
+  if(hasAffiliateConsent()) loadConversionAnalytics();
   applyCookieConsent();
   if(!cookieConsent)showCookieBanner();
 })();
