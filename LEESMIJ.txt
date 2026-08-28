@@ -1,0 +1,9 @@
+FunnyRoutes eigen conversiemeting
+
+Upload:
+1. index.html -> hoofdmap van GitHub (vervang bestaande index.html)
+2. api/track-event.js -> map api in GitHub
+
+De endpoint gebruikt de bestaande api/_common.js en DATABASE_URL/Neon-configuratie.
+Er worden alleen vooraf toegestane conversie-events en beperkte metadata opgeslagen.
+Geen e-mailadres, naam of IP-adres wordt in conversion_events opgeslagen.

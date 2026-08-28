@@ -217,8 +217,27 @@
 
   function trackConversion(name,data={}){
     if(!hasAffiliateConsent()) return;
+
+    // Vercel Analytics (page analytics stays useful even though custom events
+    // are not visible on the Hobby plan).
     try{
       window.va?.('event',{name,data});
+    }catch(e){}
+
+    // FunnyRoutes' own anonymous conversion log in Neon.
+    // No email address, name or other direct personal data is sent.
+    try{
+      fetch('/api/track-event',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        keepalive:true,
+        body:JSON.stringify({
+          event:name,
+          data,
+          path:location.pathname,
+          lang:langSelect?.value||'nl'
+        })
+      }).catch(()=>{});
     }catch(e){}
   }
 
