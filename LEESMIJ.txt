@@ -1,9 +1,21 @@
-FunnyRoutes eigen conversiemeting
+FUNNYROUTES ANALYTICS DASHBOARD
 
-Upload:
-1. index.html -> hoofdmap van GitHub (vervang bestaande index.html)
-2. api/track-event.js -> map api in GitHub
+Upload naar GitHub:
+1. admin-analytics.html -> hoofdmap
+2. api/admin-analytics.js -> map api
 
-De endpoint gebruikt de bestaande api/_common.js en DATABASE_URL/Neon-configuratie.
-Er worden alleen vooraf toegestane conversie-events en beperkte metadata opgeslagen.
-Geen e-mailadres, naam of IP-adres wordt in conversion_events opgeslagen.
+Daarna in Vercel:
+Project FunnyRoutes -> Settings -> Environment Variables
+
+Nieuwe variabele:
+Name: ANALYTICS_ADMIN_KEY
+Value: kies zelf een lange geheime sleutel/wachtwoord
+Environment: Production
+
+Daarna Redeploy uitvoeren.
+
+Dashboard:
+https://funnyroutes.com/admin-analytics.html
+
+De geheime sleutel wordt niet in de HTML opgeslagen.
+De browser bewaart hem alleen tijdelijk in sessionStorage totdat het tabblad wordt gesloten of je uitlogt.

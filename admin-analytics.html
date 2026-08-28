@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>FunnyRoutes Analytics</title>
+  <style>
+    :root{
+      --blue:#1597e5;
+      --orange:#ff7200;
+      --bg:#f4f9fd;
+      --card:#fff;
+      --text:#17324d;
+      --muted:#6f8294;
+      --border:#dce8f2;
+      --ok:#118a53;
+      --bad:#b33131;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 50px}
+    .top{display:flex;gap:16px;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .brand{font-size:28px;font-weight:800}.brand span{color:var(--orange)}
+    .sub{color:var(--muted);font-size:14px;margin-top:4px}
+    .panel,.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 28px rgba(28,76,110,.06)}
+    .panel{padding:22px;margin-bottom:20px}
+    .login{max-width:520px;margin:60px auto}
+    label{display:block;font-weight:700;margin-bottom:7px}
+    input,select{width:100%;padding:12px 14px;border:1px solid #cbdbe8;border-radius:11px;font:inherit}
+    button{border:0;border-radius:11px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .primary{background:var(--blue);color:#fff}
+    .secondary{background:#eaf4fb;color:var(--text)}
+    .row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}
+    .field{min-width:180px;flex:1}
+    .status{margin-top:12px;font-size:14px}.ok{color:var(--ok)}.bad{color:var(--bad)}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+    .card{padding:18px}
+    .metric{font-size:30px;font-weight:800;margin-top:7px}
+    .label{font-size:13px;color:var(--muted)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--border);font-size:14px}
+    th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    .hidden{display:none!important}
+    .section-title{font-size:19px;font-weight:800;margin:0 0 14px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .empty{color:var(--muted);padding:18px 0}
+    @media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+    @media(max-width:520px){.stats{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div id="loginView" class="panel login">
+    <div class="brand">Funny<span>Routes</span> Analytics</div>
+    <p class="sub">Alleen voor beheer. Voer de beheersleutel in.</p>
+    <label for="key">Beheersleutel</label>
+    <input id="key" type="password" autocomplete="current-password">
+    <button id="loginBtn" class="primary" style="margin-top:12px;width:100%">Open dashboard</button>
+    <div id="loginStatus" class="status"></div>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="top">
+      <div>
+        <div class="brand">Funny<span>Routes</span> Analytics</div>
+        <div class="sub">Eigen conversiemeting uit Neon</div>
+      </div>
+      <button id="logoutBtn" class="secondary">Uitloggen</button>
+    </div>
+
+    <div class="panel">
+      <div class="row">
+        <div class="field">
+          <label for="days">Periode</label>
+          <select id="days">
+            <option value="7">Laatste 7 dagen</option>
+            <option value="30" selected>Laatste 30 dagen</option>
+            <option value="90">Laatste 90 dagen</option>
+          </select>
+        </div>
+        <div class="field" style="flex:0 0 auto">
+          <button id="refreshBtn" class="primary">Vernieuwen</button>
+        </div>
+      </div>
+      <div id="dashboardStatus" class="status"></div>
+    </div>
+
+    <div class="stats">
+      <div class="card"><div class="label">Totaal conversies</div><div class="metric" id="totalEvents">0</div></div>
+      <div class="card"><div class="label">Prijsalerts aangevraagd</div><div class="metric" id="priceAlerts">0</div></div>
+      <div class="card"><div class="label">Auto-partner kliks</div><div class="metric" id="carClicks">0</div></div>
+      <div class="card"><div class="label">Deal/Explore keuzes</div><div class="metric" id="dealClicks">0</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h2 class="section-title">Conversies per type</h2>
+        <table>
+          <thead><tr><th>Event</th><th>Aantal</th></tr></thead>
+          <tbody id="eventsTable"></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2 class="section-title">Talen</h2>
+        <table>
+          <thead><tr><th>Taal</th><th>Aantal</th></tr></thead>
+          <tbody id="langsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-title">Dagoverzicht</h2>
+      <table>
+        <thead><tr><th>Datum</th><th>Aantal conversies</th></tr></thead>
+        <tbody id="daysTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const loginView=document.getElementById('loginView');
+  const dashboard=document.getElementById('dashboard');
+  const keyInput=document.getElementById('key');
+  const loginBtn=document.getElementById('loginBtn');
+  const logoutBtn=document.getElementById('logoutBtn');
+  const refreshBtn=document.getElementById('refreshBtn');
+  const daysSelect=document.getElementById('days');
+  const loginStatus=document.getElementById('loginStatus');
+  const dashboardStatus=document.getElementById('dashboardStatus');
+
+  function getKey(){return sessionStorage.getItem('fr_analytics_admin_key')||''}
+  function setKey(v){sessionStorage.setItem('fr_analytics_admin_key',v)}
+  function clearKey(){sessionStorage.removeItem('fr_analytics_admin_key')}
+
+  function setStatus(el,msg,type=''){
+    el.textContent=msg;
+    el.className='status '+type;
+  }
+
+  function eventLabel(name){
+    const labels={
+      'Cookie Consent':'Cookietoestemming',
+      'Search Tab Opened':'Zoektab geopend',
+      'Deal Route Selected':'Deal geselecteerd',
+      'Explore Destination Selected':'Explore-bestemming gekozen',
+      'Price Alert Requested':'Prijsalert aangevraagd',
+      'Car Partner Click':'Klik naar Trip.com autoverhuur'
+    };
+    return labels[name]||name;
+  }
+
+  function renderRows(tbody,rows,labelFn){
+    tbody.innerHTML='';
+    if(!rows || rows.length===0){
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td colspan="2" class="empty">Nog geen gegevens.</td>';
+      tbody.appendChild(tr);return;
+    }
+    rows.forEach(r=>{
+      const tr=document.createElement('tr');
+      const a=document.createElement('td');
+      const b=document.createElement('td');
+      a.textContent=labelFn?labelFn(r.key):r.key;
+      b.textContent=r.count;
+      tr.append(a,b);
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function loadDashboard(){
+    const key=getKey();
+    if(!key)return;
+    setStatus(dashboardStatus,'Gegevens laden…');
+    try{
+      const res=await fetch('/api/admin-analytics?days='+encodeURIComponent(daysSelect.value),{
+        headers:{'Authorization':'Bearer '+key},
+        cache:'no-store'
+      });
+      if(res.status===401){
+        clearKey();
+        dashboard.classList.add('hidden');
+        loginView.classList.remove('hidden');
+        setStatus(loginStatus,'Beheersleutel is niet geldig.','bad');
+        return;
+      }
+      const data=await res.json();
+      if(!res.ok)throw new Error(data.error||'load_failed');
+
+      document.getElementById('totalEvents').textContent=data.summary.total||0;
+      document.getElementById('priceAlerts').textContent=data.summary.priceAlerts||0;
+      document.getElementById('carClicks').textContent=data.summary.carClicks||0;
+      document.getElementById('dealClicks').textContent=data.summary.dealClicks||0;
+
+      renderRows(document.getElementById('eventsTable'),data.byEvent,eventLabel);
+      renderRows(document.getElementById('langsTable'),data.byLanguage,k=>k.toUpperCase());
+      renderRows(document.getElementById('daysTable'),data.byDay);
+
+      setStatus(dashboardStatus,'Bijgewerkt: '+new Date().toLocaleString('nl-NL'),'ok');
+    }catch(e){
+      setStatus(dashboardStatus,'Kon statistieken niet laden.','bad');
+    }
+  }
+
+  loginBtn.addEventListener('click',async()=>{
+    const key=keyInput.value.trim();
+    if(!key){setStatus(loginStatus,'Vul eerst de beheersleutel in.','bad');return}
+    setKey(key);
+    loginView.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    await loadDashboard();
+  });
+
+  keyInput.addEventListener('keydown',e=>{if(e.key==='Enter')loginBtn.click()});
+  refreshBtn.addEventListener('click',loadDashboard);
+  daysSelect.addEventListener('change',loadDashboard);
+  logoutBtn.addEventListener('click',()=>{
+    clearKey();
+    dashboard.classList.add('hidden');
+    loginView.classList.remove('hidden');
+    keyInput.value='';
+    setStatus(loginStatus,'Uitgelogd.','ok');
+  });
+
+  if(getKey()){
+    loginView.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    loadDashboard();
+  }
+})();
+</script>
+</body>
+</html>
