@@ -1,22 +1,24 @@
-FUNNYROUTES CONTENT SEO V10
+FUNNYROUTES CONTENT SEO V11
 
 Nieuw:
-- familievakantie-vergelijken.html
+- zakelijke-reis-vergelijken.html
 - focus op zoektermen:
-  * familievakantie vergelijken
-  * vakantie met kinderen
-  * gezinsvakantie
-  * kindvriendelijke vakantie
-  * goedkope familievakantie
+  * zakelijke reis vergelijken
+  * zakenreis
+  * business travel
+  * zakelijke vlucht
+  * zakelijk hotel
 - interne links vanaf homepage en bestaande SEO-pagina's
-- sitemap.xml uitgebreid met de nieuwe pagina
+- sitemap.xml uitgebreid
 
 Upload:
 1. index.html -> vervangen
 2. alle bestaande SEO-pagina's uit dit pakket -> vervangen
-3. familievakantie-vergelijken.html -> nieuw
+3. zakelijke-reis-vergelijken.html -> nieuw
 4. sitemap.xml -> vervangen
 
-Daarna in Google Search Console:
-- URL-inspectie voor https://funnyroutes.com/familievakantie-vergelijken.html
-- vervolgens Indexering aanvragen
+Omdat het handmatige Google-indexeringsquotum vandaag is bereikt:
+- nu niets meer handmatig aanvragen
+- Google kan de pagina via sitemap en interne links ontdekken
+- morgen eventueel URL-inspectie gebruiken voor:
+  https://funnyroutes.com/zakelijke-reis-vergelijken.html
