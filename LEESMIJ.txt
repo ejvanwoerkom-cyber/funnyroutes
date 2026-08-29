@@ -1,15 +1,15 @@
-FUNNYROUTES CONTENT SEO V8
+FUNNYROUTES CONTENT SEO V9
 
 Nieuw:
-- weekendje-weg-vergelijken.html
+- zonvakantie-vergelijken.html
 - focus op zoektermen:
-  * weekendje weg
-  * weekendje weg vergelijken
-  * goedkoop weekendje weg
-  * weekendtrip
-  * korte reis
+  * zonvakantie vergelijken
+  * goedkope zonvakantie
+  * zonreis
+  * strandvakantie
+  * goedkope zonbestemming
 - interne links vanaf homepage en bestaande SEO-pagina's
-- sitemap.xml uitgebreid naar 14 URL's
+- sitemap.xml uitgebreid met de nieuwe pagina
 
 Upload:
 1. index.html -> vervangen
@@ -17,9 +17,10 @@ Upload:
 3. hotels-vergelijken.html -> vervangen
 4. huurauto-vergelijken.html -> vervangen
 5. stedentrip-vergelijken.html -> vervangen
-6. weekendje-weg-vergelijken.html -> nieuw
-7. sitemap.xml -> vervangen
+6. weekendje-weg-vergelijken.html -> vervangen
+7. zonvakantie-vergelijken.html -> nieuw
+8. sitemap.xml -> vervangen
 
 Daarna in Google Search Console:
-- URL-inspectie voor https://funnyroutes.com/weekendje-weg-vergelijken.html
+- URL-inspectie voor https://funnyroutes.com/zonvakantie-vergelijken.html
 - vervolgens Indexering aanvragen
