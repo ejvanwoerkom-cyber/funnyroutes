@@ -1,20 +1,20 @@
-FUNNYROUTES CONTENT SEO V12
+FUNNYROUTES CONTENT SEO V13
 
 Nieuw:
-- natuurvakantie-vergelijken.html
+- roadtrip-vergelijken.html
 - focus op:
-  * natuurvakantie
-  * outdoor vakantie
-  * wandelvakantie
-  * actieve vakantie
-  * natuurreis
+  * roadtrip plannen
+  * autovakantie
+  * fly-drive
+  * roadtrip vergelijken
+  * huurauto roadtrip
 - interne links uitgebreid
 - sitemap.xml bijgewerkt
 
 Upload:
 1. index.html -> vervangen
 2. bestaande SEO-pagina's uit dit pakket -> vervangen
-3. natuurvakantie-vergelijken.html -> nieuw
+3. roadtrip-vergelijken.html -> nieuw
 4. sitemap.xml -> vervangen
 
 Handmatige indexering hoeft vandaag niet meer wegens het Search Console dagquotum.
