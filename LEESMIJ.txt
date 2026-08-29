@@ -1,19 +1,24 @@
-FUNNYROUTES SEO V6
+FUNNYROUTES CONTENT SEO V7
 
-Verbeterd:
-- sterkere zoektermen in titles, H1's, intro's en tussenkoppen
-- natuurlijke focus op:
-  * goedkope vliegtickets / vluchten vergelijken
-  * hotels vergelijken / hotelprijzen
-  * huurauto vergelijken / autohuur
-- sterkere interne links tussen de drie SEO-pagina's
-- homepage-ankertext verbeterd
+Nieuw:
+- stedentrip-vergelijken.html
+- focus op zoektermen:
+  * stedentrip vergelijken
+  * goedkope stedentrip
+  * citytrip
+  * weekendje weg
+  * vlucht + hotel stedentrip
+- interne links vanaf homepage en bestaande SEO-pagina's
+- sitemap.xml uitgebreid naar 13 URL's
 
 Upload:
-1. index.html -> hoofdmap, vervangen
+1. index.html -> vervangen
 2. goedkope-vluchten.html -> vervangen
 3. hotels-vergelijken.html -> vervangen
 4. huurauto-vergelijken.html -> vervangen
+5. stedentrip-vergelijken.html -> nieuw
+6. sitemap.xml -> vervangen
 
-sitemap.xml hoeft niet opnieuw te worden vervangen, want de URL's zijn niet gewijzigd.
-Na deployment kun je in Search Console eventueel opnieuw 'Indexering aanvragen' gebruiken voor deze drie pagina's, omdat de inhoud is verbeterd.
+Daarna in Google Search Console:
+- URL-inspectie voor https://funnyroutes.com/stedentrip-vergelijken.html
+- vervolgens Indexering aanvragen
