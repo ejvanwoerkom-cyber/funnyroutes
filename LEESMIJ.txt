@@ -1,24 +1,21 @@
-FUNNYROUTES CONTENT SEO V11
+FUNNYROUTES CONTENT SEO V12
 
 Nieuw:
-- zakelijke-reis-vergelijken.html
-- focus op zoektermen:
-  * zakelijke reis vergelijken
-  * zakenreis
-  * business travel
-  * zakelijke vlucht
-  * zakelijk hotel
-- interne links vanaf homepage en bestaande SEO-pagina's
-- sitemap.xml uitgebreid
+- natuurvakantie-vergelijken.html
+- focus op:
+  * natuurvakantie
+  * outdoor vakantie
+  * wandelvakantie
+  * actieve vakantie
+  * natuurreis
+- interne links uitgebreid
+- sitemap.xml bijgewerkt
 
 Upload:
 1. index.html -> vervangen
-2. alle bestaande SEO-pagina's uit dit pakket -> vervangen
-3. zakelijke-reis-vergelijken.html -> nieuw
+2. bestaande SEO-pagina's uit dit pakket -> vervangen
+3. natuurvakantie-vergelijken.html -> nieuw
 4. sitemap.xml -> vervangen
 
-Omdat het handmatige Google-indexeringsquotum vandaag is bereikt:
-- nu niets meer handmatig aanvragen
-- Google kan de pagina via sitemap en interne links ontdekken
-- morgen eventueel URL-inspectie gebruiken voor:
-  https://funnyroutes.com/zakelijke-reis-vergelijken.html
+Handmatige indexering hoeft vandaag niet meer wegens het Search Console dagquotum.
+Google kan de pagina via sitemap en interne links ontdekken.
