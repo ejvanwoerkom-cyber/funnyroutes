@@ -1,26 +1,22 @@
-FUNNYROUTES CONTENT SEO V9
+FUNNYROUTES CONTENT SEO V10
 
 Nieuw:
-- zonvakantie-vergelijken.html
+- familievakantie-vergelijken.html
 - focus op zoektermen:
-  * zonvakantie vergelijken
-  * goedkope zonvakantie
-  * zonreis
-  * strandvakantie
-  * goedkope zonbestemming
+  * familievakantie vergelijken
+  * vakantie met kinderen
+  * gezinsvakantie
+  * kindvriendelijke vakantie
+  * goedkope familievakantie
 - interne links vanaf homepage en bestaande SEO-pagina's
 - sitemap.xml uitgebreid met de nieuwe pagina
 
 Upload:
 1. index.html -> vervangen
-2. goedkope-vluchten.html -> vervangen
-3. hotels-vergelijken.html -> vervangen
-4. huurauto-vergelijken.html -> vervangen
-5. stedentrip-vergelijken.html -> vervangen
-6. weekendje-weg-vergelijken.html -> vervangen
-7. zonvakantie-vergelijken.html -> nieuw
-8. sitemap.xml -> vervangen
+2. alle bestaande SEO-pagina's uit dit pakket -> vervangen
+3. familievakantie-vergelijken.html -> nieuw
+4. sitemap.xml -> vervangen
 
 Daarna in Google Search Console:
-- URL-inspectie voor https://funnyroutes.com/zonvakantie-vergelijken.html
+- URL-inspectie voor https://funnyroutes.com/familievakantie-vergelijken.html
 - vervolgens Indexering aanvragen
