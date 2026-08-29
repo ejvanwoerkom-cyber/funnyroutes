@@ -1,13 +1,17 @@
-FUNNYROUTES ANALYTICS DASHBOARD V2
+FUNNYROUTES ANALYTICS V3
 
 Nieuw:
-- zoektypeverdeling (Vluchten / Hotels / Auto's)
-- populairste bestemmingen
-- populairste dealroutes
-- bestaande conversie-, taal- en dagoverzichten blijven behouden
+- anonieme sessie-ID na toestemming
+- eigen bezoekersmeting via Page Viewed
+- funnel bezoeker -> interactie/klik -> prijsalert
+- daggrafiek
+- eerdere dashboardonderdelen blijven behouden
 
 Upload:
-1. admin-analytics.html -> hoofdmap, bestaande vervangen
-2. api/admin-analytics.js -> map api, bestaande vervangen
+1. index.html -> hoofdmap, vervangen
+2. admin-analytics.html -> hoofdmap, vervangen
+3. api/track-event.js -> api-map, vervangen
+4. api/admin-analytics.js -> api-map, vervangen
 
-De bestaande ANALYTICS_ADMIN_KEY blijft geldig.
+ANALYTICS_ADMIN_KEY blijft hetzelfde.
+Historische conversies blijven zichtbaar; de funnel begint vanaf deze versie, omdat oudere events nog geen visitor_id hebben.

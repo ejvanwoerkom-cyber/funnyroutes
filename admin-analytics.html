@@ -45,6 +45,14 @@
     .section-title{font-size:19px;font-weight:800;margin:0 0 14px}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .empty{color:var(--muted);padding:18px 0}
+    .chart{display:flex;align-items:flex-end;gap:10px;height:210px;padding:18px 6px 6px;border-bottom:1px solid var(--border)}
+    .bar-wrap{flex:1;min-width:18px;text-align:center}
+    .bar{width:100%;min-height:4px;background:var(--blue);border-radius:8px 8px 2px 2px}
+    .bar-label{font-size:11px;color:var(--muted);margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .bar-value{font-size:11px;font-weight:700;margin-bottom:5px}
+    .funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .funnel-step{background:#f8fbfe;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
+    .funnel-step strong{display:block;font-size:30px;margin:5px 0}
     @media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
     @media(max-width:520px){.stats{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
   </style>
@@ -138,6 +146,21 @@
     </div>
 
     <div class="panel">
+      <h2 class="section-title">Funnel</h2>
+      <div class="funnel">
+        <div class="funnel-step"><div class="label">Bezoekers*</div><strong id="funnelVisitors">0</strong><div class="sub">met toestemming</div></div>
+        <div class="funnel-step"><div class="label">Interactie / klik</div><strong id="funnelEngaged">0</strong><div class="sub" id="funnelEngagedPct">0%</div></div>
+        <div class="funnel-step"><div class="label">Prijsalert</div><strong id="funnelAlerts">0</strong><div class="sub" id="funnelAlertPct">0%</div></div>
+      </div>
+      <div class="sub" style="margin-top:12px">* Alleen anonieme sessies van bezoekers die “Alles toestaan” hebben gekozen. Klikken binnen externe vlucht- en hotelwidgets kunnen niet volledig worden gemeten.</div>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-title">Conversies per dag</h2>
+      <div id="dailyChart" class="chart" aria-label="Conversies per dag"></div>
+    </div>
+
+    <div class="panel">
       <h2 class="section-title">Dagoverzicht</h2>
       <table>
         <thead><tr><th>Datum</th><th>Aantal conversies</th></tr></thead>
@@ -196,6 +219,23 @@
     return labels[code] ? `${labels[code]} (${code})` : code;
   }
 
+  function renderDailyChart(rows){
+    const chart=document.getElementById('dailyChart');
+    if(!chart)return;
+    chart.innerHTML='';
+    const data=[...(rows||[])].reverse().slice(-30);
+    if(!data.length){chart.innerHTML='<div class="empty">Nog geen gegevens.</div>';return;}
+    const max=Math.max(...data.map(r=>Number(r.count)||0),1);
+    data.forEach(r=>{
+      const wrap=document.createElement('div');wrap.className='bar-wrap';
+      const value=document.createElement('div');value.className='bar-value';value.textContent=r.count;
+      const bar=document.createElement('div');bar.className='bar';
+      bar.style.height=Math.max(4,Math.round((Number(r.count)||0)/max*150))+'px';
+      const label=document.createElement('div');label.className='bar-label';label.textContent=String(r.key).slice(5);
+      wrap.append(value,bar,label);chart.appendChild(wrap);
+    });
+  }
+
   function renderRows(tbody,rows,labelFn){
     tbody.innerHTML='';
     if(!rows || rows.length===0){
@@ -244,6 +284,16 @@
       renderRows(document.getElementById('destinationsTable'),data.byDestination,destinationLabel);
       renderRows(document.getElementById('dealsTable'),data.byDeal,destinationLabel);
       renderRows(document.getElementById('daysTable'),data.byDay);
+      renderDailyChart(data.byDay);
+
+      const visitors=Number(data.funnel?.visitors||0);
+      const engaged=Number(data.funnel?.engaged||0);
+      const alerts=Number(data.funnel?.alertVisitors||0);
+      document.getElementById('funnelVisitors').textContent=visitors;
+      document.getElementById('funnelEngaged').textContent=engaged;
+      document.getElementById('funnelAlerts').textContent=alerts;
+      document.getElementById('funnelEngagedPct').textContent=visitors?Math.round(engaged/visitors*100)+'% van bezoekers':'0%';
+      document.getElementById('funnelAlertPct').textContent=visitors?Math.round(alerts/visitors*100)+'% van bezoekers':'0%';
 
       setStatus(dashboardStatus,'Bijgewerkt: '+new Date().toLocaleString('nl-NL'),'ok');
     }catch(e){

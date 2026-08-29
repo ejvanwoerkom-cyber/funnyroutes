@@ -215,17 +215,19 @@
     document.head.appendChild(script);
   }
 
+  function getAnalyticsSessionId(){
+    if(!hasAffiliateConsent()) return '';
+    let id=sessionStorage.getItem('fr_analytics_session_id');
+    if(!id){
+      id=(crypto?.randomUUID?.()||('fr-'+Date.now()+'-'+Math.random().toString(36).slice(2))).slice(0,80);
+      sessionStorage.setItem('fr_analytics_session_id',id);
+    }
+    return id;
+  }
+
   function trackConversion(name,data={}){
     if(!hasAffiliateConsent()) return;
-
-    // Vercel Analytics (page analytics stays useful even though custom events
-    // are not visible on the Hobby plan).
-    try{
-      window.va?.('event',{name,data});
-    }catch(e){}
-
-    // FunnyRoutes' own anonymous conversion log in Neon.
-    // No email address, name or other direct personal data is sent.
+    try{ window.va?.('event',{name,data}); }catch(e){}
     try{
       fetch('/api/track-event',{
         method:'POST',
@@ -235,10 +237,19 @@
           event:name,
           data,
           path:location.pathname,
-          lang:langSelect?.value||'nl'
+          lang:langSelect?.value||'nl',
+          visitorId:getAnalyticsSessionId()
         })
       }).catch(()=>{});
     }catch(e){}
+  }
+
+  function trackPageViewOnce(){
+    if(!hasAffiliateConsent()) return;
+    const key='fr_pageview_'+location.pathname;
+    if(sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key,'1');
+    trackConversion('Page Viewed',{page:location.pathname});
   }
 
 
@@ -596,6 +607,7 @@
     if(value==='all'){
       loadConversionAnalytics();
       trackConversion('Cookie Consent',{choice:'all'});
+      trackPageViewOnce();
     }
     applyCookieConsent();
   }
@@ -612,7 +624,10 @@
   updateAlertCurrency();
   renderPriceAlerts();
   applyLanguage(langSelect.value);
-  if(hasAffiliateConsent()) loadConversionAnalytics();
+  if(hasAffiliateConsent()){
+    loadConversionAnalytics();
+    trackPageViewOnce();
+  }
   applyCookieConsent();
   if(!cookieConsent)showCookieBanner();
 })();
