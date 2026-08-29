@@ -41,7 +41,7 @@ module.exports = async function handler(req,res){
 
     const interval=`${days} days`;
 
-    const [byEventR,byLangR,byDayR]=await Promise.all([
+    const [byEventR,byLangR,bySearchTypeR,byDestinationR,byDealR,byDayR]=await Promise.all([
       db.query(`
         SELECT event_name AS key, COUNT(*)::int AS count
         FROM conversion_events
@@ -55,6 +55,37 @@ module.exports = async function handler(req,res){
         WHERE created_at >= NOW() - $1::interval
         GROUP BY language
         ORDER BY count DESC,language
+      `,[interval]),
+      db.query(`
+        SELECT COALESCE(NULLIF(event_data->>'tab',''),'unknown') AS key,
+               COUNT(*)::int AS count
+        FROM conversion_events
+        WHERE created_at >= NOW() - $1::interval
+          AND event_name='Search Tab Opened'
+        GROUP BY 1
+        ORDER BY count DESC,key
+      `,[interval]),
+      db.query(`
+        SELECT event_data->>'code' AS key,
+               COUNT(*)::int AS count
+        FROM conversion_events
+        WHERE created_at >= NOW() - $1::interval
+          AND event_name IN ('Deal Route Selected','Explore Destination Selected')
+          AND COALESCE(event_data->>'code','') <> ''
+        GROUP BY 1
+        ORDER BY count DESC,key
+        LIMIT 20
+      `,[interval]),
+      db.query(`
+        SELECT event_data->>'code' AS key,
+               COUNT(*)::int AS count
+        FROM conversion_events
+        WHERE created_at >= NOW() - $1::interval
+          AND event_name='Deal Route Selected'
+          AND COALESCE(event_data->>'code','') <> ''
+        GROUP BY 1
+        ORDER BY count DESC,key
+        LIMIT 20
       `,[interval]),
       db.query(`
         SELECT TO_CHAR(created_at AT TIME ZONE 'Europe/Amsterdam','YYYY-MM-DD') AS key,
@@ -83,6 +114,9 @@ module.exports = async function handler(req,res){
       summary,
       byEvent,
       byLanguage:byLangR.rows,
+      bySearchType:bySearchTypeR.rows,
+      byDestination:byDestinationR.rows,
+      byDeal:byDealR.rows,
       byDay:byDayR.rows
     });
   }catch(err){
