@@ -111,6 +111,32 @@
       </div>
     </div>
 
+    <div class="grid2">
+      <div class="panel">
+        <h2 class="section-title">Zoektype</h2>
+        <table>
+          <thead><tr><th>Onderdeel</th><th>Aantal</th></tr></thead>
+          <tbody id="searchTypesTable"></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2 class="section-title">Populairste bestemmingen</h2>
+        <table>
+          <thead><tr><th>Bestemming</th><th>Aantal</th></tr></thead>
+          <tbody id="destinationsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-title">Populairste dealroutes</h2>
+      <table>
+        <thead><tr><th>Route / bestemming</th><th>Aantal</th></tr></thead>
+        <tbody id="dealsTable"></tbody>
+      </table>
+    </div>
+
     <div class="panel">
       <h2 class="section-title">Dagoverzicht</h2>
       <table>
@@ -152,6 +178,22 @@
       'Car Partner Click':'Klik naar Trip.com autoverhuur'
     };
     return labels[name]||name;
+  }
+
+  function searchTypeLabel(key){
+    const labels={flights:'Vluchten',hotels:'Hotels',cars:'Auto’s'};
+    return labels[key]||key;
+  }
+
+  function destinationLabel(code){
+    const labels={
+      BCN:'Barcelona',BKK:'Bangkok',DPS:'Bali',PMI:'Palma de Mallorca',
+      FAO:'Faro',HER:'Heraklion',TFS:'Tenerife',FCO:'Rome',LIS:'Lissabon',
+      PRG:'Praag',KEF:'Reykjavik',BGO:'Bergen',INN:'Innsbruck',LJU:'Ljubljana',
+      MCO:'Orlando',BLL:'Billund',AYT:'Antalya',LHR:'Londen',FRA:'Frankfurt',
+      ZRH:'Zürich',DXB:'Dubai',LON:'Londen',PAR:'Parijs',CPH:'Kopenhagen',BER:'Berlijn'
+    };
+    return labels[code] ? `${labels[code]} (${code})` : code;
   }
 
   function renderRows(tbody,rows,labelFn){
@@ -198,6 +240,9 @@
 
       renderRows(document.getElementById('eventsTable'),data.byEvent,eventLabel);
       renderRows(document.getElementById('langsTable'),data.byLanguage,k=>k.toUpperCase());
+      renderRows(document.getElementById('searchTypesTable'),data.bySearchType,searchTypeLabel);
+      renderRows(document.getElementById('destinationsTable'),data.byDestination,destinationLabel);
+      renderRows(document.getElementById('dealsTable'),data.byDeal,destinationLabel);
       renderRows(document.getElementById('daysTable'),data.byDay);
 
       setStatus(dashboardStatus,'Bijgewerkt: '+new Date().toLocaleString('nl-NL'),'ok');
