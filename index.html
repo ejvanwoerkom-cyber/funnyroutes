@@ -496,7 +496,7 @@
       if(duplicate){showAlertStatus(t.alertDuplicate||translations.nl.alertDuplicate,'error');return;}
       showAlertStatus(t.alertSaving||'Prijsalert activeren…','success');
       try{
-        const response=await fetch('/api/alerts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({destination,destinationCode:selectedDealDestination?.name?.toLowerCase()===destination.toLowerCase()?selectedDealDestination.code:null,email,maxPrice,currency,lang:langSelect.value,originCode:'AMS'})});
+        const response=await fetch('/api/alerts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({destination,destinationCode:selectedDealDestination?.name?.toLowerCase()===destination.toLowerCase()?selectedDealDestination.code:null,email,maxPrice,currency,lang:langSelect.value,originCode:'AMS',analyticsVisitorId:getAnalyticsSessionId()})});
         const result=await response.json().catch(()=>({}));
         if(!response.ok) throw new Error(result?.error||'save_failed');
         priceAlerts.unshift({destination:result.destinationName||destination,destinationCode:result.destinationCode||null,maxPrice,currency,createdAt:new Date().toISOString(),serverId:result.id,manageToken:result.manageToken,pendingConfirmation:!!result.pendingConfirmation});

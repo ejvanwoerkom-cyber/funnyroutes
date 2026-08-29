@@ -50,10 +50,10 @@
     .bar{width:100%;min-height:4px;background:var(--blue);border-radius:8px 8px 2px 2px}
     .bar-label{font-size:11px;color:var(--muted);margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .bar-value{font-size:11px;font-weight:700;margin-bottom:5px}
-    .funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
     .funnel-step{background:#f8fbfe;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
     .funnel-step strong{display:block;font-size:30px;margin:5px 0}
-    @media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+    @media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.funnel{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:520px){.stats{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
@@ -150,7 +150,8 @@
       <div class="funnel">
         <div class="funnel-step"><div class="label">Bezoekers*</div><strong id="funnelVisitors">0</strong><div class="sub">met toestemming</div></div>
         <div class="funnel-step"><div class="label">Interactie / klik</div><strong id="funnelEngaged">0</strong><div class="sub" id="funnelEngagedPct">0%</div></div>
-        <div class="funnel-step"><div class="label">Prijsalert</div><strong id="funnelAlerts">0</strong><div class="sub" id="funnelAlertPct">0%</div></div>
+        <div class="funnel-step"><div class="label">Prijsalert aangevraagd</div><strong id="funnelAlerts">0</strong><div class="sub" id="funnelAlertPct">0%</div></div>
+        <div class="funnel-step"><div class="label">Prijsalert bevestigd</div><strong id="funnelConfirmed">0</strong><div class="sub" id="funnelConfirmedPct">0%</div></div>
       </div>
       <div class="sub" style="margin-top:12px">* Alleen anonieme sessies van bezoekers die “Alles toestaan” hebben gekozen. Klikken binnen externe vlucht- en hotelwidgets kunnen niet volledig worden gemeten.</div>
     </div>
@@ -198,6 +199,7 @@
       'Deal Route Selected':'Deal geselecteerd',
       'Explore Destination Selected':'Explore-bestemming gekozen',
       'Price Alert Requested':'Prijsalert aangevraagd',
+      'Price Alert Confirmed':'Prijsalert bevestigd',
       'Car Partner Click':'Klik naar Trip.com autoverhuur'
     };
     return labels[name]||name;
@@ -289,11 +291,14 @@
       const visitors=Number(data.funnel?.visitors||0);
       const engaged=Number(data.funnel?.engaged||0);
       const alerts=Number(data.funnel?.alertVisitors||0);
+      const confirmed=Number(data.funnel?.confirmedAlertVisitors||0);
       document.getElementById('funnelVisitors').textContent=visitors;
       document.getElementById('funnelEngaged').textContent=engaged;
       document.getElementById('funnelAlerts').textContent=alerts;
+      document.getElementById('funnelConfirmed').textContent=confirmed;
       document.getElementById('funnelEngagedPct').textContent=visitors?Math.round(engaged/visitors*100)+'% van bezoekers':'0%';
       document.getElementById('funnelAlertPct').textContent=visitors?Math.round(alerts/visitors*100)+'% van bezoekers':'0%';
+      document.getElementById('funnelConfirmedPct').textContent=alerts?Math.round(confirmed/alerts*100)+'% van aanvragen':'0%';
 
       setStatus(dashboardStatus,'Bijgewerkt: '+new Date().toLocaleString('nl-NL'),'ok');
     }catch(e){
