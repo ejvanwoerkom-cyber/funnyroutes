@@ -1,21 +1,21 @@
-FUNNYROUTES CONTENT SEO V13
+FUNNYROUTES CONTENT SEO V14
 
 Nieuw:
-- roadtrip-vergelijken.html
-- focus op:
-  * roadtrip plannen
-  * autovakantie
-  * fly-drive
-  * roadtrip vergelijken
-  * huurauto roadtrip
-- interne links uitgebreid
+- vakantie-vergelijken.html als centrale SEO-hub / pillar page
+- links naar alle bestaande reisgidsen
+- sterkere interne sitestructuur
+- homepage linkt naar de centrale vakantie-overzichtspagina
+- alle SEO-pagina's linken terug naar de hub
 - sitemap.xml bijgewerkt
+
+Waarom dit nuttig is:
+De site heeft nu niet alleen losse SEO-pagina's, maar ook één centrale pagina
+die Google helpt begrijpen hoe de onderwerpen bij elkaar horen.
 
 Upload:
 1. index.html -> vervangen
-2. bestaande SEO-pagina's uit dit pakket -> vervangen
-3. roadtrip-vergelijken.html -> nieuw
+2. alle bestaande SEO-pagina's uit dit pakket -> vervangen
+3. vakantie-vergelijken.html -> nieuw
 4. sitemap.xml -> vervangen
 
-Handmatige indexering hoeft vandaag niet meer wegens het Search Console dagquotum.
-Google kan de pagina via sitemap en interne links ontdekken.
+Vandaag geen extra handmatige indexeringsverzoeken nodig wegens het Search Console dagquotum.
