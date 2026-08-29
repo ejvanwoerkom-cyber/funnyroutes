@@ -6,7 +6,8 @@ const ALLOWED_EVENTS = new Set([
   'Deal Route Selected',
   'Explore Destination Selected',
   'Price Alert Requested',
-  'Car Partner Click'
+  'Car Partner Click',
+  'Page Viewed'
 ]);
 
 function cleanString(value, max=80){
@@ -18,7 +19,7 @@ function cleanData(input){
   if(!input || typeof input!=='object' || Array.isArray(input)) return out;
 
   const allowedKeys=new Set([
-    'tab','source','code','category','currency','confirmation','partner','choice'
+    'tab','source','code','category','currency','confirmation','partner','choice','page'
   ]);
 
   for(const [key,value] of Object.entries(input)){
@@ -38,8 +39,14 @@ async function ensureAnalyticsSchema(db){
       event_data JSONB NOT NULL DEFAULT '{}'::jsonb,
       page_path TEXT NOT NULL DEFAULT '/',
       language TEXT NOT NULL DEFAULT 'nl',
+      visitor_id TEXT,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
+  `);
+
+  await db.query(`
+    ALTER TABLE conversion_events
+    ADD COLUMN IF NOT EXISTS visitor_id TEXT
   `);
 
   await db.query(`
@@ -72,15 +79,16 @@ module.exports = async function handler(req,res){
       ? cleanString(body.lang,5)
       : 'nl';
     const data=cleanData(body.data);
+    const visitorId=cleanString(body.visitorId,80)||null;
 
     await ensureSchema();
     const db=getPool();
     await ensureAnalyticsSchema(db);
 
     await db.query(
-      `INSERT INTO conversion_events(event_name,event_data,page_path,language)
-       VALUES($1,$2::jsonb,$3,$4)`,
-      [event,JSON.stringify(data),path,lang]
+      `INSERT INTO conversion_events(event_name,event_data,page_path,language,visitor_id)
+       VALUES($1,$2::jsonb,$3,$4,$5)`,
+      [event,JSON.stringify(data),path,lang,visitorId]
     );
 
     res.setHeader('Cache-Control','no-store');

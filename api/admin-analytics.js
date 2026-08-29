@@ -35,13 +35,19 @@ module.exports = async function handler(req,res){
         event_data JSONB NOT NULL DEFAULT '{}'::jsonb,
         page_path TEXT NOT NULL DEFAULT '/',
         language TEXT NOT NULL DEFAULT 'nl',
+        visitor_id TEXT,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       )
     `);
 
+    await db.query(`
+      ALTER TABLE conversion_events
+      ADD COLUMN IF NOT EXISTS visitor_id TEXT
+    `);
+
     const interval=`${days} days`;
 
-    const [byEventR,byLangR,bySearchTypeR,byDestinationR,byDealR,byDayR]=await Promise.all([
+    const [byEventR,byLangR,bySearchTypeR,byDestinationR,byDealR,byDayR,funnelR]=await Promise.all([
       db.query(`
         SELECT event_name AS key, COUNT(*)::int AS count
         FROM conversion_events
@@ -94,6 +100,21 @@ module.exports = async function handler(req,res){
         WHERE created_at >= NOW() - $1::interval
         GROUP BY 1
         ORDER BY 1 DESC
+      `,[interval]),
+      db.query(`
+        SELECT
+          COUNT(DISTINCT visitor_id) FILTER (
+            WHERE visitor_id IS NOT NULL AND event_name='Page Viewed'
+          )::int AS visitors,
+          COUNT(DISTINCT visitor_id) FILTER (
+            WHERE visitor_id IS NOT NULL AND event_name IN
+              ('Search Tab Opened','Deal Route Selected','Explore Destination Selected','Car Partner Click')
+          )::int AS engaged,
+          COUNT(DISTINCT visitor_id) FILTER (
+            WHERE visitor_id IS NOT NULL AND event_name='Price Alert Requested'
+          )::int AS alert_visitors
+        FROM conversion_events
+        WHERE created_at >= NOW() - $1::interval
       `,[interval])
     ]);
 
@@ -117,7 +138,12 @@ module.exports = async function handler(req,res){
       bySearchType:bySearchTypeR.rows,
       byDestination:byDestinationR.rows,
       byDeal:byDealR.rows,
-      byDay:byDayR.rows
+      byDay:byDayR.rows,
+      funnel:{
+        visitors:funnelR.rows[0]?.visitors||0,
+        engaged:funnelR.rows[0]?.engaged||0,
+        alertVisitors:funnelR.rows[0]?.alert_visitors||0
+      }
     });
   }catch(err){
     console.error('admin-analytics failed',err);
