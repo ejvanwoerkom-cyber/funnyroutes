@@ -112,7 +112,10 @@ module.exports = async function handler(req,res){
           )::int AS engaged,
           COUNT(DISTINCT visitor_id) FILTER (
             WHERE visitor_id IS NOT NULL AND event_name='Price Alert Requested'
-          )::int AS alert_visitors
+          )::int AS alert_visitors,
+          COUNT(DISTINCT visitor_id) FILTER (
+            WHERE visitor_id IS NOT NULL AND event_name='Price Alert Confirmed'
+          )::int AS confirmed_alert_visitors
         FROM conversion_events
         WHERE created_at >= NOW() - $1::interval
       `,[interval])
@@ -142,7 +145,8 @@ module.exports = async function handler(req,res){
       funnel:{
         visitors:funnelR.rows[0]?.visitors||0,
         engaged:funnelR.rows[0]?.engaged||0,
-        alertVisitors:funnelR.rows[0]?.alert_visitors||0
+        alertVisitors:funnelR.rows[0]?.alert_visitors||0,
+        confirmedAlertVisitors:funnelR.rows[0]?.confirmed_alert_visitors||0
       }
     });
   }catch(err){

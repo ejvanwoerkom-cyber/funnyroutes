@@ -32,6 +32,11 @@ async function ensureExtraSchema(db){
     ADD COLUMN IF NOT EXISTS confirmed_at TIMESTAMPTZ
   `);
 
+  await db.query(`
+    ALTER TABLE price_alerts
+    ADD COLUMN IF NOT EXISTS analytics_visitor_id TEXT
+  `);
+
   // Bestaande actieve alerts blijven actief en worden beschouwd als reeds bevestigd.
   await db.query(`
     UPDATE price_alerts
@@ -150,6 +155,7 @@ module.exports = async function handler(req,res){
       const currency=safeCurrency(b.currency);
       const lang=safeLang(b.lang);
       const originCode=/^[A-Za-z]{3}$/.test(String(b.originCode||''))?String(b.originCode).toUpperCase():'AMS';
+      const analyticsVisitorId=String(b.analyticsVisitorId||'').trim().slice(0,80)||null;
 
       if(!destination||!validEmail(email)||!Number.isFinite(maxPrice)||maxPrice<=0){
         return res.status(400).json({error:'invalid_input'});
@@ -198,6 +204,14 @@ module.exports = async function handler(req,res){
           return res.status(409).json({error:'duplicate'});
         }
 
+        if(analyticsVisitorId){
+          await db.query(`
+            UPDATE price_alerts
+            SET analytics_visitor_id=$1
+            WHERE id=$2
+          `,[analyticsVisitorId,row.id]);
+        }
+
         // Nog niet bevestigde aanvraag: stuur de bevestigingsmail opnieuw.
         const copy=activationEmail({
           lang,
@@ -231,11 +245,11 @@ module.exports = async function handler(req,res){
       const q=await db.query(`
         INSERT INTO price_alerts(
           email,origin_code,destination_name,destination_code,
-          max_price,currency,lang,manage_token,active,confirmed_at
+          max_price,currency,lang,manage_token,active,confirmed_at,analytics_visitor_id
         )
-        VALUES($1,$2,$3,$4,$5,$6,$7,$8,FALSE,NULL)
+        VALUES($1,$2,$3,$4,$5,$6,$7,$8,FALSE,NULL,$9)
         RETURNING id
-      `,[email,originCode,place.name,place.code,maxPrice,currency,lang,token]);
+      `,[email,originCode,place.name,place.code,maxPrice,currency,lang,token,analyticsVisitorId]);
 
       const id=String(q.rows[0].id);
       const copy=activationEmail({

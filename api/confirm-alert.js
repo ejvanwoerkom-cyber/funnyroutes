@@ -51,7 +51,7 @@ module.exports = async function handler(req,res){
     }
 
     const found=await db.query(`
-      SELECT id, active, confirmed_at
+      SELECT id, active, confirmed_at, lang, analytics_visitor_id
       FROM price_alerts
       WHERE id=$1 AND manage_token=$2
       LIMIT 1
@@ -80,6 +80,28 @@ module.exports = async function handler(req,res){
           confirmed_at=COALESCE(confirmed_at,NOW())
       WHERE id=$1 AND manage_token=$2
     `,[id,token]);
+
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS conversion_events (
+        id BIGSERIAL PRIMARY KEY,
+        event_name TEXT NOT NULL,
+        event_data JSONB NOT NULL DEFAULT '{}'::jsonb,
+        page_path TEXT NOT NULL DEFAULT '/',
+        language TEXT NOT NULL DEFAULT 'nl',
+        visitor_id TEXT,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      )
+    `);
+
+    await db.query(`
+      ALTER TABLE conversion_events
+      ADD COLUMN IF NOT EXISTS visitor_id TEXT
+    `);
+
+    await db.query(`
+      INSERT INTO conversion_events(event_name,event_data,page_path,language,visitor_id)
+      VALUES('Price Alert Confirmed','{}'::jsonb,'/api/confirm-alert',$1,$2)
+    `,[row.lang||'nl',row.analytics_visitor_id||null]);
 
     return res.status(200).send(page(
       'Prijsalert bevestigd',
