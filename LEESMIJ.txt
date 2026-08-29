@@ -1,18 +1,19 @@
-FUNNYROUTES SEO V5
+FUNNYROUTES SEO V6
 
-Nieuw:
-- /goedkope-vluchten.html
-- /hotels-vergelijken.html
-- /huurauto-vergelijken.html
-- interne links vanaf de homepage
-- bijgewerkte sitemap.xml
+Verbeterd:
+- sterkere zoektermen in titles, H1's, intro's en tussenkoppen
+- natuurlijke focus op:
+  * goedkope vliegtickets / vluchten vergelijken
+  * hotels vergelijken / hotelprijzen
+  * huurauto vergelijken / autohuur
+- sterkere interne links tussen de drie SEO-pagina's
+- homepage-ankertext verbeterd
 
 Upload:
 1. index.html -> hoofdmap, vervangen
-2. goedkope-vluchten.html -> hoofdmap
-3. hotels-vergelijken.html -> hoofdmap
-4. huurauto-vergelijken.html -> hoofdmap
-5. sitemap.xml -> hoofdmap, vervangen
+2. goedkope-vluchten.html -> vervangen
+3. hotels-vergelijken.html -> vervangen
+4. huurauto-vergelijken.html -> vervangen
 
-De pagina's zijn informatief, bevatten canonical tags, meta descriptions,
-FAQ structured data en duidelijke affiliate/partneruitleg.
+sitemap.xml hoeft niet opnieuw te worden vervangen, want de URL's zijn niet gewijzigd.
+Na deployment kun je in Search Console eventueel opnieuw 'Indexering aanvragen' gebruiken voor deze drie pagina's, omdat de inhoud is verbeterd.
