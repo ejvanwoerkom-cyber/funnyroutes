@@ -1,19 +1,18 @@
-FUNNYROUTES ANALYTICS V4
+FUNNYROUTES SEO V5
 
 Nieuw:
-- koppelt anonieme sessie aan prijsalert-aanvraag
-- registreert ook 'Price Alert Confirmed'
-- funnel toont nu:
-  bezoeker -> interactie/klik -> prijsalert aangevraagd -> prijsalert bevestigd
-- bevestigingspercentage wordt berekend
+- /goedkope-vluchten.html
+- /hotels-vergelijken.html
+- /huurauto-vergelijken.html
+- interne links vanaf de homepage
+- bijgewerkte sitemap.xml
 
 Upload:
 1. index.html -> hoofdmap, vervangen
-2. admin-analytics.html -> hoofdmap, vervangen
-3. api/track-event.js -> api-map, vervangen
-4. api/admin-analytics.js -> api-map, vervangen
-5. api/alerts.js -> api-map, vervangen
-6. api/confirm-alert.js -> api-map, vervangen
+2. goedkope-vluchten.html -> hoofdmap
+3. hotels-vergelijken.html -> hoofdmap
+4. huurauto-vergelijken.html -> hoofdmap
+5. sitemap.xml -> hoofdmap, vervangen
 
-Bestaande environment variables blijven hetzelfde.
-Historische data blijft behouden; bevestigde funneldata wordt vanaf V4 opgebouwd.
+De pagina's zijn informatief, bevatten canonical tags, meta descriptions,
+FAQ structured data en duidelijke affiliate/partneruitleg.
