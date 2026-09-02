@@ -131,6 +131,28 @@ button[type="submit"],
 }
 </style>
 
+
+<style id="accessibility-contrast-v18">
+/* FunnyRoutes accessibility contrast update v18
+   Gericht op de resterende PageSpeed-meldingen. */
+
+/* Oranje Routes-deel in het logo: voldoende contrast op wit */
+.brand b {
+  color: #c94f00 !important;
+}
+
+/* Prijsalert-knop: donkerder oranje zodat witte tekst WCAG-contrast haalt */
+.alert-card button[type="submit"] {
+  background: #c14a00 !important;
+  color: #ffffff !important;
+}
+
+/* Eventuele oranje tekst in het alertblok eveneens donkerder */
+.alert-card [data-i18n="makeAlert"] {
+  color: #ffffff !important;
+}
+</style>
+
 </head>
 <body>
 <header class="topbar"><div class="container nav">
