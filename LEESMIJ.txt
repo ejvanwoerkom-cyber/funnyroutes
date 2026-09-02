@@ -1,24 +1,29 @@
-FUNNYROUTES CONTENT SEO V15
+FUNNYROUTES SEO V16 - OP BASIS VAN ECHTE SEARCH CONSOLE DATA
 
-Nieuw:
-- last-minute-vakantie-vergelijken.html
-- focus op:
-  * last minute vakantie
-  * last minute vergelijken
-  * goedkope last minute
-  * spontane vakantie
-- homepage uitgebreid
-- centrale vakantie-hub uitgebreid
-- alleen contextueel relevante interne links toegevoegd
-- sitemap.xml bijgewerkt
+Search Console liet de eerste vertoningen zien voor:
+- huurauto's vergelijken
+- vergelijking huurauto's
+- vergelijking autoverhuur prijzen
+- autoverhuur aanbieders vergelijken
+
+Daarom is vooral huurauto-vergelijken.html versterkt.
+
+Belangrijkste verbeteringen:
+- nieuwe SEO-title en meta description
+- sterker H1 rond huurauto's vergelijken
+- extra sectie over autoverhuur aanbieders vergelijken
+- extra sectie over autoverhuur prijzen vergelijken
+- nadruk op totale huurprijs, verzekering, borg en brandstofbeleid
+- extra FAQ-content
+- interne linkteksten op homepage en vakantie-hub aangescherpt
 
 Upload:
-1. index.html -> vervangen
-2. relevante bestaande SEO-pagina's uit dit pakket -> vervangen
+1. huurauto-vergelijken.html -> vervangen
+2. index.html -> vervangen
 3. vakantie-vergelijken.html -> vervangen
-4. last-minute-vakantie-vergelijken.html -> nieuw
-5. sitemap.xml -> vervangen
 
-Search Console:
-Vandaag geen extra handmatige indexeringsverzoeken nodig wegens het dagquotum.
-Google kan deze pagina via sitemap en interne links ontdekken.
+De sitemap hoeft voor V16 NIET te worden aangepast, omdat er geen nieuwe URL is toegevoegd.
+
+Daarna:
+- NIET opnieuw handmatig indexeren als de pagina al in Google staat.
+- Eerst een paar dagen wachten en daarna Search Console opnieuw controleren op vertoningen en gemiddelde positie.
