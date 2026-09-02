@@ -153,6 +153,52 @@ button[type="submit"],
 }
 </style>
 
+
+<style id="accessibility-tap-headings-v19">
+/* FunnyRoutes Accessibility V19
+   Grotere mobiele tikdoelen + logische kopvolgorde. */
+
+@media (max-width: 780px) {
+  /* Belangrijkste interactieve elementen minimaal circa 44px hoog */
+  .menu a,
+  .deal-route-link,
+  .cookie-copy a,
+  .cookie-settings-link,
+  footer a,
+  .tabs button,
+  [data-open-tab],
+  .nav-select {
+    min-height: 44px;
+  }
+
+  .menu a,
+  .deal-route-link,
+  .cookie-copy a,
+  footer a,
+  [data-open-tab] {
+    display: inline-flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* Voldoende ruimte tussen links die naast/onder elkaar staan */
+  .menu,
+  .cookie-actions {
+    gap: 10px;
+  }
+
+  .deal-route-link {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .cookie-settings-link {
+    padding: 10px 4px;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="topbar"><div class="container nav">
