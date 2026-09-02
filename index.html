@@ -199,6 +199,33 @@ button[type="submit"],
 }
 </style>
 
+
+<style id="accessibility-final-v20">
+/* Resterende contrastpunten uit PageSpeed */
+
+/* Cookieknop 'Alles toestaan': donkerder oranje voor wit-op-oranje contrast */
+.cookie-btn.primary,
+#cookieAcceptAll {
+  background: #b94700 !important;
+  color: #ffffff !important;
+}
+
+/* Kleine voorbeeldprijzen in telefoon/app-mockups: donkerder tekst */
+.phone-screen .price,
+.phone-screen [class*="price"],
+.app-screen .price,
+.app-screen [class*="price"] {
+  color: #a94100 !important;
+}
+
+/* Zekerstellen dat de feature-koppen visueel gelijk blijven na H4 -> H3 */
+.feature-card h3,
+.why-card h3,
+[class*="feature"] h3 {
+  margin-top: 0;
+}
+</style>
+
 </head>
 <body>
 <header class="topbar"><div class="container nav">
@@ -288,7 +315,7 @@ button[type="submit"],
   <button class="explore-card" type="button" data-explore-category="weekend"><div class="explore-art weekend-art" aria-hidden="true"><span>WEEKEND</span></div><span data-i18n="weekendAway">Weekendje weg</span></button>
 </div><div class="explore-results" id="exploreResults"><div class="explore-results-head"><div><h3 id="exploreResultsTitle">Bestemmingen</h3><p id="exploreResultsText">Kies een bestemming en ga direct naar de vluchtzoeker.</p></div><button class="explore-close" id="exploreClose" type="button">✕</button></div><div class="destination-grid" id="destinationGrid"></div><div class="explore-hint" data-i18n="exploreHint">Na je keuze opent FunnyRoutes automatisch de vluchtzoeker met deze bestemming.</div></div></div></section>
 
-<section><div class="container mid-grid"><div class="why"><div class="section-title"><div><h2 data-i18n="whyTitle">Waarom FunnyRoutes?</h2><p data-i18n="whyText">Reizen vergelijken mag ook leuk zijn.</p></div></div><div class="why-grid"><div class="benefit"><div class="icon">🏷️</div><h4 data-i18n="compareAll">Vergelijk alles</h4><p>We vergelijken reisaanbieders zodat jij makkelijk prijzen kunt bekijken.</p></div><div class="benefit"><div class="icon">🛡️</div><h4 data-i18n="safeReliable">Veilig & betrouwbaar</h4><p>Je boekt uiteindelijk bij de aanbieder of reispartner.</p></div><div class="benefit"><div class="icon">🙂</div><h4 data-i18n="travelSmile">Reis met een glimlach</h4><p>Een vrolijke, eenvoudige reiszoeker zonder ingewikkelde stappen.</p></div><div class="benefit"><div class="icon">🎧</div><h4 data-i18n="helpRoad">Hulp onderweg</h4><p>We bouwen FunnyRoutes stap voor stap uit met handige reisfuncties.</p></div></div></div>
+<section><div class="container mid-grid"><div class="why"><div class="section-title"><div><h2 data-i18n="whyTitle">Waarom FunnyRoutes?</h2><p data-i18n="whyText">Reizen vergelijken mag ook leuk zijn.</p></div></div><div class="why-grid"><div class="benefit"><div class="icon">🏷️</div><h3 data-i18n="compareAll">Vergelijk alles</h3><p>We vergelijken reisaanbieders zodat jij makkelijk prijzen kunt bekijken.</p></div><div class="benefit"><div class="icon">🛡️</div><h3 data-i18n="safeReliable">Veilig & betrouwbaar</h3><p>Je boekt uiteindelijk bij de aanbieder of reispartner.</p></div><div class="benefit"><div class="icon">🙂</div><h3 data-i18n="travelSmile">Reis met een glimlach</h3><p>Een vrolijke, eenvoudige reiszoeker zonder ingewikkelde stappen.</p></div><div class="benefit"><div class="icon">🎧</div><h3 data-i18n="helpRoad">Hulp onderweg</h3><p>We bouwen FunnyRoutes stap voor stap uit met handige reisfuncties.</p></div></div></div>
 <div class="app-card"><div><h3 data-i18n="takeFunny">Neem FunnyRoutes mee</h3><p data-i18n="takeText">Later kun je favoriete routes bewaren, prijsalerts beheren en deals onderweg bekijken.</p><span class="coming-soon-badge">Mobiele functies · binnenkort</span></div><div class="phone"><div class="phone-screen"><div class="mini-brand">Funny<b>Routes</b></div><div class="mini-search">Waar wil je heen?</div><div class="mini-deal"><div class="mini-thumb"></div><div>Barcelona<br><b style="color:#ff6a00">€39*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bangkok<br><b style="color:#ff6a00">€459*</b></div></div><div class="mini-deal"><div class="mini-thumb"></div><div>Bali<br><b style="color:#ff6a00">€599*</b></div></div></div></div></div></div>
 <div class="container reassure"><div><div class="icon">🎧</div><strong>Klantenservice</strong><span>We bouwen hulp en support verder uit.</span></div><div><div class="icon">🔒</div><strong>Geen extra boekingskosten van FunnyRoutes</strong><span>Je ziet de prijsinformatie van partners.</span></div><div><div class="icon">📅</div><strong>Flexibel zoeken</strong><span>Vergelijk verschillende data en routes.</span></div><div><div class="icon">🌍</div><strong>Ontdek meer</strong><span>Inspiratie voor jouw volgende reis.</span></div></div></section>
 </main>
