@@ -88,6 +88,49 @@
     window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };
   </script>
 
+
+<style id="accessibility-contrast-v17">
+/* FunnyRoutes accessibility contrast update v17 */
+/* Donkerder oranje voor kleine tekst en prijslabels */
+.price,
+.deal .price,
+.price-note,
+.example-price,
+.makeAlert,
+.alert-note,
+.orange-text {
+  color: #c94f00 !important;
+}
+
+/* Donkerder oranje voor primaire CTA's met witte tekst */
+button[type="submit"],
+.btn-primary,
+.primary-btn,
+.alert-submit,
+.cta-primary {
+  background-color: #d85a00 !important;
+}
+
+/* Kleine secundaire/grijze teksten beter leesbaar */
+.muted,
+.note,
+.small-note,
+.helper,
+.meta,
+.deal small,
+.search-note,
+.trust-note {
+  color: #4f6475 !important;
+}
+
+/* Logo-tekst iets donkerder waar oranje gebruikt wordt */
+.logo,
+.brand,
+.site-logo {
+  text-shadow: 0 0 0 transparent;
+}
+</style>
+
 </head>
 <body>
 <header class="topbar"><div class="container nav">
